@@ -1,0 +1,36 @@
+# IntelliTech - Hostinger LiteSpeed / Apache Configuration
+Options -Indexes
+ServerSignature Off
+
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Ensure index.php is default directory index
+    DirectoryIndex index.php index.html
+
+    # Security: Protect sensitive data directory from direct browser downloads
+    RewriteRule ^data/.*\.json$ - [F,L,NC]
+</IfModule>
+
+# Gzip Compression for Faster Page Speeds
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Browser Caching Headers
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>

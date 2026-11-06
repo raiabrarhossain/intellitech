@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "id": "u_admin",
+            "username": "admin",
+            "password_hash": "$2y$10$WbEFkH2oWaH6hW3yE2/tSedauoGFnglPbO8sYGUeR3kec.WILC/ye",
+            "admin_name": "Master Administrator",
+            "email": "admin@intellitech.com",
+            "role": "Super Administrator",
+            "status": "active",
+            "last_login": "2026-11-06 03:53:36",
+            "created_at": "2026-11-05 08:32:14",
+            "updated_at": "2026-11-05 08:32:14"
+        }
+    ]
+}
