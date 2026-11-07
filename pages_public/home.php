@@ -20,6 +20,29 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
          1. INTELLITECH ORIGINAL ANIMATED HERO SLIDER & SMART SIMULATOR
          Custom Engineered Banners: Auto Door, Auto Light Room, Smart AC & Mesh
          ======================================================================= -->
+    <!-- Slider Scoped Visibility Protection (Prevents text overlap on all browsers) -->
+    <style>
+        #hero-slider-section .hero-slide {
+            display: none !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            z-index: 0 !important;
+        }
+        #hero-slider-section .hero-slide.slide-active {
+            display: flex !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            pointer-events: auto !important;
+            z-index: 20 !important;
+            animation: heroSlideFadeIn 0.5s ease-out forwards;
+        }
+        @keyframes heroSlideFadeIn {
+            0% { opacity: 0; transform: scale(0.985); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+
     <section class="relative bg-slate-950 overflow-hidden shadow-2xl" id="hero-slider-section">
         
         <!-- Live Auto-Move Micro-Progress Bar -->
@@ -31,7 +54,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
         <div class="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[640px] flex items-center">
             
             <!-- SLIDE 1: AUTOMATIC DOOR & BIOMETRIC 3D SMART ACCESS -->
-            <div class="hero-slide slide-active absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#09152b] to-[#040814]">
+            <div class="hero-slide slide-active absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#09152b] to-[#040814]" style="display: flex; opacity: 1; z-index: 20;">
                 <!-- Subtle Cyber Grid Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(#2189ff_1px,transparent_1px)] [background-size:28px_28px] opacity-20 pointer-events-none"></div>
                 <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
@@ -183,7 +206,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 2: AUTO LIGHT ROOM & INTELLIGENT AMBIENT LIGHTING -->
-            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0c1220] via-[#11192e] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0c1220] via-[#11192e] to-slate-950" style="display: none; opacity: 0; z-index: 0;">
                 <!-- Glowing Ambient Glow backdrop -->
                 <div id="slide2-ambient-glow" class="absolute inset-0 bg-radial from-amber-500/10 via-transparent to-transparent opacity-80 pointer-events-none transition-all duration-700"></div>
                 <div class="absolute -top-32 right-10 w-96 h-96 rounded-full bg-amber-500/20 blur-3xl pointer-events-none"></div>
@@ -327,7 +350,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 3: SMART CLIMATE & MOTORIZED AUTO CURTAINS -->
-            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#061527] via-[#09223d] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#061527] via-[#09223d] to-slate-950" style="display: none; opacity: 0; z-index: 0;">
                 <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none"></div>
 
@@ -466,7 +489,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 4: TURNKEY WHOLE-VILLA ZIGBEE 3.0 MESH -->
-            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0a0f1d] via-[#101b33] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0a0f1d] via-[#101b33] to-slate-950" style="display: none; opacity: 0; z-index: 0;">
                 <div class="absolute -top-32 right-10 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-32 left-10 w-96 h-96 rounded-full bg-purple-600/20 blur-3xl pointer-events-none"></div>
 
@@ -1591,12 +1614,20 @@ window.HeroSlider = (function() {
         const isForward = direction === 'prev' ? false : (direction === 'next' ? true : currentSlide >= prevIndex);
 
         slides.forEach((s, i) => {
-            s.classList.remove('slide-active', 'slide-next', 'slide-prev', 'opacity-100', 'opacity-0', 'z-10', 'z-20', 'z-0');
+            s.classList.remove('slide-active', 'slide-next', 'slide-prev');
             if (i === currentSlide) {
+                s.style.display = 'flex';
+                s.style.opacity = '1';
+                s.style.visibility = 'visible';
+                s.style.pointerEvents = 'auto';
+                s.style.zIndex = '20';
                 s.classList.add('slide-active');
-            } else if (i === prevIndex) {
-                s.classList.add(isForward ? 'slide-prev' : 'slide-next');
             } else {
+                s.style.display = 'none';
+                s.style.opacity = '0';
+                s.style.visibility = 'hidden';
+                s.style.pointerEvents = 'none';
+                s.style.zIndex = '0';
                 s.classList.add(i > currentSlide ? 'slide-next' : 'slide-prev');
             }
         });
@@ -1653,8 +1684,20 @@ window.HeroSlider = (function() {
     // Initialize initial slide & dots
     slides.forEach((s, i) => {
         if (i === 0) {
+            s.style.display = 'flex';
+            s.style.opacity = '1';
+            s.style.visibility = 'visible';
+            s.style.pointerEvents = 'auto';
+            s.style.zIndex = '20';
             s.classList.add('slide-active');
+            s.classList.remove('slide-next', 'slide-prev');
         } else {
+            s.style.display = 'none';
+            s.style.opacity = '0';
+            s.style.visibility = 'hidden';
+            s.style.pointerEvents = 'none';
+            s.style.zIndex = '0';
+            s.classList.remove('slide-active');
             s.classList.add('slide-next');
         }
     });

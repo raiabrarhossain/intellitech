@@ -21,23 +21,19 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
         <div class="flex items-center flex-wrap justify-center md:justify-start gap-3 sm:gap-4 text-slate-300">
             <span class="inline-flex items-center gap-1.5 text-white font-medium">
                 <span class="text-[#2189ff]">📍</span>
-                <span class="font-bold text-white">Faisalabad Virtual Office</span>
+                <span class="font-bold text-white">Faisalabad Virtual Office:</span>
+                <a href="tel:+923116428717" class="text-[#2189ff] font-extrabold hover:underline">+92 311 6428717</a>
             </span>
+            <span class="text-slate-600 hidden sm:inline">&bull;</span>
+            <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
+                <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span class="text-emerald-400 font-bold">WhatsApp: 0311 6428717</span>
+            </a>
             <span class="text-slate-600 hidden sm:inline">&bull;</span>
             <span class="inline-flex items-center gap-1.5 text-slate-300 font-medium">
                 <span class="text-emerald-400">🚚</span>
                 <span>Free Delivery Across Pakistan</span>
             </span>
-            <span class="text-slate-600 hidden sm:inline">&bull;</span>
-            <a href="tel:+923116428717" class="inline-flex items-center gap-1.5 hover:text-[#2189ff] transition-colors">
-                <i data-lucide="phone-call" class="w-3 h-3 text-[#2189ff]"></i>
-                <span class="font-semibold text-white">+92 311 6428717</span>
-            </a>
-            <span class="text-slate-600 hidden md:inline">&bull;</span>
-            <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="hidden md:inline-flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
-                <i data-lucide="message-circle" class="w-3 h-3 text-emerald-400"></i>
-                <span class="text-emerald-400 font-bold">WhatsApp: 0311 6428717</span>
-            </a>
             <span class="text-slate-600 hidden lg:inline">&bull;</span>
             <a href="mailto:<?= htmlspecialchars($email) ?>" class="hidden lg:inline-flex items-center gap-1.5 hover:text-[#2189ff] transition-colors">
                 <i data-lucide="mail" class="w-3 h-3 text-[#2189ff]"></i>
@@ -145,8 +141,8 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
             <!-- Header Right Icons & Actions -->
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 
-                <!-- Helpline Pill (Desktop) -->
-                <div class="hidden xl:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-blue-50/80 border border-blue-100 text-[#1e1e1e]">
+                <!-- Helpline Pill (Desktop & Tablets) -->
+                <div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-blue-50/80 border border-blue-100 text-[#1e1e1e]">
                     <div class="w-7 h-7 rounded-full bg-[#2189ff] flex items-center justify-center text-white shrink-0">
                         <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
                     </div>

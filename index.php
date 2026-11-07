@@ -147,12 +147,14 @@ $activePublicFile = $publicPages[$page] ?? 'home.php';
     <meta name="description" content="Explore Pakistan's leading smart home devices, Zigbee 3.0 mesh automation, Crystal touch switches, and custom villa solutions with 1-Year official warranty.">
 
     <!-- Favicon & Touch Icons -->
-    <link rel="icon" type="image/svg+xml" href="<?= APP_FAVICON ?>">
-    <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png">
-    <meta name="theme-color" content="#2563EB">
+    <link rel="icon" type="image/svg+xml" href="<?= APP_FAVICON_DATA ?>">
+    <link rel="icon" type="image/svg+xml" href="<?= APP_FAVICON ?>?v=<?= time() ?>">
+    <link rel="alternate icon" type="image/x-icon" href="favicon.ico?v=<?= time() ?>">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico?v=<?= time() ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png?v=<?= time() ?>">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png?v=<?= time() ?>">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon-192x192.png?v=<?= time() ?>">
+    <meta name="theme-color" content="#2189FF">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -191,7 +193,7 @@ $activePublicFile = $publicPages[$page] ?? 'home.php';
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Custom Advanced Light Theme CSS -->
-    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/custom.css?v=<?= time() ?>">
 </head>
 <body class="min-h-full flex flex-col font-sans bg-white text-slate-800 antialiased selection:bg-[#2189ff] selection:text-white">
 

@@ -513,13 +513,19 @@ input:checked + .slider-toggle:before {
    SLIDER AUTO-MOVE & ADVANCED TRANSITION EFFECTS
    ========================================================================== */
 .hero-slide {
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.85s;
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.5s;
     will-change: transform, opacity;
 }
 
 .hero-slide.slide-active {
+    display: flex !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: scale(1) translateX(0) !important;
@@ -528,18 +534,20 @@ input:checked + .slider-toggle:before {
 }
 
 .hero-slide.slide-next {
+    display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    transform: scale(1.03) translateX(30px) !important;
-    z-index: 10 !important;
+    transform: scale(1.02) translateX(20px) !important;
+    z-index: 0 !important;
     pointer-events: none !important;
 }
 
 .hero-slide.slide-prev {
+    display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    transform: scale(0.97) translateX(-30px) !important;
-    z-index: 10 !important;
+    transform: scale(0.98) translateX(-20px) !important;
+    z-index: 0 !important;
     pointer-events: none !important;
 }
 
