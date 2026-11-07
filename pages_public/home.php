@@ -1,5 +1,5 @@
 <?php
-// Public Landing Page - Okasha Smart
+// Public Landing Page - IntelliTech Solutions
 // Authentic Pakistani Smart Home, Zigbee 3.0 & Custom Solutions Showcase
 global $siteContent;
 $b = $siteContent['branding'] ?? [];
@@ -22,11 +22,16 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
          ======================================================================= -->
     <section class="relative bg-slate-950 overflow-hidden shadow-2xl" id="hero-slider-section">
         
+        <!-- Live Auto-Move Micro-Progress Bar -->
+        <div class="absolute top-0 left-0 right-0 h-1 bg-white/10 z-30 overflow-hidden pointer-events-none">
+            <div id="hero-progress-bar" class="h-full bg-gradient-to-r from-[#2189ff] via-sky-400 to-emerald-400 w-0"></div>
+        </div>
+
         <!-- Main Slider Viewport -->
         <div class="relative w-full min-h-[560px] sm:min-h-[580px] lg:min-h-[640px] flex items-center">
             
             <!-- SLIDE 1: AUTOMATIC DOOR & BIOMETRIC 3D SMART ACCESS -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10 flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#09152b] to-[#040814]">
+            <div class="hero-slide slide-active absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-[#09152b] to-[#040814]">
                 <!-- Subtle Cyber Grid Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(#2189ff_1px,transparent_1px)] [background-size:28px_28px] opacity-20 pointer-events-none"></div>
                 <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
@@ -36,7 +41,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         
                         <!-- Left Content Column -->
-                        <div class="lg:col-span-7 space-y-5 text-left">
+                        <div class="lg:col-span-7 space-y-5 text-left slide-anim-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/15 border border-blue-500/30 text-blue-400 text-xs font-black uppercase tracking-wider">
                                 <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
                                 <span>IntelliTech Smart Access &bull; 3D Face & Biometrics</span>
@@ -99,7 +104,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                         </div>
 
                         <!-- Right Column: Interactive 3D Auto Door Simulator -->
-                        <div class="lg:col-span-5 flex justify-center">
+                        <div class="lg:col-span-5 flex justify-center slide-anim-right">
                             <div class="w-full max-w-sm bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-700/80 p-6 shadow-2xl space-y-4 text-center">
                                 
                                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -178,7 +183,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 2: AUTO LIGHT ROOM & INTELLIGENT AMBIENT LIGHTING -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0c1220] via-[#11192e] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0c1220] via-[#11192e] to-slate-950">
                 <!-- Glowing Ambient Glow backdrop -->
                 <div id="slide2-ambient-glow" class="absolute inset-0 bg-radial from-amber-500/10 via-transparent to-transparent opacity-80 pointer-events-none transition-all duration-700"></div>
                 <div class="absolute -top-32 right-10 w-96 h-96 rounded-full bg-amber-500/20 blur-3xl pointer-events-none"></div>
@@ -187,7 +192,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         
                         <!-- Left Content Column -->
-                        <div class="lg:col-span-7 space-y-5 text-left">
+                        <div class="lg:col-span-7 space-y-5 text-left slide-anim-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-black uppercase tracking-wider">
                                 <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
                                 <span>IntelliTech Ambient OS &bull; Auto Light Room</span>
@@ -250,7 +255,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                         </div>
 
                         <!-- Right Column: Interactive Auto Light Room Simulator -->
-                        <div class="lg:col-span-5 flex justify-center">
+                        <div class="lg:col-span-5 flex justify-center slide-anim-right">
                             <div class="w-full max-w-sm bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-700/80 p-6 shadow-2xl space-y-4 text-center">
                                 
                                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -322,7 +327,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 3: SMART CLIMATE & MOTORIZED AUTO CURTAINS -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 flex items-center overflow-hidden bg-gradient-to-br from-[#061527] via-[#09223d] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#061527] via-[#09223d] to-slate-950">
                 <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none"></div>
 
@@ -330,7 +335,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         
                         <!-- Left Content Column -->
-                        <div class="lg:col-span-7 space-y-5 text-left">
+                        <div class="lg:col-span-7 space-y-5 text-left slide-anim-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 text-xs font-black uppercase tracking-wider">
                                 <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                                 <span>IntelliTech Eco Climate &bull; 40A Heavy Duty</span>
@@ -393,7 +398,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                         </div>
 
                         <!-- Right Column: Interactive AC & Motorized Curtains Simulator -->
-                        <div class="lg:col-span-5 flex justify-center">
+                        <div class="lg:col-span-5 flex justify-center slide-anim-right">
                             <div class="w-full max-w-sm bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-700/80 p-6 shadow-2xl space-y-4 text-center">
                                 
                                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -461,7 +466,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
             </div>
 
             <!-- SLIDE 4: TURNKEY WHOLE-VILLA ZIGBEE 3.0 MESH -->
-            <div class="hero-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0a0f1d] via-[#101b33] to-slate-950">
+            <div class="hero-slide slide-next absolute inset-0 flex items-center overflow-hidden bg-gradient-to-br from-[#0a0f1d] via-[#101b33] to-slate-950">
                 <div class="absolute -top-32 right-10 w-96 h-96 rounded-full bg-blue-600/20 blur-3xl pointer-events-none"></div>
                 <div class="absolute -bottom-32 left-10 w-96 h-96 rounded-full bg-purple-600/20 blur-3xl pointer-events-none"></div>
 
@@ -469,7 +474,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
                         
                         <!-- Left Content Column -->
-                        <div class="lg:col-span-7 space-y-5 text-left">
+                        <div class="lg:col-span-7 space-y-5 text-left slide-anim-left">
                             <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/15 border border-purple-500/30 text-purple-300 text-xs font-black uppercase tracking-wider">
                                 <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
                                 <span>Pakistan Villa Packages &bull; 10 Marla, 1 & 2 Kanal</span>
@@ -532,7 +537,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                         </div>
 
                         <!-- Right Column: Interactive Zigbee Mesh Node Diagram -->
-                        <div class="lg:col-span-5 flex justify-center">
+                        <div class="lg:col-span-5 flex justify-center slide-anim-right">
                             <div class="w-full max-w-sm bg-slate-900/90 backdrop-blur-xl rounded-3xl border border-slate-700/80 p-6 shadow-2xl space-y-4 text-center">
                                 
                                 <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -652,7 +657,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
     </section>
 
     <!-- =======================================================================
-         2. VALUE PROPOSITION BAR (WHY SHOP WITH US - EXACT OKASHA SMART)
+         2. VALUE PROPOSITION BAR (WHY SHOP WITH INTELLITECH SOLUTIONS)
          ======================================================================= -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-5 sm:p-7 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 divide-y sm:divide-y-0 sm:divide-x divide-slate-100">
@@ -1312,7 +1317,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                 <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                     <div>
                         <span class="font-extrabold text-slate-900 block">Zubair Khan</span>
-                        <span class="text-[10px] text-slate-500">Sector F-8, Islamabad</span>
+                        <span class="text-[10px] text-slate-500">Kohinoor City, Faisalabad</span>
                     </div>
                     <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-bold text-[10px]">Verified Buyer</span>
                 </div>
@@ -1322,7 +1327,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
     </section>
 
     <!-- =======================================================================
-         9. SMART LIVING GUIDES / BLOG (FROM OKASHA SMART)
+         9. SMART LIVING GUIDES / INTELLITECH KNOWLEDGE BASE
          ======================================================================= -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-8">
@@ -1566,67 +1571,106 @@ window.SmartInteractiveDemo = (function() {
     return { testDoorUnlock, setRoomScene, cycleRoomScene, toggleAC, toggleCurtains };
 })();
 
-// Hero Carousel Slider Controller
+// Hero Carousel Slider Controller with Auto-Move & Smooth Transitions
 window.HeroSlider = (function() {
     let currentSlide = 0;
     const slides = document.querySelectorAll('.hero-slide');
     const dots = document.querySelectorAll('#hero-slider-dots button');
-    let sliderTimer = null;
+    const progressBar = document.getElementById('hero-progress-bar');
+    const slideDuration = 5500; // 5.5 seconds per slide
+    let progressTimer = null;
+    let progressStartTime = performance.now();
+    let isPaused = false;
 
-    function show(index) {
+    function show(index, direction) {
         if (!slides.length) return;
+        const prevIndex = currentSlide;
         currentSlide = (index + slides.length) % slides.length;
+        if (prevIndex === currentSlide && direction !== undefined) return;
+
+        const isForward = direction === 'prev' ? false : (direction === 'next' ? true : currentSlide >= prevIndex);
 
         slides.forEach((s, i) => {
+            s.classList.remove('slide-active', 'slide-next', 'slide-prev', 'opacity-100', 'opacity-0', 'z-10', 'z-20', 'z-0');
             if (i === currentSlide) {
-                s.classList.remove('opacity-0', 'z-0');
-                s.classList.add('opacity-100', 'z-10');
+                s.classList.add('slide-active');
+            } else if (i === prevIndex) {
+                s.classList.add(isForward ? 'slide-prev' : 'slide-next');
             } else {
-                s.classList.remove('opacity-100', 'z-10');
-                s.classList.add('opacity-0', 'z-0');
+                s.classList.add(i > currentSlide ? 'slide-next' : 'slide-prev');
             }
         });
 
         dots.forEach((d, i) => {
             if (i === currentSlide) {
-                d.className = 'w-6 h-2 rounded-full bg-[#2189ff] transition-all duration-300';
+                d.className = 'w-8 h-2.5 rounded-full bg-[#2189ff] shadow-[0_0_14px_rgba(33,137,255,0.8)] transition-all duration-400';
             } else {
-                d.className = 'w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all duration-300';
+                d.className = 'w-2.5 h-2.5 rounded-full bg-white/30 hover:bg-white/70 transition-all duration-300';
             }
         });
+
+        startProgressBar();
+    }
+
+    function startProgressBar() {
+        if (progressTimer) cancelAnimationFrame(progressTimer);
+        if (progressBar) progressBar.style.width = '0%';
+        progressStartTime = performance.now();
+
+        function tick(now) {
+            if (isPaused) {
+                progressStartTime += 16.7; // extend start time while paused
+                progressTimer = requestAnimationFrame(tick);
+                return;
+            }
+            const elapsed = now - progressStartTime;
+            const pct = Math.min((elapsed / slideDuration) * 100, 100);
+            if (progressBar) {
+                progressBar.style.width = pct + '%';
+            }
+
+            if (elapsed < slideDuration) {
+                progressTimer = requestAnimationFrame(tick);
+            } else {
+                next();
+            }
+        }
+        progressTimer = requestAnimationFrame(tick);
     }
 
     function next() {
-        show(currentSlide + 1);
-        resetAutoAdvance();
+        show(currentSlide + 1, 'next');
     }
 
     function prev() {
-        show(currentSlide - 1);
-        resetAutoAdvance();
+        show(currentSlide - 1, 'prev');
     }
 
     function goTo(idx) {
-        show(idx);
-        resetAutoAdvance();
+        show(idx, idx >= currentSlide ? 'next' : 'prev');
     }
 
-    function resetAutoAdvance() {
-        if (sliderTimer) clearInterval(sliderTimer);
-        sliderTimer = setInterval(next, 5000);
+    // Initialize initial slide & dots
+    slides.forEach((s, i) => {
+        if (i === 0) {
+            s.classList.add('slide-active');
+        } else {
+            s.classList.add('slide-next');
+        }
+    });
+    if (dots.length) {
+        dots[0].className = 'w-8 h-2.5 rounded-full bg-[#2189ff] shadow-[0_0_14px_rgba(33,137,255,0.8)] transition-all duration-400';
     }
-
-    // Initialize auto-advance
-    resetAutoAdvance();
+    startProgressBar();
 
     // Pause on hover
     const sliderContainer = document.getElementById('hero-slider-section');
     if (sliderContainer) {
         sliderContainer.addEventListener('mouseenter', () => {
-            if (sliderTimer) clearInterval(sliderTimer);
+            isPaused = true;
         });
         sliderContainer.addEventListener('mouseleave', () => {
-            resetAutoAdvance();
+            isPaused = false;
         });
 
         // Touch swipe support for mobile
@@ -1642,7 +1686,7 @@ window.HeroSlider = (function() {
         }, {passive: true});
     }
 
-    return { next, prev, goTo };
+    return { next, prev, goTo, getCurrentSlide: () => currentSlide };
 })();
 
 // Product Catalog Filter Tabs

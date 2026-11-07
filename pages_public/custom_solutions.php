@@ -20,7 +20,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     Custom Smart Home <br><span class="text-amber-400">Solutions in Pakistan</span>
                 </h1>
                 <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-                    Turn your luxury residence into an intelligent living environment. We provide complete end-to-end automation contracting: electrical load audits, custom CAD blueprints, zero wall damage retrofits, and whole-house Zigbee 3.0 mesh deployments across Faisalabad, Lahore, Islamabad, and all of Pakistan.
+                    Turn your luxury residence into an intelligent living environment. We provide complete end-to-end automation contracting: electrical load audits, custom CAD blueprints, zero wall damage retrofits, and whole-house Zigbee 3.0 mesh deployments across Faisalabad and all of Pakistan.
                 </p>
                 <div class="flex flex-wrap items-center gap-4 pt-2">
                     <button onclick="OkashaStore.openConsultationModal()" class="px-6 py-3.5 rounded-full bg-amber-500 hover:bg-amber-600 text-slate-950 font-black text-xs sm:text-sm transition-all shadow-lg shadow-amber-500/30 flex items-center gap-2 hover:scale-105">
@@ -180,7 +180,7 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                 <span class="text-xs font-black uppercase tracking-wider text-amber-400">Complimentary Service</span>
                 <h3 class="text-2xl sm:text-3xl font-black text-white">Need a Custom Electrical Audit for Your Villa?</h3>
                 <p class="text-xs sm:text-sm text-slate-300">
-                    Our licensed senior automation engineer will visit your home in Faisalabad, Lahore, Islamabad, or any city, inspect your switchboards, and provide a tailored CAD quotation.
+                    Our licensed senior automation engineer will visit your home in Faisalabad or anywhere in Pakistan, inspect your switchboards, and provide a tailored CAD quotation.
                 </p>
             </div>
             <div class="shrink-0 flex flex-col sm:flex-row gap-3">

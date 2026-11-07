@@ -199,11 +199,11 @@
                             required 
                             class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none bg-white"
                         >
+                            <option value="Faisalabad" selected>Faisalabad (Kohinoor, Susan Rd, Canal Rd, etc.)</option>
                             <option value="Lahore">Lahore</option>
-                            <option value="Karachi">Karachi</option>
                             <option value="Islamabad">Islamabad</option>
+                            <option value="Karachi">Karachi</option>
                             <option value="Rawalpindi">Rawalpindi</option>
-                            <option value="Faisalabad">Faisalabad</option>
                             <option value="Multan">Multan</option>
                             <option value="Peshawar">Peshawar</option>
                             <option value="Sialkot">Sialkot</option>
@@ -300,7 +300,7 @@
             <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
                 <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
                 <div>
-                    <strong>Complimentary Service:</strong> Our certified smart home automation engineer will visit your villa/office in Lahore, Karachi, or Islamabad, audit switchboards, and draft a tailored Zigbee quotation.
+                    <strong>Complimentary Service:</strong> Our certified smart home automation engineer will visit your villa/office in Faisalabad or anywhere across Pakistan, audit switchboards, and draft a tailored Zigbee quotation.
                 </div>
             </div>
 
@@ -343,11 +343,11 @@
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">City / Location *</label>
                         <select id="survey-city" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none bg-white">
+                            <option value="Faisalabad" selected>Faisalabad (Kohinoor, Susan Road, Canal Road, Model Town)</option>
                             <option value="Lahore">Lahore (DHA, Bahria, Gulberg, Lake City)</option>
-                            <option value="Karachi">Karachi (DHA, Clifton, Bahria Town)</option>
                             <option value="Islamabad">Islamabad / Rawalpindi (Bahria, DHA, F/E Sectors)</option>
-                            <option value="Faisalabad">Faisalabad</option>
-                            <option value="Other">Other City</option>
+                            <option value="Karachi">Karachi (DHA, Clifton, Bahria Town)</option>
+                            <option value="Other">Other City (All Pakistan)</option>
                         </select>
                     </div>
                 </div>
