@@ -21,7 +21,7 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
         <div class="flex items-center flex-wrap justify-center md:justify-start gap-3 sm:gap-4 text-slate-300">
             <span class="inline-flex items-center gap-1.5 text-white font-medium">
                 <span class="text-[#2189ff]">📍</span>
-                <span class="font-bold text-white">Faisalabad Head Office</span>
+                <span class="font-bold text-white">Faisalabad Virtual Office</span>
             </span>
             <span class="text-slate-600 hidden sm:inline">&bull;</span>
             <span class="inline-flex items-center gap-1.5 text-slate-300 font-medium">

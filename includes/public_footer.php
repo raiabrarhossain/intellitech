@@ -85,28 +85,35 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
                 </ul>
             </div>
 
-            <!-- Col 4: Faisalabad HQ & Regional Centers -->
+            <!-- Col 4: Faisalabad Virtual Office -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Experience Centers</h3>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Office Location</h3>
                 <div class="space-y-2.5 text-xs text-slate-400">
                     <div>
-                        <span class="font-bold text-emerald-400 block flex items-center gap-1">
-                            <span>📍</span>
-                            <span>Faisalabad Head Office & Experience Center:</span>
+                        <span class="font-bold text-emerald-400 block flex items-center gap-1.5 text-xs">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>Faisalabad Virtual Office</span>
                         </span>
-                        <span class="text-white font-medium">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad</span>
+                        <span class="text-white font-medium block mt-1">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan</span>
                     </div>
-                    <div>
-                        <span class="font-bold text-slate-300 block">📍 Lahore Regional Desk:</span>
-                        <span>Showroom 12, Main Blvd, DHA Phase 5, Lahore</span>
-                    </div>
-                    <div>
-                        <span class="font-bold text-slate-300 block">📍 Islamabad Experience Desk:</span>
-                        <span>Plaza 88, Jinnah Avenue, Blue Area, Islamabad</span>
+                    <div class="pt-1 text-[11px] text-slate-300 space-y-1">
+                        <div class="flex items-center gap-1.5">
+                            <i data-lucide="phone-call" class="w-3.5 h-3.5 text-[#2189ff]"></i>
+                            <span>Helpline: <a href="tel:+923116428717" class="text-[#2189ff] font-bold hover:underline">+92 311 6428717</a></span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>WhatsApp: <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="text-emerald-400 font-bold hover:underline">0311 6428717</a></span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i data-lucide="mail" class="w-3.5 h-3.5 text-blue-400"></i>
+                            <span>Email: <a href="mailto:info@intellitech.pk" class="text-slate-300 font-medium hover:underline">info@intellitech.pk</a></span>
+                        </div>
                     </div>
                     <div class="pt-2">
-                        <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-lg bg-[#2189ff] hover:bg-blue-600 text-white font-bold text-xs transition-colors shadow-sm">
-                            Schedule Faisalabad Showroom Visit
+                        <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-lg bg-[#2189ff] hover:bg-blue-600 text-white font-bold text-xs transition-colors shadow-sm flex items-center justify-center gap-1.5">
+                            <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                            <span>Book Free Virtual Consultation</span>
                         </button>
                     </div>
                 </div>

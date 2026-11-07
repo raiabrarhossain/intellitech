@@ -99,24 +99,23 @@ $ct = $siteContent['contacts'] ?? [];
                 </div>
             </div>
 
-            <!-- Experience Center Showrooms -->
+            <!-- Office Location -->
             <div class="glass-card rounded-3xl p-7 border border-slate-200/90 space-y-4">
-                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Showrooms & Headquarters</h3>
+                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Office Location</h3>
                 <div class="space-y-3 text-xs text-slate-600">
-                    <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100">
-                        <span class="font-bold text-blue-900 block flex items-center gap-1.5 text-xs">
-                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                            <span>Faisalabad Central HQ & Experience Center</span>
+                    <div class="p-4 rounded-2xl bg-blue-50/50 border border-blue-100 space-y-2">
+                        <span class="font-black text-blue-900 block flex items-center gap-2 text-sm">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Faisalabad Virtual Office</span>
                         </span>
-                        <span class="text-slate-700 font-medium block mt-1">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan</span>
-                    </div>
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                        <span class="font-bold text-slate-900 block">Lahore Regional Desk</span>
-                        <span>Showroom 12, Main Blvd, DHA Phase 5, Lahore</span>
-                    </div>
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                        <span class="font-bold text-slate-900 block">Islamabad Regional Desk</span>
-                        <span>Plaza 88, Jinnah Avenue, Blue Area, Islamabad</span>
+                        <p class="text-slate-700 font-medium leading-relaxed">
+                            Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan
+                        </p>
+                        <div class="pt-2 border-t border-blue-100/80 space-y-1 text-slate-600 font-medium">
+                            <div>📞 Phone: <a href="tel:+923116428717" class="text-blue-600 font-bold hover:underline">+92 311 6428717</a></div>
+                            <div>💬 WhatsApp: <a href="https://wa.me/923116428717" target="_blank" class="text-emerald-600 font-bold hover:underline">0311 6428717</a></div>
+                            <div>✉️ Email: <a href="mailto:info@intellitech.pk" class="text-blue-600 font-bold hover:underline">info@intellitech.pk</a></div>
+                        </div>
                     </div>
                 </div>
             </div>

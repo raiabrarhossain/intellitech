@@ -42,10 +42,8 @@
         "email": "info@intellitech.pk",
         "hours": "Mon - Sat: 09:00 AM - 10:00 PM (WhatsApp 24/7 Helpline)",
         "city": "Faisalabad",
+        "office_title": "Faisalabad Virtual Office",
         "address": "Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan",
-        "faisalabad_address": "Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan",
-        "lahore_address": "Showroom 12, Main Blvd, DHA Phase 5, Lahore, Pakistan",
-        "islamabad_address": "Plaza 88, Jinnah Avenue, Blue Area, Islamabad, Pakistan",
-        "karachi_address": "Plot 24-C, Bukhari Commercial, DHA Phase 6, Karachi, Pakistan"
+        "faisalabad_address": "Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan"
     }
 }

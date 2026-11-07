@@ -249,12 +249,11 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $content['contacts']['phone'] = trim($_POST['phone'] ?? '+92 311 6428717');
         $content['contacts']['phone_secondary'] = trim($_POST['phone_secondary'] ?? '+92 311 6428717');
         $content['contacts']['email'] = trim($_POST['email'] ?? 'info@intellitech.pk');
-        $content['contacts']['address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad');
-        $content['contacts']['faisalabad_address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad');
-        $content['contacts']['lahore_address'] = trim($_POST['address_lahore'] ?? '');
-        $content['contacts']['islamabad_address'] = trim($_POST['address_islamabad'] ?? '');
+        $content['contacts']['address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan');
+        $content['contacts']['faisalabad_address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan');
+        $content['contacts']['office_title'] = 'Faisalabad Virtual Office';
         ContentManager::save($content);
-        $message = "Store and showroom contact settings updated successfully!";
+        $message = "Store and Faisalabad virtual office contact settings updated successfully!";
         $messageType = 'success';
     }
 
@@ -1359,19 +1358,9 @@ $tab = $_GET['tab'] ?? 'dashboard';
                                 <input type="email" name="email" value="<?= htmlspecialchars($content['contacts']['email'] ?? 'info@intellitech.pk') ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none">
                             </div>
 
-                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                                <div>
-                                    <label class="block text-slate-400 mb-1 font-bold">Faisalabad Head Office</label>
-                                    <textarea name="address_faisalabad" rows="2" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none"><?= htmlspecialchars($content['contacts']['address'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad') ?></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1 font-bold">Lahore Regional Desk</label>
-                                    <textarea name="address_lahore" rows="2" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none"><?= htmlspecialchars($content['contacts']['lahore_address'] ?? 'Showroom 12, Main Blvd, DHA Phase 5, Lahore') ?></textarea>
-                                </div>
-                                <div>
-                                    <label class="block text-slate-400 mb-1 font-bold">Islamabad Regional Desk</label>
-                                    <textarea name="address_islamabad" rows="2" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none"><?= htmlspecialchars($content['contacts']['islamabad_address'] ?? 'Plaza 88, Jinnah Avenue, Blue Area, Islamabad') ?></textarea>
-                                </div>
+                            <div>
+                                <label class="block text-slate-400 mb-1 font-bold">Faisalabad Virtual Office Address</label>
+                                <textarea name="address_faisalabad" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none"><?= htmlspecialchars($content['contacts']['address'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan') ?></textarea>
                             </div>
 
                             <button type="submit" class="px-6 py-2.5 rounded-xl bg-[#2189ff] hover:bg-blue-600 text-white font-extrabold text-xs transition-colors shadow-md">
