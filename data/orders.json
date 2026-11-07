@@ -1,0 +1,153 @@
+[
+    {
+        "id": "IT-849550",
+        "created_at": "2026-11-07 10:45:00",
+        "customer_name": "Mian Farooq Zahid",
+        "customer_phone": "0311 6428717",
+        "customer_email": "farooq@zahidtextiles.pk",
+        "city": "Faisalabad",
+        "address": "Villa 45, Canal Park, Canal Road, Faisalabad",
+        "payment_method": "Cash on Delivery (COD)",
+        "status": "Confirmed",
+        "items": [
+            {
+                "id": "zigbee-power-switch-40a",
+                "name": "Zigbee 40A Heavy-Duty Smart Power Switch",
+                "price": 8500,
+                "quantity": 4
+            },
+            {
+                "id": "switch-8g-crystal",
+                "name": "8 Gang Smart Touch Switch (Crystal Series)",
+                "price": 9800,
+                "quantity": 6
+            },
+            {
+                "id": "smart-door-lock-signature",
+                "name": "Smart Signature Biometric Door Lock (3D Face ID)",
+                "price": 42000,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 134800,
+        "shipping": 0,
+        "total": 134800,
+        "notes": "Faisalabad Head Office Direct Express Dispatch."
+    },
+    {
+        "id": "IT-849201",
+        "created_at": "2026-11-07 09:42:15",
+        "customer_name": "Dr. Tariq Mehmood",
+        "customer_phone": "03008451299",
+        "customer_email": "tariq.mehmood@gmail.com",
+        "city": "Lahore",
+        "address": "House 142, Sector Y, DHA Phase 6, Lahore",
+        "payment_method": "Cash on Delivery",
+        "status": "Pending",
+        "items": [
+            {
+                "id": "switch-4g-1f",
+                "name": "4 Gang + 1 Fan Smart Touch Switch (Crystal Series)",
+                "price": 9300,
+                "quantity": 3
+            },
+            {
+                "id": "zigbee-gw-lan",
+                "name": "Zigbee 3.0 LAN Hardwired Gateway Hub",
+                "price": 11500,
+                "quantity": 1
+            }
+        ],
+        "subtotal": 39400,
+        "shipping": 0,
+        "total": 39400,
+        "notes": "Please call before delivery. Ring bell at main gate."
+    },
+    {
+        "id": "IT-849188",
+        "created_at": "2026-11-06 18:15:30",
+        "customer_name": "Farhan Abbasi",
+        "customer_phone": "03215544911",
+        "customer_email": "farhan.abbasi@outlook.com",
+        "city": "Islamabad",
+        "address": "Villa 18, Street 4, Sector F-8/2, Islamabad",
+        "payment_method": "JazzCash",
+        "status": "Confirmed",
+        "items": [
+            {
+                "id": "lock-face-sig",
+                "name": "Smart Signature Biometric 3D Face Door Lock",
+                "price": 38500,
+                "quantity": 1
+            },
+            {
+                "id": "cam-eyeball-5mp",
+                "name": "Smart Eyeball Security Camera 5MP Ultra HD",
+                "price": 12000,
+                "quantity": 2
+            }
+        ],
+        "subtotal": 62500,
+        "shipping": 0,
+        "total": 62500,
+        "notes": "Paid via JazzCash transaction ID JC9928174. Dispatched via Express Courier."
+    },
+    {
+        "id": "IT-849150",
+        "created_at": "2026-11-06 11:30:10",
+        "customer_name": "Ayesha Malik",
+        "customer_phone": "03332145890",
+        "customer_email": "ayesha.malik@gmail.com",
+        "city": "Karachi",
+        "address": "Apartment 9B, Creek Vistas, DHA Phase 8, Karachi",
+        "payment_method": "Cash on Delivery",
+        "status": "Dispatched",
+        "items": [
+            {
+                "id": "zigbee-power-switch-40a",
+                "name": "Zigbee 40A Heavy-Duty Smart Power Switch",
+                "price": 8200,
+                "quantity": 2
+            },
+            {
+                "id": "downlight-rgb-18w",
+                "name": "Slim RGB + Warm White Smart Downlight 18W",
+                "price": 4200,
+                "quantity": 4
+            }
+        ],
+        "subtotal": 33200,
+        "shipping": 0,
+        "total": 33200,
+        "notes": "Tracking Number: TCS-994182941. Out for delivery."
+    },
+    {
+        "id": "IT-848992",
+        "created_at": "2026-11-05 14:10:00",
+        "customer_name": "Kashif Rauf",
+        "customer_phone": "03017766554",
+        "customer_email": "kashif.rauf@gmail.com",
+        "city": "Rawalpindi",
+        "address": "House 280, Street 12, Bahria Town Phase 7, Rawalpindi",
+        "payment_method": "Bank Transfer",
+        "status": "Delivered",
+        "items": [
+            {
+                "id": "ultra-panel-s8e",
+                "name": "Ultra Super Smart Control Panel (S8E)",
+                "price": 45000,
+                "quantity": 1
+            },
+            {
+                "id": "curtain-track-motor",
+                "name": "Smart Motorized Curtain Track & Motor (Zigbee / Wi-Fi)",
+                "price": 24500,
+                "quantity": 2
+            }
+        ],
+        "subtotal": 94000,
+        "shipping": 0,
+        "total": 94000,
+        "notes": "Delivered and verified. 1-Year replacement warranty certificate issued."
+    }
+]

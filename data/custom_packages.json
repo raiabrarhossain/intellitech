@@ -1,0 +1,80 @@
+[
+  {
+    "id": "package-essential",
+    "name": "Smart Essential Package",
+    "property_type": "5 - 10 Marla / 2-3 Bed Apartment",
+    "price": 145000,
+    "original_price": 175000,
+    "tagline": "Ideal for apartments & modern 5 to 10 Marla homes seeking essential automation.",
+    "badge": "BEST STARTER",
+    "badge_color": "blue",
+    "includes": [
+      "1x Zigbee 3.0 Central Gateway Hub",
+      "6x Luxury Crystal Touch Smart Switches (1-4 Gang)",
+      "2x Ceiling Fan Speed Dimmer Controllers",
+      "2x Heavy-Duty 40A Smart Switches (1x AC + 1x Water Geyser)",
+      "1x Biometric Smart Door Lock (Fingerprint, Passcode & App)",
+      "2x Zigbee Magnetic Door & Window Sensors",
+      "1x Smart IR Blaster (Controls TV & Split AC)",
+      "Turnkey Installation by Certified Electrical Engineers",
+      "Complete App Scene Setup (Morning, Away, Goodnight)",
+      "1 Year Official Replacement Warranty"
+    ],
+    "savings": "Up to 24% Reduction in Electricity Bills",
+    "completion_time": "1 to 2 Working Days (Zero wall damage, fits standard back-boxes)"
+  },
+  {
+    "id": "package-luxury-villa",
+    "name": "Luxury Villa Elite Package",
+    "property_type": "1 Kanal Executive Villa (4-5 Bedrooms)",
+    "price": 385000,
+    "original_price": 450000,
+    "tagline": "The gold-standard whole-house automation for luxury 1 Kanal bungalows and villas.",
+    "badge": "MOST POPULAR",
+    "badge_color": "emerald",
+    "popular": true,
+    "includes": [
+      "1x Zigbee 3.0 LAN Hardwired Gateway + 1x Wireless Mesh Repeater",
+      "1x 8-Inch Ultra Smart In-Wall Control Panel (Living Room)",
+      "1x Mini Smart Rotary Knob Panel (Master Bedroom)",
+      "14x Luxury Crystal Glass Smart Switches (All rooms & lounges)",
+      "5x Capacitive Hum-Free Fan Speed Controllers",
+      "5x Heavy-Duty 40A Switches (4x Inverter ACs + 1x Geyser/Pump)",
+      "1x Smart Signature 3D Face Recognition & Video Intercom Door Lock",
+      "4x Zigbee mmWave Human Presence Radar Sensors",
+      "6x Zigbee Door/Window Sensors + 2x Water Leakage Detectors",
+      "2x Smart Motorized Curtain Tracks (Drawing Room & Master Bed)",
+      "Complete CAD Electrical Blueprint & Load Balancing Audit",
+      "Voice Assistant Integration (Alexa & Google Home Echo setup)",
+      "1 Year Comprehensive Onsite Warranty + Lifetime Remote Support"
+    ],
+    "savings": "Up to 35% Reduction in Peak Energy Consumption",
+    "completion_time": "3 to 4 Working Days"
+  },
+  {
+    "id": "package-presidential",
+    "name": "Presidential Ultra Smart Estate",
+    "property_type": "2 Kanal+ Luxury Bungalows, Farmhouses & Plazas",
+    "price": 750000,
+    "original_price": 890000,
+    "tagline": "Enterprise-grade automation with multi-zone control, smart glass, solar sync & AI security.",
+    "badge": "ULTIMATE LUXURY",
+    "badge_color": "purple",
+    "includes": [
+      "Dual Zigbee 3.0 LAN High-Throughput Gateways (Zero Dead Zones)",
+      "2x 8-Inch Ultra Super Smart In-Wall Displays (Ground & First Floor)",
+      "3x Mini Rotary Knob Panels for Master Suites & Home Theater",
+      "24x Crystal & Flip Series Smart Switches (Full Villa)",
+      "8x Heavy Duty 40A Smart Switches with Peak Solar Inverter Sync",
+      "2x Smart Biometric Door Locks (Main Entrance & Private Suite)",
+      "8x Zigbee mmWave Radar Sensors + 10x Perimeter Security Sensors",
+      "4x Motorized Smart Curtains & Skylight Blinds",
+      "Smart Water Tank Management & Auto-Shutoff Flood Valves",
+      "AI Energy Optimization Engine & Solar Inverter Integration",
+      "Dedicated Senior Project Engineer & White-Glove VIP Deployment",
+      "2 Years Extended Replacement Warranty with VIP Priority SLA"
+    ],
+    "savings": "Up to 42% Peak Energy Reduction & Zero Inverter Overload",
+    "completion_time": "5 to 7 Working Days"
+  }
+]

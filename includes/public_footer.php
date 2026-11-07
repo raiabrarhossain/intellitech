@@ -1,116 +1,155 @@
 <?php
-// Public Website Footer - IntelliTech
+// Public Website Footer - IntelliTech Solutions
+global $siteContent;
+$contacts = $siteContent['contacts'] ?? [];
+$phone = $contacts['phone'] ?? '+92 311 6428717';
+$phone2 = $contacts['phone_secondary'] ?? '+92 311 6428717';
+$email = $contacts['email'] ?? 'info@intellitech.pk';
 ?>
-<footer class="bg-white border-t border-slate-200/90 pt-16 pb-12 mt-20">
+<footer class="bg-[#1e1e1e] text-slate-300 pt-16 pb-10 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <!-- Top Footer Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-800">
             
             <!-- Col 1: Brand & Bio (2 Cols) -->
             <div class="lg:col-span-2 space-y-4">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-                        <i data-lucide="cpu" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="font-extrabold text-lg tracking-tight text-slate-900">Intelli<span class="text-blue-600">Tech</span></span>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wider">Solutions</span>
-                        </div>
-                        <span class="text-[11px] text-slate-400 font-medium">Smart Spaces & Autonomous AI Systems</span>
-                    </div>
+                    <img 
+                        src="assets/images/intellitech_logo_white.svg" 
+                        alt="IntelliTech Solutions" 
+                        class="h-9 w-auto object-contain"
+                        onerror="this.onerror=null; this.src='assets/images/favicon.svg';"
+                    />
+                    <span class="text-[9px] font-bold px-2 py-0.5 rounded-full bg-blue-500/20 text-[#2189ff] border border-blue-500/40 uppercase tracking-wider">FAISALABAD &bull; PAKISTAN</span>
                 </div>
                 
-                <p class="text-xs text-slate-500 leading-relaxed max-w-sm">
-                    IntelliTech is a premier turnkey engineering contractor and systems integrator specializing in luxury residential smart home living, corporate office workplace automation, industrial SCADA robotics, architectural electrochromic smart glass, and self-optimizing multi-agent AI brains.
+                <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                    Headquartered on Susan Road, Faisalabad, IntelliTech Solutions is Pakistan’s premier smart home technology and turnkey IoT automation company. We engineer luxury crystal touch switches, rock-solid Zigbee 3.0 mesh devices, biometric security locks, and custom turnkey villa automation with 1 Year official warranty.
                 </p>
 
-                <!-- Certification Badges -->
+                <!-- Certification & Partners -->
                 <div class="pt-2">
-                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Accredited & Certified Integrator:</span>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block mb-2">Certified Technology & Ecosystems:</span>
                     <div class="flex flex-wrap items-center gap-2">
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">KNX Partner</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">Matter Alliance</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">Lutron Pro</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">Schneider EcoXpert</span>
-                        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-[10px] font-bold border border-slate-200">ISO 9001</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold border border-slate-700">Zigbee 3.0 Certified</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold border border-slate-700">Tuya IoT Partner</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold border border-slate-700">Works with Alexa</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold border border-slate-700">Google Home</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 text-[10px] font-bold border border-slate-700">1 Year Warranty</span>
+                    </div>
+                </div>
+
+                <!-- Helplines -->
+                <div class="pt-3 space-y-1.5">
+                    <div class="text-xs font-semibold text-slate-300">Faisalabad HQ Customer Helpline:</div>
+                    <div class="flex flex-wrap items-center gap-4 text-sm font-black text-[#2189ff]">
+                        <a href="tel:+923116428717" class="hover:underline flex items-center gap-1.5">
+                            <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+                            <span>+92 311 6428717</span>
+                        </a>
+                        <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="text-emerald-400 hover:underline flex items-center gap-1.5">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <span>WhatsApp: 0311 6428717</span>
+                        </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Col 2: Services -->
+            <!-- Col 2: Zigbee & Switches Collections -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-900">Our Services</h3>
-                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                    <li><a href="index.php?page=services#home" class="hover:text-blue-600 transition-colors">Smart Home Living</a></li>
-                    <li><a href="index.php?page=services#office" class="hover:text-blue-600 transition-colors">Commercial Office Automation</a></li>
-                    <li><a href="index.php?page=services#factory" class="hover:text-blue-600 transition-colors">Factory SCADA & Robotics</a></li>
-                    <li><a href="index.php?page=smart-glass" class="hover:text-cyan-700 transition-colors font-bold text-cyan-600">Smart Glass & Motorized Blinds</a></li>
-                    <li><a href="index.php?page=ai-solutions" class="hover:text-indigo-600 transition-colors">Autonomous AI Agent Co-Pilots</a></li>
-                    <li><a href="index.php?page=services#energy" class="hover:text-emerald-600 transition-colors">Microgrid & Solar Storage</a></li>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Smart Products</h3>
+                <ul class="space-y-2 text-xs text-slate-400 font-medium">
+                    <li><a href="index.php?page=zigbee" class="hover:text-[#2189ff] transition-colors text-white font-bold flex items-center gap-1"><span>⚡ Zigbee 3.0 Collection</span></a></li>
+                    <li><a href="index.php?page=zigbee#gateways" class="hover:text-[#2189ff] transition-colors">Zigbee LAN & Wireless Hubs</a></li>
+                    <li><a href="index.php?page=zigbee#heavy-duty" class="hover:text-[#2189ff] transition-colors">40A Heavy Duty AC Switches</a></li>
+                    <li><a href="index.php?page=services#crystal" class="hover:text-[#2189ff] transition-colors">Crystal Glass Touch Switches</a></li>
+                    <li><a href="index.php?page=services#flip" class="hover:text-[#2189ff] transition-colors">Flip Series Mechanical Switches</a></li>
+                    <li><a href="index.php?page=smart-glass#locks" class="hover:text-[#2189ff] transition-colors">Biometric 3D Face Door Locks</a></li>
+                    <li><a href="index.php?page=services#lighting" class="hover:text-[#2189ff] transition-colors">Slim RGB Ceiling Downlights</a></li>
+                    <li><a href="index.php?page=services#curtains" class="hover:text-[#2189ff] transition-colors">Motorized Smart Curtain Tracks</a></li>
                 </ul>
             </div>
 
-            <!-- Col 3: Company & Projects -->
+            <!-- Col 3: Custom Solutions -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-900">Company</h3>
-                <ul class="space-y-2 text-xs text-slate-600 font-medium">
-                    <li><a href="index.php?page=about" class="hover:text-blue-600 transition-colors">About IntelliTech</a></li>
-                    <li><a href="index.php?page=case-studies" class="hover:text-blue-600 transition-colors">Featured Projects & Case Studies</a></li>
-                    <li><a href="index.php?page=pricing" class="hover:text-blue-600 transition-colors">Turnkey Pricing & Packages</a></li>
-                    <li><a href="index.php?page=demo" class="hover:text-blue-600 transition-colors font-semibold text-indigo-600">Live Interactive Tech Console</a></li>
-                    <li><a href="index.php?page=contact" class="hover:text-blue-600 transition-colors">Client Support & SLA Portal</a></li>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Custom Solutions</h3>
+                <ul class="space-y-2 text-xs text-slate-400 font-medium">
+                    <li><a href="index.php?page=custom-solutions" class="hover:text-amber-400 transition-colors text-amber-300 font-bold flex items-center gap-1"><span>🛠️ Turnkey Home Packages</span></a></li>
+                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">1 Kanal Luxury Villa Package</a></li>
+                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">5-10 Marla Essential Package</a></li>
+                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">2 Kanal Presidential Estate</a></li>
+                    <li><a href="index.php?page=custom-solutions#survey" class="hover:text-[#2189ff] transition-colors">Book Free On-Site CAD Survey</a></li>
+                    <li><a href="index.php?page=custom-solutions#blueprint" class="hover:text-[#2189ff] transition-colors">Zero-Wall-Chipping Guarantee</a></li>
+                    <li><a href="index.php?page=services#office" class="hover:text-[#2189ff] transition-colors">Corporate Office Automation</a></li>
                 </ul>
             </div>
 
-            <!-- Col 4: Contact & Consultations -->
+            <!-- Col 4: Faisalabad HQ & Regional Centers -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-900">Get in Touch</h3>
-                <div class="space-y-2.5 text-xs text-slate-600">
-                    <div class="flex items-start gap-2">
-                        <i data-lucide="map-pin" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
-                        <span>Tech Innovation Boulevard, Suite 800, Silicon Corridor</span>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Experience Centers</h3>
+                <div class="space-y-2.5 text-xs text-slate-400">
+                    <div>
+                        <span class="font-bold text-emerald-400 block flex items-center gap-1">
+                            <span>📍</span>
+                            <span>Faisalabad Head Office & Experience Center:</span>
+                        </span>
+                        <span class="text-white font-medium">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="phone" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                        <span class="font-bold text-slate-800">+1 (800) 482-INTELLI</span>
+                    <div>
+                        <span class="font-bold text-slate-300 block">📍 Lahore Regional Desk:</span>
+                        <span>Showroom 12, Main Blvd, DHA Phase 5, Lahore</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="mail" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                        <span>contact@intellitech.com</span>
+                    <div>
+                        <span class="font-bold text-slate-300 block">📍 Islamabad Experience Desk:</span>
+                        <span>Plaza 88, Jinnah Avenue, Blue Area, Islamabad</span>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <i data-lucide="clock" class="w-4 h-4 text-blue-600 shrink-0"></i>
-                        <span>Mon-Sat: 08:00 - 20:00 (24/7 SLA Support)</span>
+                    <div class="pt-2">
+                        <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-lg bg-[#2189ff] hover:bg-blue-600 text-white font-bold text-xs transition-colors shadow-sm">
+                            Schedule Faisalabad Showroom Visit
+                        </button>
                     </div>
-                </div>
-
-                <div class="pt-2">
-                    <a href="index.php?page=contact" class="inline-flex items-center justify-center w-full py-2 px-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition-colors shadow-xs">
-                        Schedule Site Assessment &rarr;
-                    </a>
                 </div>
             </div>
 
         </div>
 
-        <!-- Bottom Copyright -->
-        <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-            <p>&copy; 2026 IntelliTech Automation Solutions Inc. All Rights Reserved. Licensed Master Electrical & Systems Contractor.</p>
-            <div class="flex items-center gap-4 text-slate-500">
-                <a href="#" class="hover:text-slate-800">Privacy Policy</a>
+        <!-- Middle: Newsletter & Promo Signup -->
+        <div class="py-8 border-b border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-1 text-center md:text-left">
+                <h4 class="text-sm font-black text-white uppercase tracking-wider">Sign Up for IntelliTech Solutions Updates & Deals</h4>
+                <p class="text-xs text-slate-400">Receive special discount coupons, new Zigbee device launches, and smart living guides.</p>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Thank you for subscribing! Your Rs. 1,000 welcome discount code is: INTELLITECH1000');" class="flex w-full md:w-auto max-w-md gap-2">
+                <input 
+                    type="email" 
+                    placeholder="Enter your email address..." 
+                    required 
+                    class="flex-1 px-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-[#2189ff]"
+                />
+                <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#2189ff] hover:bg-blue-600 text-white font-bold text-xs shrink-0 transition-colors">
+                    Subscribe
+                </button>
+            </form>
+        </div>
+
+        <!-- Bottom Copyright & Payment Methods -->
+        <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+            <div class="text-center md:text-left flex items-center gap-2 flex-wrap">
+                <p>&copy; <?= date('Y') ?> IntelliTech Solutions. All Rights Reserved. Engineered for Pakistani Homes & Commercial Spaces.</p>
                 <span>&bull;</span>
-                <a href="#" class="hover:text-slate-800">Terms of Service</a>
-                <span>&bull;</span>
-                <a href="#" class="hover:text-slate-800">Safety Compliance</a>
+                <a href="admin.php" class="text-slate-400 hover:text-[#2189ff] font-bold transition-colors">🔐 Admin Portal</a>
+            </div>
+            
+            <!-- Payment Badges -->
+            <div class="flex items-center flex-wrap justify-center gap-3">
+                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-bold text-[10px] border border-slate-700">Cash on Delivery (COD)</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-bold text-[10px] border border-slate-700">JazzCash</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-bold text-[10px] border border-slate-700">EasyPaisa</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-bold text-[10px] border border-slate-700">Direct Bank Transfer</span>
+                <span class="px-2.5 py-1 rounded-md bg-slate-800 text-slate-300 font-bold text-[10px] border border-slate-700">Visa / MasterCard</span>
             </div>
         </div>
 
     </div>
 </footer>
-
-<!-- Floating Overlay Widgets: WhatsApp & 24/7 AI Bot for Help -->
-<?php require_once __DIR__ . '/overlay_widgets.php'; ?>
-
-<div id="toast-container" class="fixed bottom-28 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none"></div>

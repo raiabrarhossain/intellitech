@@ -1,8 +1,8 @@
 @echo off
-title NEXA INTELLITECH - Multi-Domain Automation & AI Server
+title INTELLITECH SOLUTIONS - Smart Home, Zigbee 3.0 & Custom Solutions Server
 echo =====================================================================
-echo           NEXA INTELLITECH PLATFORM
-echo   Unified Home, Office, Factory, Window Automation & AI Agents
+echo                     INTELLITECH SOLUTIONS PAKISTAN
+echo    Smart Home Automation, Zigbee 3.0 Mesh & Custom Home Solutions
 echo =====================================================================
 echo.
 echo Starting local PHP development server at http://localhost:8000 ...

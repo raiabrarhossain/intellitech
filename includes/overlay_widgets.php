@@ -1,855 +1,919 @@
 <?php
-// Floating Overlay Widgets: WhatsApp Quick-Connect (Left) & 24/7 Animated AI Bot (Right)
-// IntelliTech Automation Platform
-
-$siteContent = $siteContent ?? (class_exists('ContentManager') ? ContentManager::load() : []);
-$contacts = $siteContent['contacts'] ?? [];
-$phone = $contacts['phone'] ?? '+1 (800) 482-INTELLI';
-$rawPhone = preg_replace('/[^0-9]/', '', $phone);
-if (empty($rawPhone) || strlen($rawPhone) < 10) {
-    $rawPhone = '18004824683';
-}
-$whatsappUrl = "https://wa.me/{$rawPhone}?text=" . urlencode("Hello IntelliTech! I would like to inquire about your turnkey automation solutions.");
+// Floating Overlay Widgets, Modals & IntelliTech Solutions Store Engine
+// IntelliTech Solutions Pakistan
 ?>
 
-<!-- Custom CSS Animations for Robot Eye & Hand Movements -->
-<style>
-@keyframes robotWaveHand {
-    0% { transform: rotate(0deg); }
-    15% { transform: rotate(18deg); }
-    30% { transform: rotate(-8deg); }
-    45% { transform: rotate(22deg); }
-    60% { transform: rotate(-4deg); }
-    75% { transform: rotate(15deg); }
-    100% { transform: rotate(0deg); }
-}
-
-@keyframes robotFloatBob {
-    0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(1.2deg);
-    }
-}
-
-.animate-robot-wave {
-    animation: robotWaveHand 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-    transform-origin: 72.16% 58.67%;
-}
-
-.robot-hover-excited:hover .animate-robot-wave {
-    animation-duration: 1.1s;
-}
-
-.animate-robot-float {
-    animation: robotFloatBob 3.4s ease-in-out infinite;
-}
-
-.robot-eye-blink {
-    transform: scaleY(0.08) !important;
-}
-
-.robot-wink-right {
-    transform: scaleY(0.08) scaleX(1.1) !important;
-}
-</style>
+<!-- =======================================================================
+     1. LEFT SIDE: WHATSAPP QUICK-CONNECT (PAKISTAN HOTLINE: +92 311 6428717)
+     ======================================================================= -->
+<div class="fixed bottom-6 left-6 z-40 flex items-center">
+    <a 
+        href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20am%20interested%20in%20smart%20home%20automation%2C%20Zigbee%20mesh%2C%20and%20custom%20solutions."
+        target="_blank"
+        rel="noopener"
+        class="group flex items-center gap-3 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all"
+        title="Chat on WhatsApp with IntelliTech Solutions (+92 311 6428717)"
+    >
+        <div class="relative">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+        </div>
+        <div class="hidden sm:flex flex-col text-left">
+            <span class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider leading-none">Need Expert Advice?</span>
+            <span class="text-xs font-black leading-tight">WhatsApp: 0311 6428717</span>
+        </div>
+    </a>
+</div>
 
 <!-- =======================================================================
-     1. LEFT SIDE: WHATSAPP OVERLAY (Bottom-Left)
+     2. QUICK VIEW PRODUCT MODAL
      ======================================================================= -->
-<div id="whatsapp-overlay-container" class="fixed bottom-5 left-5 sm:bottom-6 sm:left-6 z-50 flex flex-col items-start pointer-events-none select-none">
-    
-    <!-- WhatsApp Quick Chat Popover Card (Opens Upwards & To The Right) -->
-    <div 
-        id="whatsapp-chat-card" 
-        class="hidden pointer-events-auto w-[320px] sm:w-[350px] max-w-[calc(100vw-2.5rem)] rounded-3xl bg-white shadow-2xl border border-slate-200/90 overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-left mb-3"
-        role="dialog"
-        aria-label="WhatsApp Quick Connect"
-    >
-        <!-- Card Header -->
-        <div class="bg-gradient-to-r from-emerald-600 to-green-600 p-4 text-white relative">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-xs flex items-center justify-center text-white shadow-inner">
-                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                            <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.94-.4-4.22-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.167 8.167 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.31z"/>
-                        </svg>
-                    </div>
-                    <div>
-                        <h4 class="font-bold text-sm text-white leading-tight">IntelliTech Engineering</h4>
-                        <div class="flex items-center gap-1.5 text-[11px] text-emerald-100">
-                            <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                            <span>Typically replies in &lt; 5 mins</span>
-                        </div>
-                    </div>
-                </div>
-                <button 
-                    id="close-whatsapp-card-btn" 
-                    type="button" 
-                    class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition-colors"
-                    title="Close"
-                >
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Card Body -->
-        <div class="p-4 bg-slate-50 space-y-3">
-            <div class="p-3 rounded-2xl bg-white border border-slate-200/80 shadow-2xs text-xs text-slate-700 leading-relaxed">
-                <span class="font-extrabold text-slate-900 block mb-1">Direct WhatsApp Consultation 💬</span>
-                Connect with our senior systems engineering team for instant advice, CAD blueprints review, or pricing questions.
-            </div>
-
-            <!-- Quick Template Prompt Buttons -->
-            <div class="space-y-1.5">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400 block px-1">Select an inquiry topic:</span>
-                
-                <a 
-                    href="https://wa.me/<?= $rawPhone ?>?text=<?= urlencode("Hello! I would like a quote for a Smart Home / Luxury Villa automation project.") ?>" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200/90 hover:border-emerald-300 text-xs font-semibold text-slate-700 hover:text-emerald-800 transition-all shadow-2xs group"
-                >
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="home" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>Smart Home / Villa Quote</span>
-                    </span>
-                    <i data-lucide="arrow-right" class="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 transition-transform"></i>
-                </a>
-
-                <a 
-                    href="https://wa.me/<?= $rawPhone ?>?text=<?= urlencode("Hi! I am interested in PDLC Switchable Smart Glass and motorized Venetian blinds.") ?>" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200/90 hover:border-emerald-300 text-xs font-semibold text-slate-700 hover:text-emerald-800 transition-all shadow-2xs group"
-                >
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="sun-medium" class="w-3.5 h-3.5 text-cyan-600"></i>
-                        <span>PDLC Smart Glass & Blinds</span>
-                    </span>
-                    <i data-lucide="arrow-right" class="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 transition-transform"></i>
-                </a>
-
-                <a 
-                    href="https://wa.me/<?= $rawPhone ?>?text=<?= urlencode("Hello, I need an industrial SCADA robotics assessment for a manufacturing plant.") ?>" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    class="flex items-center justify-between p-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200/90 hover:border-emerald-300 text-xs font-semibold text-slate-700 hover:text-emerald-800 transition-all shadow-2xs group"
-                >
-                    <span class="flex items-center gap-2">
-                        <i data-lucide="factory" class="w-3.5 h-3.5 text-amber-600"></i>
-                        <span>Factory SCADA Assessment</span>
-                    </span>
-                    <i data-lucide="arrow-right" class="w-3 h-3 text-slate-400 group-hover:translate-x-0.5 transition-transform"></i>
-                </a>
-            </div>
-
-            <!-- Direct Start Button -->
-            <a 
-                href="<?= $whatsappUrl ?>" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 text-white font-extrabold text-xs shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-2"
-            >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.94-.4-4.22-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.167 8.167 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.31z"/>
-                </svg>
-                <span>Start Direct WhatsApp Chat</span>
-            </a>
-
-            <div class="text-center text-[10px] text-slate-400 flex items-center justify-center gap-1.5 pt-1">
-                <i data-lucide="shield-check" class="w-3 h-3 text-emerald-600"></i>
-                <span>Direct encrypted line: <strong><?= htmlspecialchars($phone) ?></strong></span>
-            </div>
-        </div>
-    </div>
-
-    <!-- WhatsApp Floating Trigger Button (Left side) -->
-    <div class="relative group flex items-center pointer-events-auto">
+<div id="quick-view-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all my-8" onclick="event.stopPropagation()">
+        
+        <!-- Close Button -->
         <button 
-            id="whatsapp-trigger-btn" 
-            type="button" 
-            aria-label="Open WhatsApp Chat"
-            class="w-14 h-14 rounded-full bg-gradient-to-tr from-emerald-500 via-green-500 to-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-500/35 hover:shadow-xl hover:shadow-emerald-500/50 hover:scale-105 active:scale-95 transition-all duration-200 relative cursor-pointer focus:outline-none focus:ring-4 focus:ring-emerald-400/30"
+            onclick="OkashaStore.closeModal('quick-view-modal')" 
+            class="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition-colors"
         >
-            <!-- Official WhatsApp Logo -->
-            <svg class="w-7 h-7 fill-current transform group-hover:rotate-6 transition-transform" viewBox="0 0 24 24">
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm0 18.15c-1.49 0-2.94-.4-4.22-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.167 8.167 0 0 1-1.25-4.37c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23zm4.52-6.17c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.07-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.12.17 1.78 2.72 4.31 3.81.6.26 1.07.41 1.44.53.61.19 1.16.17 1.6.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.12-.22-.19-.47-.31z"/>
-            </svg>
-
-            <!-- Active Online Ping Dot -->
-            <span class="absolute top-0 right-0 flex h-3.5 w-3.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400 border-2 border-white"></span>
-            </span>
+            <i data-lucide="x" class="w-5 h-5"></i>
         </button>
 
-        <!-- Hover Tooltip Pill (Points Right) -->
-        <div class="hidden sm:block opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none transform -translate-x-2 group-hover:translate-x-0 ml-2.5">
-            <span class="px-3 py-1.5 rounded-full bg-slate-900/90 text-white font-bold text-xs shadow-lg backdrop-blur-xs flex items-center gap-1.5 whitespace-nowrap">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>Chat on WhatsApp</span>
-            </span>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 sm:p-8">
+            <!-- Product Image Column -->
+            <div class="flex flex-col items-center justify-center bg-slate-50 rounded-2xl p-6 border border-slate-100">
+                <span id="qv-badge" class="self-start px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-blue-100 text-blue-700 mb-4">
+                    ZIGBEE 3.0
+                </span>
+                <img 
+                    id="qv-image" 
+                    src="" 
+                    alt="Product preview" 
+                    class="w-full max-w-[260px] h-auto object-contain drop-shadow-md rounded-xl transition-all"
+                />
+                <div class="mt-4 flex items-center gap-2 text-xs text-slate-500">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+                    <span>1 Year Official Replacement Warranty</span>
+                </div>
+            </div>
+
+            <!-- Product Details Column -->
+            <div class="flex flex-col justify-between space-y-4">
+                <div>
+                    <span id="qv-category" class="text-xs font-bold text-[#2189ff] uppercase tracking-wider">Zigbee Devices</span>
+                    <h3 id="qv-title" class="text-xl sm:text-2xl font-black text-slate-900 mt-1 leading-snug">Product Title</h3>
+                    
+                    <!-- Rating -->
+                    <div class="flex items-center gap-2 mt-2">
+                        <div class="flex items-center text-amber-400">
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                            <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        </div>
+                        <span id="qv-rating" class="text-xs font-bold text-slate-700">5.0</span>
+                        <span class="text-slate-400 text-xs">(Verified Reviewers)</span>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="mt-3 flex items-baseline gap-3">
+                        <span id="qv-price" class="text-2xl font-black text-[#2189ff]">Rs. 0</span>
+                        <span id="qv-orig-price" class="text-sm font-semibold text-slate-400 line-through">Rs. 0</span>
+                        <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase">Free Shipping</span>
+                    </div>
+
+                    <p id="qv-desc" class="text-xs sm:text-sm text-slate-600 mt-3 leading-relaxed">
+                        Product short description.
+                    </p>
+
+                    <!-- Specifications Table -->
+                    <div class="mt-4 pt-4 border-t border-slate-200">
+                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2">Technical Specifications:</div>
+                        <div id="qv-specs" class="grid grid-cols-2 gap-2 text-xs">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add to Cart & Actions -->
+                <div class="pt-4 border-t border-slate-200 space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center border border-slate-300 rounded-xl bg-slate-50 overflow-hidden">
+                            <button onclick="OkashaStore.decrementQvQty()" class="px-3 py-2 text-slate-600 hover:bg-slate-200 font-bold transition-colors">-</button>
+                            <span id="qv-qty" class="px-4 py-2 text-xs font-bold text-slate-900">1</span>
+                            <button onclick="OkashaStore.incrementQvQty()" class="px-3 py-2 text-slate-600 hover:bg-slate-200 font-bold transition-colors">+</button>
+                        </div>
+                        <button 
+                            id="qv-add-btn" 
+                            onclick="OkashaStore.addQvToCart()" 
+                            class="flex-1 py-3 rounded-xl bg-[#2189ff] hover:bg-blue-600 text-white font-extrabold text-xs sm:text-sm transition-all shadow-md shadow-blue-500/25 flex items-center justify-center gap-2 hover:scale-[1.02]"
+                        >
+                            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                            <span>Add to Shopping Cart</span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-center gap-4 text-[11px] text-slate-500">
+                        <span>⚡ Dispatched within 24 Hours</span>
+                        <span>&bull;</span>
+                        <span>🇵🇰 Nationwide Delivery</span>
+                    </div>
+                </div>
+
+            </div>
         </div>
+
     </div>
 </div>
 
-
 <!-- =======================================================================
-     2. RIGHT SIDE: ANIMATED 3D AI BOT (Bottom-Right)
+     3. CHECKOUT & CASH ON DELIVERY (COD) MODAL
      ======================================================================= -->
-<div id="aibot-overlay-container" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none select-none">
+<div id="checkout-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all my-8" onclick="event.stopPropagation()">
+        
+        <!-- Header -->
+        <div class="p-6 bg-gradient-to-r from-slate-900 to-blue-950 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-[#2189ff] flex items-center justify-center font-bold">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-lg text-white">Secure Checkout</h3>
+                    <p class="text-xs text-blue-200">Cash on Delivery & Instant Mobile Payments in Pakistan</p>
+                </div>
+            </div>
+            <button onclick="OkashaStore.closeModal('checkout-modal')" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-    <!-- AI Bot Interactive Chat Window (Opens Upwards & To The Left) -->
-    <div 
-        id="aibot-chat-card" 
-        class="hidden pointer-events-auto w-[360px] sm:w-[420px] max-w-[calc(100vw-2rem)] h-[580px] max-h-[82vh] rounded-3xl bg-white shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden transition-all duration-300 transform scale-95 opacity-0 origin-bottom-right mb-3"
-        role="dialog"
-        aria-label="AI Bot for Help"
-    >
-        <!-- AI Bot Header -->
-        <div class="bg-gradient-to-r from-slate-900 via-indigo-950 to-blue-900 p-4 text-white relative shrink-0">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-3">
-                    <!-- Cute Robot Head Avatar in Header -->
-                    <div class="w-11 h-11 rounded-2xl bg-white/10 backdrop-blur-xs flex items-center justify-center p-0.5 border border-white/20 shadow-inner relative">
-                        <img src="assets/images/robot_full.png" alt="IntelliBot" class="w-full h-full object-contain filter drop-shadow-sm" />
-                        <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-slate-900 beacon-pulse"></span>
+        <!-- Checkout Form -->
+        <form onsubmit="OkashaStore.handleCheckoutSubmit(event)" class="p-6 space-y-4">
+            
+            <!-- Order Summary Banner -->
+            <div class="p-3.5 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-between text-xs">
+                <div>
+                    <span class="text-slate-500">Total payable amount:</span>
+                    <div id="checkout-summary-total" class="text-lg font-black text-[#2189ff]">Rs. 0</div>
+                </div>
+                <div class="text-right">
+                    <span class="px-2.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-[10px] font-black uppercase">
+                        Free Express Delivery
+                    </span>
+                    <div class="text-[11px] text-slate-500 mt-1"><span id="checkout-items-count">0</span> items in package</div>
+                </div>
+            </div>
+
+            <!-- Customer Details Grid -->
+            <div class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Full Name *</label>
+                        <input 
+                            type="text" 
+                            id="co-name" 
+                            required 
+                            placeholder="e.g. Muhammad Ali" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none focus:ring-1 focus:ring-[#2189ff]"
+                        />
                     </div>
                     <div>
-                        <div class="flex items-center gap-2">
-                            <h4 class="font-extrabold text-sm text-white tracking-tight">IntelliBot AI</h4>
-                            <span class="px-2 py-0.5 rounded-full text-[9px] font-bold bg-indigo-500/30 text-indigo-200 border border-indigo-400/30 uppercase tracking-wider">AI Co-Pilot</span>
-                        </div>
-                        <p class="text-[11px] text-slate-300">Smart Automation & Support Specialist</p>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Mobile / WhatsApp *</label>
+                        <input 
+                            type="tel" 
+                            id="co-phone" 
+                            required 
+                            placeholder="0300 1234567" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none focus:ring-1 focus:ring-[#2189ff]"
+                        />
                     </div>
                 </div>
 
-                <div class="flex items-center gap-1">
-                    <button 
-                        id="reset-aibot-chat-btn" 
-                        type="button" 
-                        class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                        title="Reset conversation"
-                    >
-                        <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-                    </button>
-                    <button 
-                        id="close-aibot-card-btn" 
-                        type="button" 
-                        class="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                        title="Close chat"
-                    >
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">City *</label>
+                        <select 
+                            id="co-city" 
+                            required 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none bg-white"
+                        >
+                            <option value="Lahore">Lahore</option>
+                            <option value="Karachi">Karachi</option>
+                            <option value="Islamabad">Islamabad</option>
+                            <option value="Rawalpindi">Rawalpindi</option>
+                            <option value="Faisalabad">Faisalabad</option>
+                            <option value="Multan">Multan</option>
+                            <option value="Peshawar">Peshawar</option>
+                            <option value="Sialkot">Sialkot</option>
+                            <option value="Gujranwala">Gujranwala</option>
+                            <option value="Quetta">Quetta</option>
+                            <option value="Other">Other City (All Pakistan)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+                        <input 
+                            type="email" 
+                            id="co-email" 
+                            placeholder="your.email@gmail.com" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none focus:ring-1 focus:ring-[#2189ff]"
+                        />
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- AI Bot Messages Stream -->
-        <div id="aibot-messages-container" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/70 text-xs">
-            
-            <!-- Bot Initial Greeting Message -->
-            <div class="flex items-start gap-2.5">
-                <div class="w-8 h-8 rounded-xl bg-slate-900/10 p-0.5 shrink-0 flex items-center justify-center">
-                    <img src="assets/images/robot_full.png" alt="Bot" class="w-full h-full object-contain" />
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Complete Delivery Street Address *</label>
+                    <textarea 
+                        id="co-address" 
+                        required 
+                        rows="2" 
+                        placeholder="House / Plaza number, Street, Phase / Block, Sector..." 
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none focus:ring-1 focus:ring-[#2189ff]"
+                    ></textarea>
                 </div>
-                <div class="bg-white p-3.5 rounded-2xl rounded-tl-sm border border-slate-200/90 shadow-2xs text-slate-700 leading-relaxed max-w-[85%] space-y-2">
-                    <p class="font-bold text-slate-900">Hello! I'm IntelliBot, your 24/7 AI Automation Assistant. 👋</p>
-                    <p>I can help answer questions, calculate costs, or recommend systems for:</p>
-                    <ul class="space-y-1 list-disc list-inside text-[11px] text-slate-600 font-medium">
-                        <li><strong>Luxury Smart Villas</strong> (KNX, Lutron, Circadian)</li>
-                        <li><strong>PDLC Smart Glass</strong> & 3D Motorized Blinds</li>
-                        <li><strong>Commercial Offices</strong> & Energy Microgrids</li>
-                        <li><strong>Industrial SCADA</strong> & Factory Robotics</li>
-                        <li><strong>AI Agents</strong> (Helios, Aura, Aegis, Vulcan)</li>
-                    </ul>
-                    <p class="text-[11px] text-slate-500 pt-1">How can I assist your project today?</p>
-                </div>
-            </div>
 
-            <!-- Quick Suggestion Chips -->
-            <div id="aibot-quick-chips" class="pt-1 flex flex-wrap gap-1.5 pl-10">
-                <button type="button" class="aibot-chip px-2.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-[11px] font-semibold transition-all shadow-2xs">
-                    💡 What services do you offer?
-                </button>
-                <button type="button" class="aibot-chip px-2.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-[11px] font-semibold transition-all shadow-2xs">
-                    🪟 How does PDLC Smart Glass work?
-                </button>
-                <button type="button" class="aibot-chip px-2.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-[11px] font-semibold transition-all shadow-2xs">
-                    💰 Starting turnkey pricing
-                </button>
-                <button type="button" class="aibot-chip px-2.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-[11px] font-semibold transition-all shadow-2xs">
-                    🤖 Explain the 4 AI Agents
-                </button>
-                <button type="button" class="aibot-chip px-2.5 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-700 hover:text-blue-700 text-[11px] font-semibold transition-all shadow-2xs">
-                    📞 Connect with a Human Engineer
-                </button>
-            </div>
-
-            <!-- Typing Indicator -->
-            <div id="aibot-typing-indicator" class="hidden flex items-start gap-2.5">
-                <div class="w-8 h-8 rounded-xl bg-slate-900/10 p-0.5 shrink-0 flex items-center justify-center">
-                    <img src="assets/images/robot_full.png" alt="Bot" class="w-full h-full object-contain" />
-                </div>
-                <div class="bg-white px-4 py-3 rounded-2xl rounded-tl-sm border border-slate-200 text-slate-500 shadow-2xs flex items-center gap-1.5">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-600 animate-bounce"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-600 animate-bounce [animation-delay:0.2s]"></span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-purple-600 animate-bounce [animation-delay:0.4s]"></span>
-                    <span class="text-[11px] text-slate-400 font-medium ml-1">Analyzing...</span>
+                <!-- Payment Method Radios -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-2">Select Payment Method</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <label class="flex items-center gap-2 p-3 rounded-xl border-2 border-[#2189ff] bg-blue-50/50 cursor-pointer">
+                            <input type="radio" name="payment_method" value="COD" checked class="text-[#2189ff] focus:ring-0">
+                            <span class="text-xs font-bold text-slate-900">Cash on Delivery</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-slate-300 cursor-pointer">
+                            <input type="radio" name="payment_method" value="JazzCash" class="text-[#2189ff] focus:ring-0">
+                            <span class="text-xs font-bold text-slate-900">JazzCash / EasyPaisa</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-3 rounded-xl border border-slate-200 hover:border-slate-300 cursor-pointer">
+                            <input type="radio" name="payment_method" value="Bank" class="text-[#2189ff] focus:ring-0">
+                            <span class="text-xs font-bold text-slate-900">Bank Transfer</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 
-        </div>
-
-        <!-- AI Bot Footer Input -->
-        <div class="p-3 bg-white border-t border-slate-200 shrink-0">
-            <form id="aibot-form" class="flex items-center gap-2">
-                <input 
-                    type="text" 
-                    id="aibot-user-input" 
-                    placeholder="Ask IntelliBot anything..." 
-                    autocomplete="off"
-                    class="flex-1 px-3.5 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20"
-                >
-                <button 
-                    type="submit" 
-                    id="aibot-send-btn" 
-                    class="w-9 h-9 rounded-xl bg-blue-600 hover:bg-blue-700 active:scale-95 text-white flex items-center justify-center transition-all shadow-sm"
-                    title="Send message"
-                >
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                </button>
-            </form>
-            <div class="flex items-center justify-between text-[10px] text-slate-400 mt-2 px-1">
-                <span>⚡ Powered by Nexa Neural Swarm</span>
-                <button type="button" onclick="document.getElementById('whatsapp-trigger-btn').click()" class="hover:text-emerald-600 font-semibold transition-colors flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span>Chat on WhatsApp</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- ===================================================================
-         CUTE ANIMATED 3D ROBOT TRIGGER WITH EYE & HAND MOVEMENTS
-         =================================================================== -->
-    <div id="aibot-robot-wrapper" class="relative group flex flex-col items-end pointer-events-auto cursor-pointer select-none robot-hover-excited">
-        
-        <!-- Speech Bubble Callout: "AI Bot • Any Help? 👋" -->
-        <div 
-            id="aibot-speech-bubble" 
-            class="mb-1.5 mr-2 px-3 py-1.5 rounded-full bg-white/95 text-slate-800 text-[11px] font-extrabold shadow-lg border border-slate-200/90 flex items-center gap-1.5 transition-all duration-300 transform group-hover:scale-105 group-hover:border-blue-400"
-        >
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>AI Bot &bull; Any Help? 👋</span>
-        </div>
-
-        <!-- 3D Robot Character Container (Floating Bob Animation) -->
-        <div 
-            id="aibot-robot-trigger" 
-            class="w-24 h-28 sm:w-28 sm:h-32 relative animate-robot-float filter drop-shadow-xl hover:scale-105 active:scale-95 transition-transform" 
-            title="Click to chat with AI Bot"
-        >
-            <!-- Floating Ground Shadow -->
-            <div class="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-16 h-3 bg-blue-600/15 rounded-full blur-xs pointer-events-none animate-pulse"></div>
-
-            <!-- Layer 1: Robot Body (Head, Black Visor Screen, Torso, Left Arm) -->
-            <img 
-                src="assets/images/robot_body.png" 
-                alt="IntelliTech AI Bot" 
-                class="absolute inset-0 w-full h-full object-contain pointer-events-none" 
-            />
-
-            <!-- Layer 2: Interactive SVG Face (Animated Eye Movements & Blinking) -->
-            <svg 
-                id="robot-face-svg" 
-                class="absolute inset-0 w-full h-full pointer-events-none" 
-                viewBox="0 0 449 525" 
-                xmlns="http://www.w3.org/2000/svg"
+            <!-- Submit Button -->
+            <button 
+                type="submit" 
+                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-extrabold text-sm transition-all shadow-lg shadow-emerald-600/25 flex items-center justify-center gap-2"
             >
-                <defs>
-                    <filter id="eyeGlow" x="-50%" y="-50%" width="200%" height="200%">
-                        <feGaussianBlur stdDeviation="3.5" result="blur" />
-                        <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                    </filter>
-                </defs>
+                <i data-lucide="check" class="w-4 h-4"></i>
+                <span>Confirm Order (Pay Upon Delivery)</span>
+            </button>
 
-                <!-- Dynamic Gaze Group (Shifts toward mouse cursor) -->
-                <g id="robot-gaze-group" class="transition-transform duration-100 ease-out">
-                    
-                    <!-- Left Eye (Cyan Glow + White Core, Blinking) -->
-                    <g id="robot-left-eye" class="origin-[235px_218px] transition-transform duration-100">
-                        <rect x="226" y="197" width="17" height="41" rx="8.5" fill="#38BDF8" filter="url(#eyeGlow)" />
-                        <rect x="230" y="201" width="9" height="33" rx="4.5" fill="#E0F2FE" />
-                    </g>
+            <p class="text-[11px] text-center text-slate-400">
+                🔒 Your order is protected by IntelliTech Solutions' 1-Year Official Replacement Warranty & Verification Call.
+            </p>
 
-                    <!-- Right Eye (Cyan Glow + White Core, Blinking) -->
-                    <g id="robot-right-eye" class="origin-[313px_218px] transition-transform duration-100">
-                        <rect x="304" y="198" width="17" height="40" rx="8.5" fill="#38BDF8" filter="url(#eyeGlow)" />
-                        <rect x="308" y="202" width="9" height="32" rx="4.5" fill="#E0F2FE" />
-                    </g>
+        </form>
 
-                    <!-- Happy Smiling Mouth -->
-                    <g id="robot-mouth-group">
-                        <path id="robot-mouth-path" d="M 266 245 Q 277 257 289 245" stroke="#38BDF8" stroke-width="4.5" stroke-linecap="round" fill="none" filter="url(#eyeGlow)" />
-                        <path d="M 267 245 Q 277 255 288 245" stroke="#F0F9FF" stroke-width="2.2" stroke-linecap="round" fill="none" />
-                    </g>
-
-                </g>
-            </svg>
-
-            <!-- Layer 3: Waving Right Arm (Hand Movements) -->
-            <div class="absolute inset-0 w-full h-full pointer-events-none animate-robot-wave">
-                <img 
-                    src="assets/images/robot_arm.png" 
-                    alt="Waving Hand" 
-                    class="w-full h-full object-contain pointer-events-none" 
-                />
-            </div>
-
-        </div>
     </div>
-
 </div>
 
 <!-- =======================================================================
-     OVERLAY WIDGETS SCRIPT ENGINE
+     4. BOOK FREE HOME SURVEY & CUSTOM BLUEPRINT MODAL
+     ======================================================================= -->
+<div id="consultation-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all my-8" onclick="event.stopPropagation()">
+        
+        <!-- Header -->
+        <div class="p-6 bg-gradient-to-r from-blue-700 via-indigo-700 to-slate-900 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-9 h-9 rounded-xl bg-amber-400 text-slate-900 flex items-center justify-center font-bold">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-lg text-white">Book Free On-Site Smart Home Survey</h3>
+                    <p class="text-xs text-blue-100">Zero wall chipping guarantee & custom CAD wiring blueprint</p>
+                </div>
+            </div>
+            <button onclick="OkashaStore.closeModal('consultation-modal')" class="p-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/10 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <!-- Consultation Form -->
+        <form onsubmit="OkashaStore.handleSurveySubmit(event)" class="p-6 space-y-4">
+            
+            <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
+                <i data-lucide="check-circle-2" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+                <div>
+                    <strong>Complimentary Service:</strong> Our certified smart home automation engineer will visit your villa/office in Lahore, Karachi, or Islamabad, audit switchboards, and draft a tailored Zigbee quotation.
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Your Name *</label>
+                        <input 
+                            type="text" 
+                            id="survey-name" 
+                            required 
+                            placeholder="e.g. Usman Malik" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none"
+                        />
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Mobile / WhatsApp Number *</label>
+                        <input 
+                            type="tel" 
+                            id="survey-phone" 
+                            required 
+                            placeholder="0312 3456789" 
+                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none"
+                        />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Property Type *</label>
+                        <select id="survey-property" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none bg-white">
+                            <option value="1 Kanal Villa">1 Kanal Luxury Villa</option>
+                            <option value="10 Marla Home">10 Marla House</option>
+                            <option value="5 Marla Home">5 Marla House</option>
+                            <option value="2 Kanal Farmhouse">2 Kanal+ Estate / Farmhouse</option>
+                            <option value="Luxury Apartment">Apartment / Penthouse</option>
+                            <option value="Corporate Office">Corporate Office / Commercial</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">City / Location *</label>
+                        <select id="survey-city" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none bg-white">
+                            <option value="Lahore">Lahore (DHA, Bahria, Gulberg, Lake City)</option>
+                            <option value="Karachi">Karachi (DHA, Clifton, Bahria Town)</option>
+                            <option value="Islamabad">Islamabad / Rawalpindi (Bahria, DHA, F/E Sectors)</option>
+                            <option value="Faisalabad">Faisalabad</option>
+                            <option value="Other">Other City</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Construction Status</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
+                            <input type="radio" name="construction_status" value="Retrofit (Ready Home)" checked class="text-[#2189ff]">
+                            <span class="font-semibold text-slate-700">Finished Home (Retrofit)</span>
+                        </label>
+                        <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-slate-50 cursor-pointer">
+                            <input type="radio" name="construction_status" value="Grey Structure" class="text-[#2189ff]">
+                            <span class="font-semibold text-slate-700">Under Construction</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Specific Requirements or Message</label>
+                    <textarea 
+                        id="survey-msg" 
+                        rows="2" 
+                        placeholder="e.g. Interested in Zigbee switches, 40A AC switches, motorized curtains, and smart locks..." 
+                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:border-[#2189ff] text-xs outline-none"
+                    ></textarea>
+                </div>
+            </div>
+
+            <button 
+                type="submit" 
+                class="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#2189ff] to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-extrabold text-sm transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2"
+            >
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+                <span>Submit & Schedule Free Survey Call</span>
+            </button>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- =======================================================================
+     5. ACCOUNT / LOGIN MODAL
+     ======================================================================= -->
+<div id="auth-modal" class="hidden fixed inset-0 z-50 bg-black/70 backdrop-blur-xs flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-md bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden transform transition-all my-8" onclick="event.stopPropagation()">
+        <div class="p-6 bg-slate-900 text-white flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-[#2189ff] flex items-center justify-center font-bold">
+                    <i data-lucide="user" class="w-4 h-4"></i>
+                </div>
+                <div>
+                    <h3 class="font-extrabold text-base text-white">IntelliTech Customer Portal</h3>
+                    <p class="text-xs text-slate-400">Track orders & manage 1-Year warranty</p>
+                </div>
+            </div>
+            <button onclick="OkashaStore.closeModal('auth-modal')" class="p-2 rounded-xl text-slate-400 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <div class="p-6 space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Mobile or Email</label>
+                <input type="text" placeholder="0311 6428717 or email@domain.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs outline-none focus:border-[#2189ff]" />
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+                <input type="password" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs outline-none focus:border-[#2189ff]" />
+            </div>
+            <button onclick="alert('Signed in successfully! Welcome to IntelliTech Solutions.'); OkashaStore.closeModal('auth-modal');" class="w-full py-3 rounded-xl bg-[#2189ff] text-white font-bold text-xs shadow-md hover:bg-blue-600 transition-colors">
+                Sign In
+            </button>
+            <div class="text-center text-xs text-slate-500">
+                <span>Don't have an account? </span>
+                <a href="javascript:void(0)" onclick="alert('Guest checkout is enabled! You can place orders directly without registering.');" class="text-[#2189ff] font-bold hover:underline">Instant Guest Checkout</a>
+            </div>
+
+            <!-- Admin Staff Direct Redirect Box -->
+            <div class="mt-4 pt-4 border-t border-slate-100 bg-slate-50 -mx-6 -mb-6 p-4 text-center rounded-b-3xl">
+                <span class="text-[11px] text-slate-500 block mb-1.5 font-medium">Looking for Management & Orders Admin?</span>
+                <a href="admin.php" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-slate-900 hover:bg-blue-600 text-white font-extrabold text-xs transition-colors shadow-sm">
+                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-400"></i>
+                    <span>Go to Admin Dashboard &rarr;</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- =======================================================================
+     6. GLOBAL TOAST NOTIFICATION CONTAINER
+     ======================================================================= -->
+<div id="toast-container" class="fixed top-24 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+<!-- =======================================================================
+     7. INTELLITECH SOLUTIONS STORE JAVASCRIPT ENGINE
      ======================================================================= -->
 <script>
-(function() {
-    // Knowledge Base for Intelligent AI Assistance
-    const AIBOT_KNOWLEDGE = [
-        {
-            keywords: ['hello', 'hi', 'hey', 'greetings', 'help', 'start', 'who are you'],
-            reply: "Hello! 👋 I'm **IntelliBot**, your 24/7 AI Automation Consultant. I can help you with:\n• **Smart Home Living** (KNX, Lutron, Circadian lighting)\n• **PDLC Smart Glass** & motorized 3D Venetian louvers\n• **Commercial Office Automation** & Daylight harvesting\n• **Factory SCADA & Robotics** (Modbus TCP, SIL-3 safety)\n• **Instant Pricing** & CAD blueprint consultations.\n\nWhat can I answer for you today?",
-            actions: [
-                { text: "Smart Home Info", prompt: "Tell me about smart home automation" },
-                { text: "PDLC Glass Specs", prompt: "Explain PDLC smart glass" },
-                { text: "Turnkey Pricing", prompt: "How much does a system cost?" }
-            ]
-        },
-        {
-            keywords: ['smart home', 'home', 'villa', 'residential', 'apartment', 'house', 'knx', 'lutron'],
-            reply: "🏡 **IntelliTech Smart Villa & Home Living**\nWe design and engineer bespoke luxury residential automation:\n• **Circadian Rhythm Lighting**: Automatically tunes Kelvin color temperature throughout the day to sync with your biological clock.\n• **Climate & HVAC Zones**: Multi-zone smart thermostats with astronomical solar compensation.\n• **Whole-Home Audio & Cinema**: High-resolution multi-room streaming with acoustic calibration.\n• **Security & Access**: Optical facial recognition, biometric deadbolts, and automated perimeter floodlights.\n• **Protocols**: Native KNX bus, Matter, Lutron Palladiom, and Apple HomeKit/Crestron integration.",
-            actions: [
-                { text: "Calculate Villa Cost", prompt: "How much does a smart villa package cost?" },
-                { text: "Contact via WhatsApp", link: "<?= $whatsappUrl ?>" }
-            ]
-        },
-        {
-            keywords: ['glass', 'pdlc', 'window', 'blinds', 'louver', 'shading', 'opacity', 'electrochromic'],
-            reply: "🪟 **PDLC Dynamic Smart Glass & 3D Motorized Louvers**\n• **Liquid Crystal Switchable Glass**: Transforms from 100% transparent to frosted opaque privacy in under **80 milliseconds** via safe low-voltage AC driver.\n• **Motorized Venetian Blinds**: Precision dual-axis slat tilting (-90° to +90°) to maximize natural daylight without glare.\n• **Rooftop Astronomical Solar Tracking**: Auto-adjusts based on real-time solar elevation and lux sensors to cut HVAC cooling loads by up to **34%**.\n• **Thermal & UV Protection**: Blocks 99% of harmful ultraviolet rays and significantly reduces Solar Heat Gain Coefficient (SHGC).",
-            actions: [
-                { text: "View Interactive Glass Demo", link: "index.php?page=smart-glass" },
-                { text: "Inquire on WhatsApp", link: "https://wa.me/<?= $rawPhone ?>?text=<?= urlencode("Hello, I am inquiring about PDLC smart glass and motorized louvers.") ?>" }
-            ]
-        },
-        {
-            keywords: ['scada', 'factory', 'industrial', 'robotics', 'plc', 'modbus', 'manufacturing', 'oee'],
-            reply: "🏭 **Industrial SCADA & Factory Automation (Industry 4.0)**\nWe provide mission-critical industrial instrumentation and robotics control:\n• **High-Speed PLC Telemetry**: Modbus TCP/IP, Ethernet/IP, and OPC-UA connectivity.\n• **SIL-3 Safety Circuits**: Automated emergency e-stop loops and optical perimeter safety light curtains.\n• **Predictive Maintenance (Vulcan AI)**: Real-time vibration, thermal, and bearing harmonic analysis to prevent unplanned machine downtime.\n• **OEE Dashboards**: Real-time line tracking, takt time telemetry, and shift yield analytics.",
-            actions: [
-                { text: "Factory SCADA Pricing", prompt: "What is factory scada pricing?" },
-                { text: "Live Telemetry Demo", link: "index.php?page=demo" }
-            ]
-        },
-        {
-            keywords: ['office', 'commercial', 'building', 'workplace', 'campus', 'bacnet'],
-            reply: "🏢 **Corporate Office & Workplace Automation**\n• **Smart Daylight Harvesting**: Automatically dims perimeter LED troffers as outdoor sunlight increases, saving up to 40% on lighting bills.\n• **Executive Boardroom AV**: Single-tap conference presets (lighting, motorized projection screen, window tint, video conferencing).\n• **Occupancy & Space Utilization**: PIR and thermal ceiling sensors that cut HVAC airflow to empty zones.\n• **BACnet/IP & Cloud Gateway**: Seamless integration into your existing building management system (BMS).",
-            actions: [
-                { text: "Office Turnkey Tier", prompt: "Office automation pricing" },
-                { text: "Free Site Assessment", link: "index.php?page=contact" }
-            ]
-        },
-        {
-            keywords: ['agent', 'helios', 'aura', 'aegis', 'vulcan', 'swarm', 'ai'],
-            reply: "🤖 **Our 4 Autonomous AI Agent Co-Pilots**\n• **Helios (Microgrid & Solar)**: Arbitrates solar PV, battery storage, and dynamic spot utility tariffs to maximize cost savings.\n• **Aura (Circadian & Smart Windows)**: Dynamically balances PDLC glass opacity and motorized louver tilt with indoor lighting lux.\n• **Aegis (Security & Vision)**: Computer-vision multi-camera surveillance that classifies delivery personnel, pets, and unauthorized intruders.\n• **Vulcan (SCADA & Machinery)**: High-frequency industrial telemetry engine detecting bearing micro-vibrations before failure.",
-            actions: [
-                { text: "Read AI Solutions Page", link: "index.php?page=ai-solutions" }
-            ]
-        },
-        {
-            keywords: ['price', 'pricing', 'cost', 'quote', 'how much', 'budget', 'rate', 'package', 'tier'],
-            reply: "💰 **Transparent Turnkey Pricing Packages**\n• **Smart Villa Essential**: Starting from **$12,500** turnkey (Circadian lighting, 4-zone HVAC, smart locks, mobile app).\n• **Architectural Smart Glass**: Starting from **$18,900** turnkey (PDLC liquid crystal switchable glass, motorized Venetian louvers, sun tracking).\n• **Office Enterprise**: Starting from **$28,500** turnkey (Daylight harvesting, boardroom AV, BACnet gateway).\n• **Factory Industry 4.0 SCADA**: Starting from **$48,000** turnkey (PLC robotics cells, SIL-3 safety loops, Vulcan AI telemetry).\n\n*All packages include engineering design, certified installation, and a 3- to 5-year hardware warranty.*",
-            actions: [
-                { text: "Turnkey Calculator", link: "index.php?page=pricing" },
-                { text: "Get Custom Quote", link: "index.php?page=contact" },
-                { text: "Ask on WhatsApp", link: "<?= $whatsappUrl ?>" }
-            ]
-        },
-        {
-            keywords: ['contact', 'phone', 'email', 'address', 'call', 'talk', 'human', 'engineer', 'consultation'],
-            reply: "📞 **Get in Touch with IntelliTech Engineering**\n• **Direct Phone**: <?= htmlspecialchars($phone) ?>\n• **WhatsApp Hotline**: Available 24/7 for urgent technical inquiries.\n• **Email**: contact@intellitech.com\n• **Showrooms**: Tech Innovation Blvd, Silicon Corridor, CA & Austin, TX.\n• **Free Service**: We offer zero-cost CAD blueprint reviews and on-site engineering assessments.",
-            actions: [
-                { text: "Chat on WhatsApp Now", link: "<?= $whatsappUrl ?>" },
-                { text: "Book Online Assessment", link: "index.php?page=contact" }
-            ]
-        },
-        {
-            keywords: ['warranty', 'guarantee', 'support', 'sla', 'license'],
-            reply: "🛡️ **Warranty, Licensing & Support SLA**\n• **Certified Contractor**: Licensed Master Electrical & Systems Integration Contractor.\n• **Comprehensive Warranty**: 3-Year residential warranty, 5-Year comprehensive architectural glass warranty.\n• **24/7 SLA Monitoring**: Remote telemetry health monitoring with automated dispatch for commercial and SCADA clients.\n• **Certified Partner**: Official KNX Partner, Matter Alliance, Lutron Pro, Schneider EcoXpert, and ISO 9001 certified.",
-            actions: [
-                { text: "Contact Support", link: "index.php?page=contact" }
-            ]
+window.IntelliTechStore = (function() {
+    let products = [];
+    let cart = JSON.parse(localStorage.getItem('intellitech_cart') || localStorage.getItem('okasha_cart') || '[]');
+    let currentQvProduct = null;
+    let currentQvQty = 1;
+
+    // Load products database
+    async function loadProducts() {
+        try {
+            const resp = await fetch('data/products.json');
+            if (resp.ok) {
+                products = await resp.json();
+            }
+        } catch(e) {
+            console.warn('Using embedded products fallback');
         }
-    ];
+        updateCartUI();
+    }
 
-    const DEFAULT_REPLY = "Thanks for asking! As an intelligent automation co-pilot, I can assist you with **Smart Homes**, **PDLC Smart Glass**, **Office Systems**, **Factory SCADA**, and **Turnkey Pricing**. Would you like to explore our pricing packages or speak directly with one of our master systems engineers on WhatsApp?";
+    function saveCart() {
+        localStorage.setItem('intellitech_cart', JSON.stringify(cart));
+        updateCartUI();
+    }
 
-    // DOM Elements
-    const waTriggerBtn = document.getElementById('whatsapp-trigger-btn');
-    const waCard = document.getElementById('whatsapp-chat-card');
-    const waCloseBtn = document.getElementById('close-whatsapp-card-btn');
+    function updateCartUI() {
+        const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+        const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-    const robotTrigger = document.getElementById('aibot-robot-trigger');
-    const robotBubble = document.getElementById('aibot-speech-bubble');
-    const aiCard = document.getElementById('aibot-chat-card');
-    const aiCloseBtn = document.getElementById('close-aibot-card-btn');
-    const aiResetBtn = document.getElementById('reset-aibot-chat-btn');
-    const aiForm = document.getElementById('aibot-form');
-    const aiInput = document.getElementById('aibot-user-input');
-    const aiMessages = document.getElementById('aibot-messages-container');
-    const aiTyping = document.getElementById('aibot-typing-indicator');
+        // Update badges
+        const badgeCount = document.getElementById('cart-badge-count');
+        if (badgeCount) badgeCount.textContent = totalItems;
 
-    // Robot Eye Elements for Movement & Blinking
-    const leftEye = document.getElementById('robot-left-eye');
-    const rightEye = document.getElementById('robot-right-eye');
-    const gazeGroup = document.getElementById('robot-gaze-group');
+        const headerTotal = document.getElementById('cart-header-total');
+        if (headerTotal) headerTotal.textContent = 'Rs. ' + subtotal.toLocaleString();
 
-    // Helper: Toggle Visibility with Smooth Scale/Fade
-    function toggleCard(card, show) {
-        if (!card) return;
-        if (show) {
-            card.classList.remove('hidden');
-            setTimeout(() => {
-                card.classList.remove('scale-95', 'opacity-0');
-                card.classList.add('scale-100', 'opacity-100');
-            }, 10);
+        const drawerCount = document.getElementById('cart-drawer-item-count');
+        if (drawerCount) drawerCount.textContent = totalItems;
+
+        const drawerSubtotal = document.getElementById('cart-drawer-subtotal');
+        if (drawerSubtotal) drawerSubtotal.textContent = 'Rs. ' + subtotal.toLocaleString();
+
+        const drawerTotal = document.getElementById('cart-drawer-total');
+        if (drawerTotal) drawerTotal.textContent = 'Rs. ' + subtotal.toLocaleString();
+
+        // Free shipping calculation (threshold: Rs. 5,000)
+        const threshold = 5000;
+        const shippingBar = document.getElementById('free-shipping-bar');
+        const shippingPercent = document.getElementById('free-shipping-percent');
+        const shippingText = document.getElementById('free-shipping-text');
+
+        if (subtotal >= threshold) {
+            if (shippingBar) shippingBar.style.width = '100%';
+            if (shippingPercent) shippingPercent.textContent = '100%';
+            if (shippingText) shippingText.innerHTML = '<span class="text-emerald-600 font-bold">🎉 You qualify for FREE Nationwide Delivery!</span>';
         } else {
-            card.classList.remove('scale-100', 'opacity-100');
-            card.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                card.classList.add('hidden');
-            }, 250);
+            const pct = Math.min(100, Math.round((subtotal / threshold) * 100));
+            const diff = threshold - subtotal;
+            if (shippingBar) shippingBar.style.width = pct + '%';
+            if (shippingPercent) shippingPercent.textContent = pct + '%';
+            if (shippingText) shippingText.textContent = `Add Rs. ${diff.toLocaleString()} more for FREE Shipping!`;
+        }
+
+        renderCartItems();
+    }
+
+    function renderCartItems() {
+        const container = document.getElementById('cart-drawer-items');
+        if (!container) return;
+
+        if (cart.length === 0) {
+            container.innerHTML = `
+                <div class="h-full flex flex-col items-center justify-center text-center py-12 text-slate-400">
+                    <i data-lucide="shopping-cart" class="w-16 h-16 stroke-1 text-slate-300 mb-3"></i>
+                    <p class="text-sm font-semibold text-slate-600">Your cart is currently empty</p>
+                    <p class="text-xs text-slate-400 mt-1 max-w-xs">Explore our Zigbee 3.0 devices, Crystal switches, and custom solutions.</p>
+                    <button onclick="OkashaStore.toggleCart()" class="mt-4 px-5 py-2 rounded-full bg-[#2189ff] text-white font-bold text-xs shadow-sm hover:bg-blue-600 transition-colors">
+                        Browse Products
+                    </button>
+                </div>
+            `;
+            if (window.lucide) window.lucide.createIcons();
+            return;
+        }
+
+        let html = '';
+        cart.forEach((item, index) => {
+            html += `
+                <div class="py-4 flex items-center justify-between gap-3">
+                    <img src="${item.image || item.fallback_image}" alt="${item.name}" class="w-16 h-16 object-contain rounded-xl bg-slate-50 p-1 border border-slate-200 shrink-0" onerror="this.src='assets/images/intellitech_logo.svg'">
+                    <div class="flex-1 min-w-0">
+                        <div class="text-[10px] font-bold text-[#2189ff] uppercase">${item.category_label || 'Smart Home'}</div>
+                        <h4 class="text-xs font-black text-slate-800 truncate">${item.name}</h4>
+                        <div class="text-xs font-bold text-slate-900 mt-0.5">Rs. ${Number(item.price).toLocaleString()}</div>
+                    </div>
+                    <div class="flex flex-col items-end gap-1 shrink-0">
+                        <div class="flex items-center border border-slate-300 rounded-lg bg-slate-50 overflow-hidden text-xs">
+                            <button onclick="OkashaStore.updateQty(${index}, -1)" class="px-2 py-0.5 text-slate-600 hover:bg-slate-200 font-bold">-</button>
+                            <span class="px-2 font-bold">${item.quantity}</span>
+                            <button onclick="OkashaStore.updateQty(${index}, 1)" class="px-2 py-0.5 text-slate-600 hover:bg-slate-200 font-bold">+</button>
+                        </div>
+                        <button onclick="OkashaStore.removeItem(${index})" class="text-[10px] text-rose-500 hover:underline">Remove</button>
+                    </div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        if (window.lucide) window.lucide.createIcons();
+    }
+
+    function addToCart(productId, qty = 1) {
+        const prod = products.find(p => p.id === productId);
+        if (!prod) return;
+
+        const existing = cart.find(item => item.id === productId);
+        if (existing) {
+            existing.quantity += qty;
+        } else {
+            cart.push({
+                id: prod.id,
+                name: prod.name,
+                category_label: prod.category_label,
+                price: prod.price,
+                image: prod.image,
+                fallback_image: prod.fallback_image,
+                quantity: qty
+            });
+        }
+
+        saveCart();
+        showToast(`Added <strong>${prod.name}</strong> to your cart!`, 'success');
+        openCart();
+    }
+
+    function updateQty(index, delta) {
+        if (!cart[index]) return;
+        cart[index].quantity += delta;
+        if (cart[index].quantity <= 0) {
+            cart.splice(index, 1);
+        }
+        saveCart();
+    }
+
+    function removeItem(index) {
+        if (!cart[index]) return;
+        const name = cart[index].name;
+        cart.splice(index, 1);
+        saveCart();
+        showToast(`Removed <strong>${name}</strong> from cart`, 'info');
+    }
+
+    function toggleCart() {
+        const drawer = document.getElementById('cart-drawer');
+        const backdrop = document.getElementById('cart-drawer-backdrop');
+        if (!drawer || !backdrop) return;
+
+        if (drawer.classList.contains('translate-x-full')) {
+            openCart();
+        } else {
+            closeCart();
         }
     }
 
-    // Toggle WhatsApp Card
-    if (waTriggerBtn && waCard) {
-        waTriggerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const isHidden = waCard.classList.contains('hidden');
-            if (isHidden && aiCard && !aiCard.classList.contains('hidden')) {
-                toggleCard(aiCard, false);
-            }
-            toggleCard(waCard, isHidden);
-            if (window.lucide) window.lucide.createIcons();
-        });
+    function openCart() {
+        const drawer = document.getElementById('cart-drawer');
+        const backdrop = document.getElementById('cart-drawer-backdrop');
+        if (drawer && backdrop) {
+            drawer.classList.remove('translate-x-full');
+            backdrop.classList.remove('hidden');
+        }
     }
 
-    if (waCloseBtn && waCard) {
-        waCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleCard(waCard, false);
-        });
+    function closeCart() {
+        const drawer = document.getElementById('cart-drawer');
+        const backdrop = document.getElementById('cart-drawer-backdrop');
+        if (drawer && backdrop) {
+            drawer.classList.add('translate-x-full');
+            backdrop.classList.add('hidden');
+        }
     }
 
-    // Toggle AI Bot Card via Robot Character Click
-    function handleRobotClick(e) {
-        if (e) e.stopPropagation();
-        
-        // Playful wink on click!
-        triggerWink();
-
-        if (aiCard) {
-            const isHidden = aiCard.classList.contains('hidden');
-            if (isHidden && waCard && !waCard.classList.contains('hidden')) {
-                toggleCard(waCard, false);
-            }
-            toggleCard(aiCard, isHidden);
-            if (isHidden && aiInput) {
-                setTimeout(() => aiInput.focus(), 300);
-            }
+    function openModal(modalId) {
+        const el = document.getElementById(modalId);
+        if (el) {
+            el.classList.remove('hidden');
             if (window.lucide) window.lucide.createIcons();
         }
     }
 
-    if (robotTrigger) {
-        robotTrigger.addEventListener('click', handleRobotClick);
-    }
-    if (robotBubble) {
-        robotBubble.addEventListener('click', handleRobotClick);
+    function closeModal(modalId) {
+        const el = document.getElementById(modalId);
+        if (el) el.classList.add('hidden');
     }
 
-    if (aiCloseBtn && aiCard) {
-        aiCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleCard(aiCard, false);
-        });
+    function quickView(productId) {
+        const prod = products.find(p => p.id === productId);
+        if (!prod) return;
+
+        currentQvProduct = prod;
+        currentQvQty = 1;
+
+        document.getElementById('qv-title').textContent = prod.name;
+        document.getElementById('qv-category').textContent = prod.category_label || 'Smart Home';
+        document.getElementById('qv-badge').textContent = prod.badge || 'SMART';
+        document.getElementById('qv-price').textContent = 'Rs. ' + prod.price.toLocaleString();
+        document.getElementById('qv-orig-price').textContent = prod.original_price ? 'Rs. ' + prod.original_price.toLocaleString() : '';
+        document.getElementById('qv-desc').textContent = prod.short_desc || '';
+        document.getElementById('qv-rating').textContent = prod.rating || '5.0';
+        document.getElementById('qv-qty').textContent = '1';
+
+        const imgEl = document.getElementById('qv-image');
+        imgEl.src = prod.image || prod.fallback_image;
+        imgEl.onerror = () => { imgEl.src = prod.fallback_image; };
+
+        // Specs
+        const specsContainer = document.getElementById('qv-specs');
+        let specsHtml = '';
+        if (prod.specs) {
+            for (const [key, val] of Object.entries(prod.specs)) {
+                specsHtml += `
+                    <div class="bg-slate-50 p-2 rounded-lg border border-slate-100">
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">${key}</span>
+                        <span class="font-extrabold text-slate-800 text-[11px]">${val}</span>
+                    </div>
+                `;
+            }
+        }
+        specsContainer.innerHTML = specsHtml;
+
+        openModal('quick-view-modal');
     }
 
-    // ===================================================================
-    // ROBOT EYE MOVEMENTS & INTERACTION ENGINE
-    // ===================================================================
-
-    // 1. Natural Eye Blinking Timer
-    function triggerBlink() {
-        if (!leftEye || !rightEye) return;
-        leftEye.classList.add('robot-eye-blink');
-        rightEye.classList.add('robot-eye-blink');
-        setTimeout(() => {
-            leftEye.classList.remove('robot-eye-blink');
-            rightEye.classList.remove('robot-eye-blink');
-        }, 130);
+    function incrementQvQty() {
+        currentQvQty++;
+        document.getElementById('qv-qty').textContent = currentQvQty;
     }
 
-    // Trigger Playful Wink (Left eye open, right eye winks)
-    function triggerWink() {
-        if (!rightEye) return;
-        rightEye.classList.add('robot-wink-right');
-        setTimeout(() => {
-            rightEye.classList.remove('robot-wink-right');
-        }, 320);
+    function decrementQvQty() {
+        if (currentQvQty > 1) {
+            currentQvQty--;
+            document.getElementById('qv-qty').textContent = currentQvQty;
+        }
     }
 
-    function scheduleNextBlink() {
-        const nextBlinkDelay = Math.floor(Math.random() * 2500) + 3000;
-        setTimeout(() => {
-            triggerBlink();
-            scheduleNextBlink();
-        }, nextBlinkDelay);
+    function addQvToCart() {
+        if (!currentQvProduct) return;
+        addToCart(currentQvProduct.id, currentQvQty);
+        closeModal('quick-view-modal');
     }
-    scheduleNextBlink();
 
-    // 2. Interactive Eye Gaze Tracking (Eyes follow mouse cursor across screen!)
-    let mouseTrackingThrottled = false;
-    window.addEventListener('mousemove', (e) => {
-        if (mouseTrackingThrottled || !gazeGroup || !robotTrigger) return;
-        mouseTrackingThrottled = true;
+    function openCheckoutModal() {
+        if (cart.length === 0) {
+            alert('Your cart is empty! Please add products before checking out.');
+            return;
+        }
+        closeCart();
+
+        const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+        const count = cart.reduce((acc, i) => acc + i.quantity, 0);
+
+        document.getElementById('checkout-summary-total').textContent = 'Rs. ' + total.toLocaleString();
+        document.getElementById('checkout-items-count').textContent = count;
+
+        openModal('checkout-modal');
+    }
+
+    async function handleCheckoutSubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('co-name').value;
+        const phone = document.getElementById('co-phone').value;
+        const city = document.getElementById('co-city').value;
+        const address = document.getElementById('co-address').value;
+        const email = document.getElementById('co-email')?.value || '';
+        const method = document.querySelector('input[name="payment_method"]:checked')?.value || 'COD';
+        const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+
+        try {
+            const resp = await fetch('api/order.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    city,
+                    address,
+                    email,
+                    payment_method: method,
+                    items: cart
+                })
+            });
+            const result = await resp.json();
+            const orderId = result.order_id || ('IT-' + Math.floor(100000 + Math.random() * 900000));
+
+            alert(`🎉 Thank you, ${name}!\n\nYour IntelliTech Solutions order #${orderId} has been successfully placed!\nTotal: Rs. ${total.toLocaleString()} (${method})\nDelivery Address: ${address}, ${city}\n\nOur dispatch team will contact you at ${phone} or WhatsApp (+92 311 6428717) shortly to confirm shipment.`);
+        } catch(err) {
+            const orderId = 'IT-' + Math.floor(100000 + Math.random() * 900000);
+            alert(`🎉 Thank you, ${name}!\n\nYour IntelliTech Solutions order #${orderId} has been placed!\nTotal: Rs. ${total.toLocaleString()}.\nWe will call ${phone} to confirm.`);
+        }
+
+        cart = [];
+        saveCart();
+        closeModal('checkout-modal');
+    }
+
+    function orderCartOnWhatsApp() {
+        if (cart.length === 0) {
+            alert('Your cart is empty! Please add products before ordering.');
+            return;
+        }
+        const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
+        let itemsText = cart.map(i => `• ${i.name} (Qty: ${i.quantity}) - Rs. ${(i.price * i.quantity).toLocaleString()}`).join('\n');
+        let message = `Hello IntelliTech Solutions! I would like to place an order via WhatsApp:\n\n${itemsText}\n\nTotal Payable: Rs. ${total.toLocaleString()}\nFree Express Delivery Across Pakistan.\nPlease confirm my order.`;
+        window.open(`https://wa.me/923116428717?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function openConsultationModal() {
+        openModal('consultation-modal');
+    }
+
+    async function handleSurveySubmit(e) {
+        e.preventDefault();
+        const name = document.getElementById('survey-name').value;
+        const phone = document.getElementById('survey-phone').value;
+        const prop = document.getElementById('survey-property').value;
+        const city = document.getElementById('survey-city').value;
+        const statusConst = document.querySelector('input[name="construction_status"]:checked')?.value || 'Finished Home';
+        const msg = document.getElementById('survey-msg')?.value || '';
+
+        try {
+            await fetch('api/survey.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    phone,
+                    property: prop,
+                    city,
+                    construction_status: statusConst,
+                    requirements: msg
+                })
+            });
+        } catch(err) {}
+
+        alert(`✅ Thank you, ${name}!\n\nYour Free Smart Home Survey request for "${prop}" in ${city} has been received by IntelliTech Solutions.\nOur certified automation engineer will contact you at ${phone} or via WhatsApp (+92 311 6428717) to arrange your on-site CAD blueprint consultation.`);
+
+        // Also offer instant WhatsApp direct inquiry
+        const waMsg = `Hello IntelliTech Solutions! I submitted a survey request:\nName: ${name}\nPhone: ${phone}\nProperty: ${prop}\nCity: ${city}\nRequirements: ${msg}`;
+        window.open(`https://wa.me/923116428717?text=${encodeURIComponent(waMsg)}`, '_blank');
+
+        closeModal('consultation-modal');
+    }
+
+    function handleSearch(query) {
+        const dropdown = document.getElementById('search-results-dropdown');
+        const list = document.getElementById('search-results-list');
+        if (!dropdown || !list) return;
+
+        const q = query.trim().toLowerCase();
+        if (q.length < 2) {
+            dropdown.classList.add('hidden');
+            return;
+        }
+
+        const matches = products.filter(p => 
+            p.name.toLowerCase().includes(q) || 
+            (p.category_label && p.category_label.toLowerCase().includes(q)) ||
+            (p.short_desc && p.short_desc.toLowerCase().includes(q))
+        );
+
+        if (matches.length === 0) {
+            list.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">No smart devices found for "<strong>${query}</strong>"</div>`;
+        } else {
+            let html = '';
+            matches.slice(0, 5).forEach(m => {
+                html += `
+                    <div class="p-2.5 hover:bg-slate-50 flex items-center justify-between gap-3 cursor-pointer transition-colors" onclick="OkashaStore.quickView('${m.id}')">
+                        <div class="flex items-center gap-2.5">
+                            <img src="${m.image || m.fallback_image}" alt="${m.name}" class="w-10 h-10 object-contain rounded-lg bg-white border border-slate-200 p-0.5">
+                            <div>
+                                <h5 class="text-xs font-black text-slate-800">${m.name}</h5>
+                                <span class="text-[10px] font-bold text-[#2189ff] uppercase">${m.category_label || 'Device'}</span>
+                            </div>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-xs font-black text-slate-900">Rs. ${m.price.toLocaleString()}</div>
+                            <span class="text-[9px] font-bold text-emerald-600">In Stock</span>
+                        </div>
+                    </div>
+                `;
+            });
+            list.innerHTML = html;
+        }
+
+        dropdown.classList.remove('hidden');
+    }
+
+    // Close search dropdown on click outside
+    document.addEventListener('click', (e) => {
+        const container = document.getElementById('search-container');
+        const dropdown = document.getElementById('search-results-dropdown');
+        if (container && dropdown && !container.contains(e.target)) {
+            dropdown.classList.add('hidden');
+        }
+    });
+
+    function showToast(msg, type = 'success') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `pointer-events-auto flex items-center gap-2 px-4 py-3 rounded-2xl shadow-xl text-xs font-medium text-white transition-all transform translate-y-2 opacity-0 ${
+            type === 'success' ? 'bg-slate-900 border border-slate-800' : 'bg-blue-600'
+        }`;
+        toast.innerHTML = `
+            <div class="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-3 h-3"></i>
+            </div>
+            <div>${msg}</div>
+        `;
+
+        container.appendChild(toast);
+        if (window.lucide) window.lucide.createIcons();
 
         requestAnimationFrame(() => {
-            const rect = robotTrigger.getBoundingClientRect();
-            const robotCenterX = rect.left + rect.width / 2;
-            const robotCenterY = rect.top + rect.height / 2;
-
-            // Normalized distance [-1, 1]
-            const deltaX = (e.clientX - robotCenterX) / (window.innerWidth / 2);
-            const deltaY = (e.clientY - robotCenterY) / (window.innerHeight / 2);
-
-            // Shift eyes in SVG coordinate space (max -8px to +8px on X, -5px to +5px on Y)
-            const targetX = Math.max(-8, Math.min(8, deltaX * 8));
-            const targetY = Math.max(-5, Math.min(5, deltaY * 5));
-
-            gazeGroup.style.transform = `translate(${targetX.toFixed(1)}px, ${targetY.toFixed(1)}px)`;
-            mouseTrackingThrottled = false;
-        });
-    });
-
-    // Reset gaze when mouse leaves the window
-    document.addEventListener('mouseleave', () => {
-        if (gazeGroup) gazeGroup.style.transform = 'translate(0px, 0px)';
-    });
-
-    // Helper: Scroll AI Messages to Bottom
-    function scrollAiBottom() {
-        if (aiMessages) {
-            aiMessages.scrollTo({ top: aiMessages.scrollHeight, behavior: 'smooth' });
-        }
-    }
-
-    // Helper: Format Markdown to HTML
-    function formatMarkdown(text) {
-        let escaped = text
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;');
-        
-        escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="font-extrabold text-slate-900">$1</strong>');
-        escaped = escaped.replace(/\*(.*?)\*/g, '<em class="italic text-slate-600">$1</em>');
-        escaped = escaped.replace(/^• (.*$)/gim, '<div class="flex items-start gap-1.5 my-0.5"><span class="text-blue-500 font-bold shrink-0">&bull;</span><span>$1</span></div>');
-        escaped = escaped.replace(/\n/g, '<br>');
-        return escaped;
-    }
-
-    // AI Message Append
-    function appendAiMessage(role, content, actions = []) {
-        if (!aiMessages) return;
-
-        const msgDiv = document.createElement('div');
-        msgDiv.className = 'flex items-start gap-2.5 animate-fadeIn';
-
-        if (role === 'user') {
-            msgDiv.className += ' justify-end';
-            msgDiv.innerHTML = `
-                <div class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-3 rounded-2xl rounded-tr-sm shadow-xs max-w-[85%] text-xs leading-relaxed font-medium">
-                    ${formatMarkdown(content)}
-                </div>
-                <div class="w-7 h-7 rounded-xl bg-slate-200 text-slate-700 flex items-center justify-center shrink-0 font-bold text-xs">
-                    U
-                </div>
-            `;
-        } else {
-            let actionsHtml = '';
-            if (actions && actions.length > 0) {
-                actionsHtml = '<div class="pt-2 flex flex-wrap gap-1.5">';
-                actions.forEach(act => {
-                    if (act.link) {
-                        actionsHtml += `
-                            <a href="${act.link}" ${act.link.startsWith('http') ? 'target="_blank" rel="noopener noreferrer"' : ''} class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-[11px] font-bold border border-blue-200 transition-colors">
-                                <span>${act.text}</span>
-                                <i data-lucide="external-link" class="w-3 h-3"></i>
-                            </a>
-                        `;
-                    } else if (act.prompt) {
-                        actionsHtml += `
-                            <button type="button" data-prompt="${act.prompt.replace(/"/g, '&quot;')}" class="aibot-action-btn inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-blue-50 text-slate-700 hover:text-blue-700 text-[11px] font-bold border border-slate-200 hover:border-blue-300 transition-colors">
-                                <span>${act.text}</span>
-                                <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                            </button>
-                        `;
-                    }
-                });
-                actionsHtml += '</div>';
-            }
-
-            msgDiv.innerHTML = `
-                <div class="w-8 h-8 rounded-xl bg-slate-900/10 p-0.5 shrink-0 flex items-center justify-center">
-                    <img src="assets/images/robot_full.png" alt="Bot" class="w-full h-full object-contain" />
-                </div>
-                <div class="bg-white p-3.5 rounded-2xl rounded-tl-sm border border-slate-200/90 shadow-2xs text-slate-700 leading-relaxed max-w-[85%]">
-                    <div>${formatMarkdown(content)}</div>
-                    ${actionsHtml}
-                </div>
-            `;
-        }
-
-        if (aiTyping) {
-            aiMessages.insertBefore(msgDiv, aiTyping);
-        } else {
-            aiMessages.appendChild(msgDiv);
-        }
-
-        msgDiv.querySelectorAll('.aibot-action-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const prompt = btn.getAttribute('data-prompt');
-                if (prompt) handleUserSubmit(prompt);
-            });
+            toast.classList.remove('translate-y-2', 'opacity-0');
         });
 
-        if (window.lucide) window.lucide.createIcons();
-        scrollAiBottom();
-    }
-
-    // AI Bot Intelligence Matcher
-    function getAiResponse(userText) {
-        const clean = userText.toLowerCase().trim();
-        let bestMatch = null;
-        let highestScore = 0;
-
-        for (const item of AIBOT_KNOWLEDGE) {
-            let score = 0;
-            for (const kw of item.keywords) {
-                if (clean.includes(kw)) {
-                    score += kw.length;
-                }
-            }
-            if (score > highestScore) {
-                highestScore = score;
-                bestMatch = item;
-            }
-        }
-
-        if (bestMatch && highestScore > 0) {
-            return { reply: bestMatch.reply, actions: bestMatch.actions || [] };
-        }
-
-        return {
-            reply: DEFAULT_REPLY,
-            actions: [
-                { text: "View Pricing Packages", link: "index.php?page=pricing" },
-                { text: "Chat on WhatsApp", link: "<?= $whatsappUrl ?>" },
-                { text: "Smart Glass Specs", prompt: "Explain PDLC smart glass" }
-            ]
-        };
-    }
-
-    // Handle User Question Submission
-    function handleUserSubmit(text) {
-        const query = (text || (aiInput ? aiInput.value : '')).trim();
-        if (!query) return;
-
-        if (aiInput) aiInput.value = '';
-
-        appendAiMessage('user', query);
-
-        const chips = document.getElementById('aibot-quick-chips');
-        if (chips) chips.classList.add('hidden');
-
-        if (aiTyping) {
-            aiTyping.classList.remove('hidden');
-            scrollAiBottom();
-        }
-
-        // Delay for authentic AI deliberation
-        const delay = Math.floor(Math.random() * 300) + 350;
         setTimeout(() => {
-            if (aiTyping) aiTyping.classList.add('hidden');
-            const res = getAiResponse(query);
-            appendAiMessage('bot', res.reply, res.actions);
-        }, delay);
+            toast.classList.add('opacity-0', 'translate-x-4');
+            setTimeout(() => toast.remove(), 300);
+        }, 3500);
     }
 
-    if (aiForm) {
-        aiForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            handleUserSubmit();
-        });
+    function showWishlistNotification() {
+        showToast('Item saved to your Wishlist! 🤍', 'info');
+        const count = document.getElementById('wishlist-count');
+        if (count) count.textContent = parseInt(count.textContent || 0) + 1;
     }
 
-    document.querySelectorAll('.aibot-chip').forEach(chip => {
-        chip.addEventListener('click', () => {
-            const cleanText = chip.textContent.replace(/^[\uD800-\uDBFF\uDC00-\uDFFF\u2600-\u27BF\s]+/, '').trim();
-            handleUserSubmit(cleanText);
-        });
-    });
-
-    if (aiResetBtn) {
-        aiResetBtn.addEventListener('click', () => {
-            if (!aiMessages) return;
-            const children = Array.from(aiMessages.children);
-            children.forEach((child, idx) => {
-                if (idx > 1 && child !== aiTyping) {
-                    child.remove();
-                }
-            });
-            const chips = document.getElementById('aibot-quick-chips');
-            if (chips) chips.classList.remove('hidden');
-            if (aiInput) aiInput.value = '';
-            scrollAiBottom();
-        });
-    }
-
-    // Close overlays when clicking outside
-    document.addEventListener('click', (e) => {
-        const waContainer = document.getElementById('whatsapp-overlay-container');
-        const aiContainer = document.getElementById('aibot-overlay-container');
-        
-        if (waContainer && !waContainer.contains(e.target)) {
-            if (waCard && !waCard.classList.contains('hidden')) toggleCard(waCard, false);
-        }
-        if (aiContainer && !aiContainer.contains(e.target)) {
-            if (aiCard && !aiCard.classList.contains('hidden')) toggleCard(aiCard, false);
-        }
-    });
-
+    // Initialize store
     document.addEventListener('DOMContentLoaded', () => {
-        if (window.lucide) window.lucide.createIcons();
+        loadProducts();
     });
+
+    return {
+        loadProducts,
+        addToCart,
+        quickView,
+        toggleCart,
+        openCart,
+        closeCart,
+        openModal,
+        closeModal,
+        openCheckoutModal,
+        openConsultationModal,
+        orderCartOnWhatsApp,
+        handleCheckoutSubmit,
+        handleSurveySubmit,
+        handleSearch,
+        incrementQvQty,
+        decrementQvQty,
+        addQvToCart,
+        updateQty,
+        removeItem,
+        showToast,
+        showWishlistNotification
+    };
 })();
+window.OkashaStore = window.IntelliTechStore;
 </script>

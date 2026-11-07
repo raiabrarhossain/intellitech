@@ -1,0 +1,72 @@
+[
+    {
+        "id": "SURV-950",
+        "created_at": "2026-11-07 11:00:00",
+        "customer_name": "Chaudhry Nadeem Akhtar",
+        "customer_phone": "0311 6428717",
+        "city": "Faisalabad",
+        "property": "1 Kanal Luxury Villa",
+        "construction_status": "Finishing Phase (New Build)",
+        "requirements": "Complete smart automation for 5 bedrooms, drawing room, 3D face door lock, 7 AC inverter switches, and motorized curtains.",
+        "assigned_engineer": "Engr. Zohaib (Faisalabad HQ Team)",
+        "scheduled_date": "2026-11-08 11:30",
+        "status": "Survey Scheduled",
+        "notes": "Kohinoor City, Susan Road, Faisalabad site survey confirmed."
+    },
+    {
+        "id": "SURV-901",
+        "created_at": "2026-11-07 08:30:00",
+        "customer_name": "Chaudhry Bilal Warraich",
+        "customer_phone": "03009412388",
+        "city": "Lahore",
+        "property": "1 Kanal Luxury Villa",
+        "construction_status": "Under Construction (Grey Structure)",
+        "requirements": "Complete turnkey automation: 24 smart switches, 5 AC switches, 2 Zigbee mesh hubs, biometric entrance lock, and automated motorized curtain conduits.",
+        "assigned_engineer": "Engr. Hamza (Lahore DHA Engineering Team)",
+        "scheduled_date": "2026-11-08 14:00",
+        "status": "Survey Scheduled",
+        "notes": "Client requested CAD drawing blueprint for electrician before ceiling plaster."
+    },
+    {
+        "id": "SURV-894",
+        "created_at": "2026-11-06 16:45:20",
+        "customer_name": "Brigadier (R) Saeed Alvi",
+        "customer_phone": "03224455888",
+        "city": "Islamabad",
+        "property": "2 Kanal+ Estate / Farmhouse",
+        "construction_status": "Finished Home (Retrofit)",
+        "requirements": "Wants whole-house mesh with zero wall chipping. 45 switches, solar inverter sync, perimeter security cameras, and main gate biometric lock.",
+        "assigned_engineer": "Engr. Daniyal (Islamabad Blue Area Team)",
+        "scheduled_date": "2026-11-07 16:00",
+        "status": "Site Visited",
+        "notes": "Audit completed. Sent official proposal of Rs. 590,000 via WhatsApp."
+    },
+    {
+        "id": "SURV-888",
+        "created_at": "2026-11-05 10:20:00",
+        "customer_name": "Mian Usman",
+        "customer_phone": "03112233444",
+        "city": "Karachi",
+        "property": "10 Marla House",
+        "construction_status": "Finished Home (Retrofit)",
+        "requirements": "12 Crystal switches, 2 AC 40A switches, smart bedroom lighting scenes, and Wi-Fi to Zigbee conversion.",
+        "assigned_engineer": "Engr. Bilawal (Karachi Clifton Team)",
+        "scheduled_date": "2026-11-05 15:30",
+        "status": "Project Won",
+        "notes": "Advance payment of 50% received. Installation starting on Monday."
+    },
+    {
+        "id": "SURV-875",
+        "created_at": "2026-11-04 19:10:00",
+        "customer_name": "Zeeshan Haider",
+        "customer_phone": "03456789123",
+        "city": "Rawalpindi",
+        "property": "Corporate Office / Commercial",
+        "construction_status": "Finished Home (Retrofit)",
+        "requirements": "Conference room smart glass tint control, presence radar motion lights, and centralized touch panel.",
+        "assigned_engineer": "Engr. Daniyal",
+        "scheduled_date": "2026-11-06 11:00",
+        "status": "Quotation Sent",
+        "notes": "Commercial quote of Rs. 240,000 submitted."
+    }
+]

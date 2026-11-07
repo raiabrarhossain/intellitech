@@ -1,123 +1,51 @@
 {
     "branding": {
-        "company_name": "Intelli",
-        "company_suffix": "Tech",
+        "company_name": "IntelliTech",
+        "company_suffix": "",
         "brand_tag": "Solutions",
         "logo_icon": "cpu",
+        "logo_path": "assets/images/intellitech_logo.svg",
+        "logo_white_path": "assets/images/intellitech_logo_white.svg",
         "favicon_path": "assets/images/favicon.svg",
-        "tagline": "Smart Spaces, Industrial SCADA & Autonomous AI",
-        "hero_badge": "Turnkey Automation Systems Integrator & Engineering",
-        "hero_title_prefix": "Transform Your Environment with",
-        "hero_title_highlight": "Intelligent Autonomous",
-        "hero_title_suffix": "Automation",
-        "hero_subtitle": "From luxury smart villas to high-precision factory SCADA and architectural smart glass."
+        "tagline": "Smart Home Automation, Zigbee 3.0 Mesh & Custom Turnkey Solutions | Faisalabad, Pakistan",
+        "hero_badge": "Faisalabad & Pakistan's Premier Smart Home Automation Integrator",
+        "hero_title_prefix": "Smart Living Engineered by",
+        "hero_title_highlight": "IntelliTech Solutions",
+        "hero_title_suffix": "& Zigbee 3.0 Mesh",
+        "hero_subtitle": "Experience the ultimate in convenience, security, and energy savings. High-precision Crystal Glass touch switches, rock-solid Zigbee 3.0 mesh devices, and turnkey custom automation engineered right here in Faisalabad for Pakistani homes nationwide."
     },
     "countdown": {
-        "enabled": true,
-        "title": "Seasonal Clean Energy & Smart Glass Federal Incentive",
-        "badge": "Q4 Government Tax Rebate",
+        "enabled": false,
+        "title": "Grand Smart Living & Energy Saving Promo",
+        "badge": "LIMITED TIME OFFER",
         "target_date": "2026-12-31T23:59",
-        "discount_text": "Claim up to $4,500 equipment rebate on Smart Glass and Solar Microgrid storage.",
-        "rainbow_active": true,
-        "cta_text": "Claim Consultation",
-        "cta_link": "index.php?page=contact"
+        "discount_text": "Enjoy up to 25% OFF on Zigbee 3.0 Bundles + Free Express Delivery across Pakistan!",
+        "rainbow_active": false,
+        "cta_text": "Shop Zigbee Range",
+        "cta_link": "#products-showcase"
     },
     "stats": {
-        "homes": "1,500+",
-        "homes_label": "Smart Homes & Villas",
-        "offices": "450+",
-        "offices_label": "Corporate Offices",
-        "factories": "130+",
-        "factories_label": "Industrial SCADA Plants",
-        "energy": "36%",
-        "energy_label": "Average Energy Saved"
+        "homes": "15,000+",
+        "homes_label": "Pakistani Homes Automated",
+        "offices": "1,200+",
+        "offices_label": "Offices & Commercial Plazas",
+        "warranty": "1 Year",
+        "warranty_label": "Official Replacement Warranty",
+        "energy": "38%",
+        "energy_label": "Average Peak Bill Reduction"
     },
     "contacts": {
-        "phone": "+1 (800) 482-INTELLI",
-        "email": "contact@intellitech.com",
-        "hours": "Mon-Sat: 08:00 - 20:00 (24/7 SLA)",
-        "address": "Tech Innovation Boulevard, Suite 800, Silicon Corridor, CA",
-        "austin_address": "400 Congress Avenue, Suite 1200, Austin, TX"
-    },
-    "pricing": [
-        {
-            "id": "p1",
-            "category": "Residential Living",
-            "title": "Smart Villa Essential",
-            "price": "$12,500",
-            "period": "/ starting turnkey",
-            "description": "For luxury apartments and homes up to 3,500 sq ft.",
-            "badge": "Residential",
-            "is_popular": false,
-            "features": [
-                "Circadian Lighting (Up to 32 Circuits)",
-                "4-Zone Smart HVAC Thermostat Sync",
-                "Optical CCTV Cameras & Smart Locks",
-                "Mobile App & Voice Control Integration",
-                "3-Year Hardware Warranty"
-            ]
-        },
-        {
-            "id": "p2",
-            "category": "Smart Glass & Blinds",
-            "title": "Architectural Glazing",
-            "price": "$18,900",
-            "period": "/ starting turnkey",
-            "description": "PDLC switchable glass and motorized dual-axis louvers.",
-            "badge": "Most Popular",
-            "is_popular": true,
-            "features": [
-                "PDLC Liquid Crystal Switchable Glass",
-                "Motorized Venetian Blinds with 3D Slat Tilt",
-                "Rooftop Photometric Sun-Tracking Sensor",
-                "Storm Wind High-Speed Auto-Retract",
-                "5-Year Comprehensive Glass Warranty"
-            ]
-        },
-        {
-            "id": "p3",
-            "category": "Corporate Campus",
-            "title": "Office Enterprise",
-            "price": "$28,500",
-            "period": "/ starting turnkey",
-            "description": "Commercial workplaces from 10,000 to 80,000 sq ft.",
-            "badge": "Corporate",
-            "is_popular": false,
-            "features": [
-                "Smart Daylight Harvesting Lux Balancing",
-                "Automated Executive Boardroom AV Ambiance",
-                "NFC / Face Turnstiles & Access Badging",
-                "After-Hours Phantom Power Cutoff",
-                "BACnet/IP Gateway Integration"
-            ]
-        },
-        {
-            "id": "p4",
-            "category": "Heavy SCADA & Robotics",
-            "title": "Factory Industry 4.0",
-            "price": "$48,000",
-            "period": "/ starting turnkey",
-            "description": "Full SCADA robotics, lines and SIL-3 safety.",
-            "badge": "Industrial",
-            "is_popular": false,
-            "features": [
-                "Robotic Arm Kinematics & PLC Programming",
-                "Conveyor Sorting & Belt Tension Telemetry",
-                "SIL-3 Certified Emergency Stop Safety Interlock",
-                "Vulcan AI Predictive Vibration Harmonics",
-                "24/7 Dedicated Priority SLA Support"
-            ]
-        }
-    ],
-    "calculator": {
-        "home_mult": 4.5,
-        "office_mult": 3.8,
-        "factory_mult": 5.8,
-        "window_mult": 6.2
-    },
-    "visuals": {
-        "enable_floating_boxes": true,
-        "box_count": 6,
-        "glass_blur": "backdrop-blur-2xl"
+        "phone": "+92 311 6428717",
+        "phone_display": "0311 6428717",
+        "phone_secondary": "+92 311 6428717",
+        "whatsapp": "+923116428717",
+        "email": "info@intellitech.pk",
+        "hours": "Mon - Sat: 09:00 AM - 10:00 PM (WhatsApp 24/7 Helpline)",
+        "city": "Faisalabad",
+        "address": "Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan",
+        "faisalabad_address": "Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan",
+        "lahore_address": "Showroom 12, Main Blvd, DHA Phase 5, Lahore, Pakistan",
+        "islamabad_address": "Plaza 88, Jinnah Avenue, Blue Area, Islamabad, Pakistan",
+        "karachi_address": "Plot 24-C, Bukhari Commercial, DHA Phase 6, Karachi, Pakistan"
     }
 }

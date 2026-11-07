@@ -1,0 +1,512 @@
+[
+  {
+    "id": "zigbee-gw-wireless",
+    "name": "Zigbee 3.0 Wireless Gateway Hub",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 6800,
+    "original_price": 8500,
+    "rating": 5.0,
+    "reviews_count": 48,
+    "badge": "ZIGBEE 3.0",
+    "badge_color": "blue",
+    "image": "assets/images/okasha/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp?v=1753169936&width=533",
+    "short_desc": "Central mesh coordinator supporting up to 128 Zigbee 3.0 smart devices with zero Wi-Fi congestion and local offline scene execution.",
+    "specs": {
+      "Protocol": "Zigbee 3.0 + 2.4GHz Wi-Fi + BLE",
+      "Capacity": "Up to 128 Child Devices",
+      "Range": "100m Open Area (Self-Healing Mesh)",
+      "Power": "Micro USB 5V/1A",
+      "App": "IntelliTech Smart / Smart Life / Tuya IoT"
+    },
+    "features": [
+      "Zero Wi-Fi router overload",
+      "Offline local scene execution",
+      "Works with Alexa & Google Home",
+      "1 Year Replacement Warranty"
+    ],
+    "stock": 12,
+    "cost_price": 4216
+  },
+  {
+    "id": "zigbee-gw-lan",
+    "name": "Zigbee 3.0 LAN Hardwired Gateway Hub",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 11500,
+    "original_price": 13900,
+    "rating": 4.9,
+    "reviews_count": 32,
+    "badge": "PRO MESH",
+    "badge_color": "emerald",
+    "image": "assets/images/okasha/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp?v=1753169936&width=533",
+    "short_desc": "Industrial-grade RJ45 Ethernet Zigbee coordinator for large villas & multi-story bungalows. Zero packet loss, rock-solid stability.",
+    "specs": {
+      "Protocol": "Zigbee 3.0 + RJ45 Ethernet Port",
+      "Capacity": "Up to 256 Child Devices",
+      "Latency": "< 5ms instant trigger",
+      "Power": "Type-C 5V/1A",
+      "App": "IntelliTech Smart / Smart Life / Tuya IoT"
+    },
+    "features": [
+      "Hardwired Ethernet backbone",
+      "Ultra-low latency (<5ms)",
+      "Ideal for 1 Kanal & 2 Kanal Villas",
+      "Fail-safe continuous uptime"
+    ],
+    "stock": 12,
+    "cost_price": 7130
+  },
+  {
+    "id": "zigbee-power-switch-40a",
+    "name": "Zigbee 40A Heavy-Duty Smart Power Switch",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 8200,
+    "original_price": 9800,
+    "rating": 5.0,
+    "reviews_count": 76,
+    "badge": "HEAVY DUTY",
+    "badge_color": "rose",
+    "image": "https://okashasmart.com/cdn/shop/files/Wifi_Smart_Power_Switch-40A_web_image_db252975-cafe-4577-8133-28ed273732dd.webp?v=1756717885&width=533",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Wifi_Smart_Power_Switch-40A_Box_web_image_a9cd6f2f-3d6a-4c3c-900e-3044dddb096b.webp?v=1756717993&width=533",
+    "short_desc": "Dedicated high-load smart switch engineered for 1.5 - 2 Ton Inverter ACs, Water Geysers, and 2HP Water Pumps with energy monitoring.",
+    "specs": {
+      "Rating": "40A Max / 8000W Surge",
+      "Protocol": "Zigbee 3.0 Mesh (Acts as Repeater)",
+      "Glass Panel": "Toughened Scratchproof Glass",
+      "Protection": "Overload & Surge Protection built-in",
+      "Back-box": "Fits standard Pakistani 3x3 box"
+    },
+    "features": [
+      "Real-time power & kWh consumption telemetry",
+      "Scheduled timer for morning geysers",
+      "Acts as Zigbee mesh repeater",
+      "1 Year Replacement Warranty"
+    ],
+    "stock": 12,
+    "cost_price": 5084
+  },
+  {
+    "id": "zigbee-flip-4g",
+    "name": "Flip Series 4 Gang Smart Switch (Zigbee)",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 7900,
+    "original_price": 9500,
+    "rating": 4.9,
+    "reviews_count": 59,
+    "badge": "ZIGBEE MESH",
+    "badge_color": "blue",
+    "image": "https://okashasmart.com/cdn/shop/files/4_Gang_Wifi_Switch_CRYSTAL_SERIES_web_image_e1a13a2f-8da7-4781-b8cc-48e307178b47.webp?v=1756718083&width=533",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/4_Gang_1_Fan_Smart_Switch_CRYSTAL_SERIES_web_image_936dfe8e-98b6-4d30-8b68-acd6bd6e0679.webp?v=1756718122&width=533",
+    "short_desc": "Tactile modern smart switch with mechanical flip feel and Zigbee 3.0 intelligence. Each gang acts as a mesh repeater node.",
+    "specs": {
+      "Gangs": "4 Gang Independent Relays",
+      "Protocol": "Zigbee 3.0",
+      "Load": "600W / Gang (LED compatible)",
+      "Backlight": "Subtle LED Night Locator",
+      "Back-box": "Standard Pakistani 3x3 / 3x6"
+    },
+    "features": [
+      "Zero delay tactile click",
+      "Extends Zigbee network range to nearby sensors",
+      "Multi-control association with other switches",
+      "Overheating auto cut-off"
+    ],
+    "stock": 12,
+    "cost_price": 4898
+  },
+  {
+    "id": "zigbee-mmwave-radar",
+    "name": "Zigbee mmWave Human Presence Radar Sensor",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 6400,
+    "original_price": 7800,
+    "rating": 4.9,
+    "reviews_count": 41,
+    "badge": "NEW AI TECH",
+    "badge_color": "indigo",
+    "image": "https://okashasmart.com/cdn/shop/files/mini-door-window-sensor-zigbee.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/ControlPanelwebimage1.webp?v=1755507575&width=533",
+    "short_desc": "Micro-motion 24GHz radar sensor that detects breathing and sitting still. Never turns off lights while you are reading or working.",
+    "specs": {
+      "Technology": "24GHz Doppler mmWave Radar",
+      "Detection Range": "Up to 8 Meters / 120\u00b0 Field",
+      "Illuminance": "Built-in Lux Light Sensor",
+      "Protocol": "Zigbee 3.0",
+      "Mount": "Ceiling / Magnetic Wall Mount"
+    },
+    "features": [
+      "Detects stationary people sitting or reading",
+      "No false turn-offs like old PIR sensors",
+      "Automates lights based on ambient room lux",
+      "Micro-second response time"
+    ],
+    "stock": 12,
+    "cost_price": 3968
+  },
+  {
+    "id": "zigbee-door-window",
+    "name": "Zigbee Magnetic Door & Window Sensor",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 3200,
+    "original_price": 4200,
+    "rating": 5.0,
+    "reviews_count": 63,
+    "badge": "SECURITY",
+    "badge_color": "emerald",
+    "image": "https://okashasmart.com/cdn/shop/files/mini-door-window-sensor-zigbee.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/mini-door-window-sensor-zigbee.webp",
+    "short_desc": "Ultra-compact magnetic contact sensor with instant push alerts to your phone. 2+ years battery life on a single CR2032 cell.",
+    "specs": {
+      "Protocol": "Zigbee 3.0",
+      "Battery Life": "2+ Years (CR2032 included)",
+      "Trigger Gap": "< 15mm magnetic separation",
+      "Notification": "< 0.5s mobile push notification",
+      "Size": "40 x 25 x 10 mm"
+    },
+    "features": [
+      "Triggers AC turn-off when window is opened",
+      "Instant intruder alert when armed",
+      "Tamper detection built-in",
+      "History log of all open/close events"
+    ],
+    "stock": 12,
+    "cost_price": 1984
+  },
+  {
+    "id": "zigbee-water-leak",
+    "name": "Zigbee Smart Water Leakage Flood Sensor",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 3600,
+    "original_price": 4500,
+    "rating": 4.8,
+    "reviews_count": 29,
+    "badge": "PROTECTION",
+    "badge_color": "cyan",
+    "image": "https://okashasmart.com/cdn/shop/files/water-leakage-sensor-zigbee.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/water-leakage-sensor-zigbee.webp",
+    "short_desc": "Submersible dual-probe flood detector. Automatically shuts off main smart motorized water valve to prevent catastrophic damage.",
+    "specs": {
+      "Protocol": "Zigbee 3.0",
+      "Rating": "IP67 100% Waterproof",
+      "Probe": "Gold-Plated Anti-Rust Contacts",
+      "Battery": "CR2032 (2-year standby)",
+      "Automation": "Auto shut-off motorized valve"
+    },
+    "features": [
+      "Prevents kitchen & bathroom water tank overflow",
+      "Audible siren + mobile app emergency chime",
+      "Works seamlessly with smart motorized valves",
+      "Compact drop-and-forget design"
+    ],
+    "stock": 12,
+    "cost_price": 2232
+  },
+  {
+    "id": "zigbee-smoke-sensor",
+    "name": "Zigbee Smart Photoelectric Smoke Detector",
+    "category": "zigbee",
+    "category_label": "Zigbee Devices",
+    "price": 4800,
+    "original_price": 5900,
+    "rating": 4.9,
+    "reviews_count": 35,
+    "badge": "LIFE SAFETY",
+    "badge_color": "rose",
+    "image": "https://okashasmart.com/cdn/shop/files/smart-smoke-detector-product-image.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/smart-smoke-detector-product-image.webp",
+    "short_desc": "Certified photoelectric optical smoke sensor with 85dB piercing local siren and simultaneous push alarms to all family phones.",
+    "specs": {
+      "Siren Volume": "85dB at 3 Meters",
+      "Protocol": "Zigbee 3.0",
+      "Coverage": "Up to 50 Square Meters",
+      "Battery": "CR123A (3-year battery life)",
+      "Standard": "EN 14604 Fire Certified"
+    },
+    "features": [
+      "85dB loud local acoustic siren",
+      "Instant phone emergency push notification",
+      "Self-testing & low-battery warning",
+      "Can trigger all home smart lights to turn on"
+    ],
+    "stock": 12,
+    "cost_price": 2976
+  },
+  {
+    "id": "switch-4g-fan-crystal",
+    "name": "4 Gang + 1 Fan Smart Switch (Crystal Series)",
+    "category": "switches",
+    "category_label": "Smart Switches",
+    "price": 9300,
+    "original_price": 11500,
+    "rating": 5.0,
+    "reviews_count": 142,
+    "badge": "TOP SELLER",
+    "badge_color": "blue",
+    "image": "assets/images/okasha/switch_4g_fan.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/4_Gang_1_Fan_Smart_Switch_CRYSTAL_SERIES_web_image_936dfe8e-98b6-4d30-8b68-acd6bd6e0679.webp?v=1756718122&width=533",
+    "short_desc": "Signature Pakistani luxury switch: 4 independent lighting controls plus 5-speed hum-free capacitor ceiling fan speed controller.",
+    "specs": {
+      "Configuration": "4 Lights + 1 Dimmer Fan",
+      "Panel Material": "4mm Ultra-Clear Tempered Glass",
+      "Voltage": "90V - 250V AC 50/60Hz",
+      "Connectivity": "Wi-Fi 2.4GHz / Tuya / Smart Life",
+      "Box Size": "Standard 3x6 Pakistani Back Box"
+    },
+    "features": [
+      "No fan buzzing or humming noise (Capacitive)",
+      "Smooth touch responsive glass buttons",
+      "App & Alexa / Google voice speed controls",
+      "Memory function restores state after power outage"
+    ],
+    "stock": 25,
+    "cost_price": 5766
+  },
+  {
+    "id": "switch-8g-crystal",
+    "name": "8 Gang Smart Touch Switch (Crystal Series)",
+    "category": "switches",
+    "category_label": "Smart Switches",
+    "price": 9800,
+    "original_price": 12000,
+    "rating": 4.9,
+    "reviews_count": 88,
+    "badge": "HIGH DENSITY",
+    "badge_color": "indigo",
+    "image": "https://okashasmart.com/cdn/shop/files/8_Gang_Smart_Wifi_Switch_CRYSTAL_SERIES_web_image_fd3a1807-b5eb-4a73-97bd-73a71d2a354b.webp?v=1756717649&width=533",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/8_Gang_Smart_Wifi_Switch_CRYSTAL_SERIES_web_image_fd3a1807-b5eb-4a73-97bd-73a71d2a354b.webp?v=1756717649&width=533",
+    "short_desc": "Control 8 lights from a single 3x6 wall plate. Elegant crystal glass finish available in Pure White and Obsidian Black.",
+    "specs": {
+      "Gangs": "8 Independent Touch Relays",
+      "Glass": "Scratch-proof Tempered Glass",
+      "Max Load": "500W per gang (4000W Total)",
+      "Colors": "White / Black",
+      "Back-box": "Fits standard 3x6 Pakistani plate"
+    },
+    "features": [
+      "Single plate replaces crowded switchboards",
+      "Individually customizable LED backlights",
+      "Master 'All Off' one-tap button",
+      "1 Year Official Replacement Warranty"
+    ],
+    "stock": 25,
+    "cost_price": 6076
+  },
+  {
+    "id": "ultra-smart-panel",
+    "name": "Ultra Super Smart Control Panel (S8E)",
+    "category": "panels",
+    "category_label": "Smart Panels",
+    "price": 45000,
+    "original_price": 52000,
+    "rating": 5.0,
+    "reviews_count": 38,
+    "badge": "FLAGSHIP",
+    "badge_color": "purple",
+    "image": "assets/images/okasha/ultra_panel.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/ControlPanelS8E1.webp?v=1702992377&width=533",
+    "short_desc": "8-inch IPS HD in-wall multi-functional command center with built-in Zigbee 3.0 gateway, intercom, dual speakers, and AC control.",
+    "specs": {
+      "Screen": "8.0-Inch IPS Multi-Touch 1280x800",
+      "Processor": "Quad-Core Cortex-A35 + 2GB RAM",
+      "Protocols": "Built-in Zigbee 3.0 Gateway + Wi-Fi + BLE",
+      "Audio": "Built-in Stereo Mic & 1W Speakers",
+      "Power": "100-240V AC Direct Neutral + Live"
+    },
+    "features": [
+      "Replaces phone app on the wall",
+      "Controls all lights, ACs, curtains & scenes",
+      "Two-way video doorbell intercom display",
+      "Automatic wake-up via light sensor"
+    ],
+    "stock": 8,
+    "cost_price": 27900
+  },
+  {
+    "id": "mini-smart-panel-knob",
+    "name": "Mini Super Smart Panel with Rotary Knob",
+    "category": "panels",
+    "category_label": "Smart Panels",
+    "price": 28500,
+    "original_price": 34000,
+    "rating": 4.9,
+    "reviews_count": 52,
+    "badge": "POPULAR",
+    "badge_color": "blue",
+    "image": "https://okashasmart.com/cdn/shop/files/SmartPanelwithKnobwhite-1.webp?v=1754482468&width=533",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/SmartPanelwithKnobwhite-1.webp?v=1754482468&width=533",
+    "short_desc": "Precision aluminium rotary knob + 2.1-inch round LCD touch screen. Perfect for bedside and living room lighting & AC dimming.",
+    "specs": {
+      "Display": "2.1-Inch Round IPS Touch Screen",
+      "Knob": "Anodized Aerospace Aluminium",
+      "Features": "Dimmer + Color Temperature + AC Temp",
+      "Relay": "2 Built-in Physical Gang Relays",
+      "Size": "Fits 3x3 Standard Pakistani Box"
+    },
+    "features": [
+      "Tactile rotation for fine AC and dimmer tuning",
+      "Customizable dynamic screen watchfaces",
+      "Built-in Zigbee gateway function",
+      "Quick scene buttons (Morning, Cinema, Away)"
+    ],
+    "stock": 8,
+    "cost_price": 17670
+  },
+  {
+    "id": "smart-door-lock-signature",
+    "name": "Smart Signature Biometric 3D Face Door Lock",
+    "category": "locks",
+    "category_label": "Smart Locks",
+    "price": 38500,
+    "original_price": 46000,
+    "rating": 5.0,
+    "reviews_count": 84,
+    "badge": "3D FACE ID",
+    "badge_color": "emerald",
+    "image": "https://okashasmart.com/cdn/shop/files/smart-signature-door-lock-web-image-1.webp?v=1793691686&width=533",
+    "fallback_image": "assets/images/okasha/smart_lock.webp",
+    "short_desc": "Military-grade smart lock with 3D infrared facial recognition, live video intercom screen, fingerprint, RFID card, PIN & mechanical key.",
+    "specs": {
+      "Unlock Methods": "3D Face, Biometric Fingerprint, PIN, RFID, App, Key",
+      "Camera": "HD Wide-Angle + Night Vision IR",
+      "Display": "Interior 3.5-Inch Color Monitor",
+      "Mortise": "Anti-Theft Class-C Lock Cylinder",
+      "Battery": "Rechargeable 4200mAh Lithium Battery"
+    },
+    "features": [
+      "Hands-free 3D facial recognition even in total darkness",
+      "Live video call to phone when visitor rings bell",
+      "Auto-locking motorized mortise upon closing",
+      "Temporary OTP PIN for guests or housekeepers"
+    ],
+    "stock": 8,
+    "cost_price": 23870
+  },
+  {
+    "id": "smart-socket-usb-c",
+    "name": "Universal Smart Socket with 20W USB & Type-C",
+    "category": "switches",
+    "category_label": "Smart Switches",
+    "price": 8500,
+    "original_price": 10500,
+    "rating": 4.9,
+    "reviews_count": 67,
+    "badge": "FAST CHARGE",
+    "badge_color": "blue",
+    "image": "https://okashasmart.com/cdn/shop/files/Universal_Smart_Socket_1USB_1_C_Type_1_a5160a4e-7e47-480a-b294-053e55a8898c.webp?v=1730462017&width=533",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Dual_Universal_Smart_Socket_with_1USB_1_C_Type_web_image_69e944b9-b7a3-4694-bf51-34dbd3666756.webp?v=1756718281&width=533",
+    "short_desc": "Universal multi-pin plug socket with built-in 20W Power Delivery USB-C port, USB-A port, remote timer, and energy monitoring.",
+    "specs": {
+      "AC Rating": "16A Universal 3-Pin / 2-Pin",
+      "USB Ports": "1x USB-C PD 20W + 1x USB-A QC 3.0",
+      "Glass Finish": "Crystal Tempered Glass Panel",
+      "Protection": "Child-Safe Shutter & Surge Protection",
+      "Box": "Fits standard 3x3 Pakistani Back Box"
+    },
+    "features": [
+      "Independent app control for socket & USBs",
+      "Charge iPhone / Android at full 20W speed without adapter",
+      "Auto-off countdown timer for phone charging",
+      "Real-time energy consumption telemetry"
+    ],
+    "stock": 25,
+    "cost_price": 5270
+  },
+  {
+    "id": "slim-rgb-downlight",
+    "name": "Slim RGB + Warm White Smart Downlight 18W",
+    "category": "lighting",
+    "category_label": "Smart Lighting",
+    "price": 4200,
+    "original_price": 5200,
+    "rating": 4.8,
+    "reviews_count": 91,
+    "badge": "16M COLORS",
+    "badge_color": "amber",
+    "image": "assets/images/okasha/downlight.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Slim_RGB_Downlight_18W_web_image_eb6ff1c8-e030-4882-9195-c56a3eac2da0.webp?v=1756718340&width=533",
+    "short_desc": "16 Million RGB colors + 2700K Warm to 6500K Cool White tunable downlight. Ultra-slim profile fits false ceilings with ease.",
+    "specs": {
+      "Wattage": "18W / 1600 Lumens Output",
+      "Cutout Diameter": "Fits standard 4 to 6-inch ceiling hole",
+      "Color Temperature": "2700K - 6500K Tunable + 16M RGB",
+      "Dimming": "1% to 100% Smooth Dimming via App/Voice",
+      "Protocol": "Wi-Fi + BLE / Zigbee Option"
+    },
+    "features": [
+      "Group sync for entire room or hallway",
+      "Music rhythm sync mode for entertainment",
+      "Circadian rhythm auto-tuning through the day",
+      "Voice control via Alexa, Google & Siri"
+    ],
+    "stock": 25,
+    "cost_price": 2604
+  },
+  {
+    "id": "eyeball-ptz-camera",
+    "name": "Smart Eyeball Security Camera 5MP Ultra HD",
+    "category": "security",
+    "category_label": "Security Cameras",
+    "price": 12000,
+    "original_price": 14500,
+    "rating": 4.9,
+    "reviews_count": 73,
+    "badge": "5MP 2K+",
+    "badge_color": "blue",
+    "image": "assets/images/okasha/eyeball_camera.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Smart_Eyeball_Security_Camera_web_image_d8b8bc9d-40c6-46c1-a09e-64a96bc2f443.webp?v=1756718424&width=533",
+    "short_desc": "360\u00b0 pan-tilt indoor/semi-outdoor security camera with AI human tracking, two-way audio intercom, and color night vision.",
+    "specs": {
+      "Resolution": "5 Megapixel 2560x1920 Ultra HD",
+      "Rotation": "355\u00b0 Horizontal, 90\u00b0 Vertical PTZ",
+      "Night Vision": "Dual Mode (Infrared + Full-Color Spotlight)",
+      "Storage": "MicroSD up to 128GB + Cloud",
+      "AI Features": "Humanoid Motion Tracking & Siren"
+    },
+    "features": [
+      "Auto-follows moving persons across the room",
+      "Two-way talk with loud speaker & noise-cancelling mic",
+      "Custom motion detection alert zones",
+      "Encrypted streaming with privacy shutter mode"
+    ],
+    "stock": 12,
+    "cost_price": 7440
+  },
+  {
+    "id": "smart-curtain-motor",
+    "name": "Smart Motorized Curtain Track & Motor (Zigbee / Wi-Fi)",
+    "category": "appliances",
+    "category_label": "Appliances & Curtains",
+    "price": 24500,
+    "original_price": 29000,
+    "rating": 5.0,
+    "reviews_count": 44,
+    "badge": "WHISPER QUIET",
+    "badge_color": "purple",
+    "image": "https://okashasmart.com/cdn/shop/files/wifi-blind-motor-with-rod.webp",
+    "fallback_image": "https://okashasmart.com/cdn/shop/files/Curtainblindswitch.webp?v=1700236529&width=533",
+    "short_desc": "Heavy-duty electric curtain system with custom-cut telescopic track (up to 4.2m). Supports double open, single open, and manual pull trigger.",
+    "specs": {
+      "Track Length": "Customizable 2.2m to 4.2m included",
+      "Motor Torque": "1.2 Nm (Pulls up to 50kg heavy velvet/blackout)",
+      "Noise Level": "< 28dB (Whisper Quiet)",
+      "Controls": "App, RF Remote, Wall Switch & Voice",
+      "Protocol": "Zigbee 3.0 / Wi-Fi"
+    },
+    "features": [
+      "Gentle touch pull to auto-open or close",
+      "Sunrise and sunset automatic open/close schedules",
+      "Percentage control (e.g. 'Alexa, open curtains 50%')",
+      "Stops safely when detecting obstacles"
+    ],
+    "stock": 8,
+    "cost_price": 15190
+  }
+]

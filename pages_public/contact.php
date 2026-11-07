@@ -71,28 +71,29 @@ $ct = $siteContent['contacts'] ?? [];
         <div class="lg:col-span-5 space-y-6">
             
             <div class="glass-card rounded-3xl p-7 border border-slate-200/90 space-y-4">
-                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Direct Contacts</h3>
+                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Direct Contacts (Faisalabad HQ)</h3>
                 <div class="space-y-3 text-xs text-slate-600">
                     <div class="flex items-start gap-3">
                         <i data-lucide="phone" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
                         <div>
-                            <span class="font-bold text-slate-900 block">Toll-Free Phone:</span>
-                            <span><?= htmlspecialchars($ct['phone'] ?? '+1 (800) 482-INTELLI') ?></span>
+                            <span class="font-bold text-slate-900 block">Customer Hotline & WhatsApp:</span>
+                            <a href="tel:+923116428717" class="text-blue-600 hover:underline font-extrabold">+92 311 6428717</a>
+                            <span class="text-[11px] text-emerald-600 block font-semibold mt-0.5">WhatsApp: 0311 6428717</span>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <i data-lucide="mail" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
                         <div>
-                            <span class="font-bold text-slate-900 block">General & Blueprints Email:</span>
-                            <span><?= htmlspecialchars($ct['email'] ?? 'contact@intellitech.com') ?></span>
+                            <span class="font-bold text-slate-900 block">Official Support Email:</span>
+                            <a href="mailto:info@intellitech.pk" class="text-blue-600 hover:underline font-semibold">info@intellitech.pk</a>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
                         <i data-lucide="clock" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
                         <div>
                             <span class="font-bold text-slate-900 block">Business Hours:</span>
-                            <span><?= htmlspecialchars($ct['hours'] ?? 'Mon-Sat: 08:00 - 20:00') ?></span>
-                            <span class="text-[10px] text-emerald-600 font-bold block mt-0.5">24/7 SLA Emergency Dispatch for Active Clients</span>
+                            <span>Monday - Saturday: 09:00 AM - 10:00 PM</span>
+                            <span class="text-[10px] text-emerald-600 font-bold block mt-0.5">24/7 WhatsApp Emergency Support</span>
                         </div>
                     </div>
                 </div>
@@ -100,15 +101,22 @@ $ct = $siteContent['contacts'] ?? [];
 
             <!-- Experience Center Showrooms -->
             <div class="glass-card rounded-3xl p-7 border border-slate-200/90 space-y-4">
-                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Experience Showrooms</h3>
+                <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Showrooms & Headquarters</h3>
                 <div class="space-y-3 text-xs text-slate-600">
-                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                        <span class="font-bold text-slate-900 block">Silicon Valley Headquarters</span>
-                        <span><?= htmlspecialchars($ct['address'] ?? 'Tech Innovation Boulevard, Suite 800, Silicon Corridor, CA') ?></span>
+                    <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100">
+                        <span class="font-bold text-blue-900 block flex items-center gap-1.5 text-xs">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                            <span>Faisalabad Central HQ & Experience Center</span>
+                        </span>
+                        <span class="text-slate-700 font-medium block mt-1">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan</span>
                     </div>
                     <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
-                        <span class="font-bold text-slate-900 block">Texas Industrial & Corporate Hub</span>
-                        <span><?= htmlspecialchars($ct['austin_address'] ?? '400 Congress Avenue, Suite 1200, Austin, TX') ?></span>
+                        <span class="font-bold text-slate-900 block">Lahore Regional Desk</span>
+                        <span>Showroom 12, Main Blvd, DHA Phase 5, Lahore</span>
+                    </div>
+                    <div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+                        <span class="font-bold text-slate-900 block">Islamabad Regional Desk</span>
+                        <span>Plaza 88, Jinnah Avenue, Blue Area, Islamabad</span>
                     </div>
                 </div>
             </div>

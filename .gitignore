@@ -8,3 +8,14 @@ $RECYCLE.BIN/
 # Logs and runtime caches
 *.log
 *.tmp
+
+# Temporary scrapers and raw html dumps
+okasha_*.html
+extract_*.py
+inspect_*.py
+find_*.py
+download_*.py
+get_*.py
+parse_*.py
+seed_*.py
+update_*.py

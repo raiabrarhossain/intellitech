@@ -125,6 +125,8 @@ if ($page === 'demo' || isset($_GET['console'])) {
 // Otherwise, render the PUBLIC COMMERCIAL WEBSITE:
 $publicPages = [
     'home' => 'home.php',
+    'zigbee' => 'zigbee.php',
+    'custom-solutions' => 'custom_solutions.php',
     'services' => 'services.php',
     'smart-glass' => 'smart_glass.php',
     'ai-solutions' => 'ai_solutions.php',
@@ -141,8 +143,8 @@ $activePublicFile = $publicPages[$page] ?? 'home.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= APP_NAME ?> &bull; Intelligent Home, Office, Factory & Smart Window Automation Services</title>
-    <meta name="description" content="Turnkey automation services for luxury smart homes, corporate offices, factory SCADA robotics, architectural smart windows, and autonomous AI agents.">
+    <title><?= APP_NAME ?> <?= APP_FULL_NAME ?> &bull; Smart Home Automation, Zigbee 3.0 & Custom Turnkey Solutions Pakistan</title>
+    <meta name="description" content="Explore Pakistan's leading smart home devices, Zigbee 3.0 mesh automation, Crystal touch switches, and custom villa solutions with 1-Year official warranty.">
 
     <!-- Favicon & Touch Icons -->
     <link rel="icon" type="image/svg+xml" href="<?= APP_FAVICON ?>">
@@ -191,16 +193,10 @@ $activePublicFile = $publicPages[$page] ?? 'home.php';
     <!-- Custom Advanced Light Theme CSS -->
     <link rel="stylesheet" href="assets/css/custom.css">
 </head>
-<body class="min-h-full flex flex-col font-sans bg-slate-50 text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
-
-    <!-- Floating 3D Moving Ambient Glass Boxes -->
-    <?php require_once __DIR__ . '/includes/ambient_boxes.php'; ?>
+<body class="min-h-full flex flex-col font-sans bg-white text-slate-800 antialiased selection:bg-[#2189ff] selection:text-white">
 
     <!-- Public Website Header -->
     <?php require_once __DIR__ . '/includes/public_header.php'; ?>
-
-    <!-- Dynamic Rainbow Countdown Incentive Banner -->
-    <?php require_once __DIR__ . '/includes/countdown_banner.php'; ?>
 
     <!-- Main Public Page Content -->
     <main class="flex-1">

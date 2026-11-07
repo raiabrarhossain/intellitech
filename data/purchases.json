@@ -1,0 +1,32 @@
+[
+  {
+    "id": "PO-1042",
+    "date": "2026-11-03",
+    "supplier": "Tuya Global IoT Supply Ltd",
+    "invoice_no": "INV-TUYA-9912",
+    "items_count": 120,
+    "total_cost": 485000,
+    "payment_status": "Paid",
+    "notes": "Import shipment of 50x Zigbee Gateway Hubs, 40x mmWave Radars, 30x Smart Sockets."
+  },
+  {
+    "id": "PO-1038",
+    "date": "2026-10-28",
+    "supplier": "Crystal Tempered Glass Electronics",
+    "invoice_no": "INV-CTG-5510",
+    "items_count": 200,
+    "total_cost": 720000,
+    "payment_status": "Paid",
+    "notes": "Batch of 4-Gang and 8-Gang Crystal Touch Switches with hum-free fan dimmers."
+  },
+  {
+    "id": "PO-1031",
+    "date": "2026-10-15",
+    "supplier": "Apex Biometric Security Hardware",
+    "invoice_no": "INV-APEX-3312",
+    "items_count": 25,
+    "total_cost": 540000,
+    "payment_status": "Paid",
+    "notes": "3D Infrared Face Recognition Door Locks and 5MP AI Eyeball Cameras."
+  }
+]
