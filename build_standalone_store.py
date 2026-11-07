@@ -9,6 +9,8 @@ try:
 
     with open('standalone.html', 'w', encoding='utf-8') as f:
         f.write(home_html)
-    print(f"Generated standalone.html successfully ({len(home_html)} bytes)!")
+    with open('index.html', 'w', encoding='utf-8') as f:
+        f.write(home_html)
+    print(f"Generated standalone.html & index.html successfully ({len(home_html)} bytes)!")
 except Exception as e:
     print("Error:", e)
