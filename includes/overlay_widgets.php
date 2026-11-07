@@ -4,25 +4,23 @@
 ?>
 
 <!-- =======================================================================
-     1. LEFT SIDE: WHATSAPP QUICK-CONNECT (PAKISTAN HOTLINE: +92 311 6428717)
+     1. LEFT SIDE: VIRTUAL CONSULTATION QUICK-CONNECT (FAISALABAD HQ)
      ======================================================================= -->
 <div class="fixed bottom-6 left-6 z-40 flex items-center">
-    <a 
-        href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20am%20interested%20in%20smart%20home%20automation%2C%20Zigbee%20mesh%2C%20and%20custom%20solutions."
-        target="_blank"
-        rel="noopener"
-        class="group flex items-center gap-3 px-4 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/30 hover:scale-105 active:scale-95 transition-all"
-        title="Chat on WhatsApp with IntelliTech Solutions (+92 311 6428717)"
+    <button 
+        onclick="OkashaStore.openConsultationModal()"
+        class="group flex items-center gap-3 px-4 py-3 rounded-full bg-gradient-to-r from-[#2189ff] to-blue-600 hover:from-blue-600 hover:to-[#2189ff] text-white shadow-xl shadow-blue-500/30 hover:scale-105 active:scale-95 transition-all"
+        title="Request Free Smart Home Consultation"
     >
         <div class="relative">
-            <i data-lucide="message-circle" class="w-6 h-6"></i>
-            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-white animate-ping"></span>
+            <i data-lucide="calendar" class="w-6 h-6"></i>
+            <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
         </div>
         <div class="hidden sm:flex flex-col text-left">
-            <span class="text-[10px] font-bold text-emerald-100 uppercase tracking-wider leading-none">Need Expert Advice?</span>
-            <span class="text-xs font-black leading-tight">WhatsApp: 0311 6428717</span>
+            <span class="text-[10px] font-bold text-blue-100 uppercase tracking-wider leading-none">Need Expert Advice?</span>
+            <span class="text-xs font-black leading-tight">Book Free Survey</span>
         </div>
-    </a>
+    </button>
 </div>
 
 <!-- =======================================================================
@@ -413,7 +411,7 @@
         <div class="p-6 space-y-4">
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1">Mobile or Email</label>
-                <input type="text" placeholder="0311 6428717 or email@domain.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs outline-none focus:border-[#2189ff]" />
+                <input type="text" placeholder="e.g. 0300 1234567 or email@domain.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs outline-none focus:border-[#2189ff]" />
             </div>
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
@@ -740,7 +738,7 @@ window.IntelliTechStore = (function() {
             const result = await resp.json();
             const orderId = result.order_id || ('IT-' + Math.floor(100000 + Math.random() * 900000));
 
-            alert(`🎉 Thank you, ${name}!\n\nYour IntelliTech Solutions order #${orderId} has been successfully placed!\nTotal: Rs. ${total.toLocaleString()} (${method})\nDelivery Address: ${address}, ${city}\n\nOur dispatch team will contact you at ${phone} or WhatsApp (+92 311 6428717) shortly to confirm shipment.`);
+            alert(`🎉 Thank you, ${name}!\n\nYour IntelliTech Solutions order #${orderId} has been successfully placed!\nTotal: Rs. ${total.toLocaleString()} (${method})\nDelivery Address: ${address}, ${city}\n\nOur dispatch team will contact you at ${phone} shortly to confirm shipment.`);
         } catch(err) {
             const orderId = 'IT-' + Math.floor(100000 + Math.random() * 900000);
             alert(`🎉 Thank you, ${name}!\n\nYour IntelliTech Solutions order #${orderId} has been placed!\nTotal: Rs. ${total.toLocaleString()}.\nWe will call ${phone} to confirm.`);
@@ -756,10 +754,7 @@ window.IntelliTechStore = (function() {
             alert('Your cart is empty! Please add products before ordering.');
             return;
         }
-        const total = cart.reduce((acc, i) => acc + (i.price * i.quantity), 0);
-        let itemsText = cart.map(i => `• ${i.name} (Qty: ${i.quantity}) - Rs. ${(i.price * i.quantity).toLocaleString()}`).join('\n');
-        let message = `Hello IntelliTech Solutions! I would like to place an order via WhatsApp:\n\n${itemsText}\n\nTotal Payable: Rs. ${total.toLocaleString()}\nFree Express Delivery Across Pakistan.\nPlease confirm my order.`;
-        window.open(`https://wa.me/923116428717?text=${encodeURIComponent(message)}`, '_blank');
+        openModal('checkout-modal');
     }
 
     function openConsultationModal() {
@@ -790,11 +785,7 @@ window.IntelliTechStore = (function() {
             });
         } catch(err) {}
 
-        alert(`✅ Thank you, ${name}!\n\nYour Free Smart Home Survey request for "${prop}" in ${city} has been received by IntelliTech Solutions.\nOur certified automation engineer will contact you at ${phone} or via WhatsApp (+92 311 6428717) to arrange your on-site CAD blueprint consultation.`);
-
-        // Also offer instant WhatsApp direct inquiry
-        const waMsg = `Hello IntelliTech Solutions! I submitted a survey request:\nName: ${name}\nPhone: ${phone}\nProperty: ${prop}\nCity: ${city}\nRequirements: ${msg}`;
-        window.open(`https://wa.me/923116428717?text=${encodeURIComponent(waMsg)}`, '_blank');
+        alert(`✅ Thank you, ${name}!\n\nYour Free Smart Home Survey request for "${prop}" in ${city} has been received by IntelliTech Solutions.\nOur certified automation engineer will contact you at ${phone} to arrange your on-site CAD blueprint consultation.`);
 
         closeModal('consultation-modal');
     }

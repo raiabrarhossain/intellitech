@@ -1,0 +1,37 @@
+{
+  "categories": {
+    "title": "Product Categories",
+    "links": [
+      { "id": "fl_1", "title": "Crystal Smart Switches", "url": "index.php?page=zigbee#switches" },
+      { "id": "fl_2", "title": "Ultra Touch Control Panels", "url": "index.php?page=zigbee#panels" },
+      { "id": "fl_3", "title": "Zigbee 3.0 & Matter Gateways", "url": "index.php?page=zigbee#gateways" },
+      { "id": "fl_4", "title": "Biometric 3D Smart Door Locks", "url": "index.php?page=smart-glass" },
+      { "id": "fl_5", "title": "40A Heavy-Duty Inverter Switch", "url": "index.php?page=zigbee#heavy-duty" },
+      { "id": "fl_6", "title": "Environmental & Safety Sensors", "url": "index.php?page=zigbee#sensors" },
+      { "id": "fl_7", "title": "Motorized Smart Curtain Tracks", "url": "index.php?page=services#curtains" }
+    ]
+  },
+  "solutions": {
+    "title": "Custom Solutions",
+    "links": [
+      { "id": "fl_8", "title": "Turnkey Home Packages", "url": "index.php?page=custom-solutions" },
+      { "id": "fl_9", "title": "1 Kanal Luxury Villa Package", "url": "index.php?page=custom-solutions#packages" },
+      { "id": "fl_10", "title": "5-10 Marla Essential Package", "url": "index.php?page=custom-solutions#packages" },
+      { "id": "fl_11", "title": "2 Kanal Presidential Estate", "url": "index.php?page=custom-solutions#packages" },
+      { "id": "fl_12", "title": "Book Free On-Site CAD Survey", "url": "index.php?page=custom-solutions#survey" },
+      { "id": "fl_13", "title": "Zero-Wall-Chipping Guarantee", "url": "index.php?page=custom-solutions#blueprint" },
+      { "id": "fl_14", "title": "Corporate Office Automation", "url": "index.php?page=services#office" }
+    ]
+  },
+  "quick_links": {
+    "title": "Company & Support",
+    "links": [
+      { "id": "fl_15", "title": "About IntelliTech Solutions", "url": "index.php?page=about" },
+      { "id": "fl_16", "title": "Smart Living Case Studies", "url": "index.php?page=case-studies" },
+      { "id": "fl_17", "title": "Faisalabad Virtual Office", "url": "index.php?page=contact" },
+      { "id": "fl_18", "title": "1-Year Official Warranty", "url": "index.php?page=services#warranty" },
+      { "id": "fl_19", "title": "Track Order / COD Delivery", "url": "index.php?page=contact" },
+      { "id": "fl_20", "title": "Book Free Consultation", "url": "index.php?page=custom-solutions#survey" }
+    ]
+  }
+}

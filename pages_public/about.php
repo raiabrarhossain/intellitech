@@ -71,10 +71,10 @@
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
-                        <i data-lucide="phone-call" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+                        <i data-lucide="mail" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
                         <div>
-                            <span class="font-bold text-slate-900 block">Direct Hotline & WhatsApp</span>
-                            Reach our engineering staff at <a href="tel:+923116428717" class="text-blue-600 font-bold hover:underline">+92 311 6428717</a> (WhatsApp: 0311 6428717).
+                            <span class="font-bold text-slate-900 block">Engineering Inquiries & Support</span>
+                            Reach our engineering staff at <a href="mailto:info@intellitech.pk" class="text-blue-600 font-bold hover:underline">info@intellitech.pk</a> or book a free CAD survey.
                         </div>
                     </div>
                 </div>

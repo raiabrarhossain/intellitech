@@ -74,11 +74,11 @@ $ct = $siteContent['contacts'] ?? [];
                 <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider">Direct Contacts (Faisalabad HQ)</h3>
                 <div class="space-y-3 text-xs text-slate-600">
                     <div class="flex items-start gap-3">
-                        <i data-lucide="phone" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                        <i data-lucide="map-pin" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
                         <div>
-                            <span class="font-bold text-slate-900 block">Customer Hotline & WhatsApp:</span>
-                            <a href="tel:+923116428717" class="text-blue-600 hover:underline font-extrabold">+92 311 6428717</a>
-                            <span class="text-[11px] text-emerald-600 block font-semibold mt-0.5">WhatsApp: 0311 6428717</span>
+                            <span class="font-bold text-slate-900 block">Faisalabad Virtual Office:</span>
+                            <span>Plaza 18, Main Susan Road, Kohinoor City, Faisalabad</span>
+                            <span class="text-[11px] text-emerald-600 block font-semibold mt-0.5">Free Virtual Consultation & On-Site Audits</span>
                         </div>
                     </div>
                     <div class="flex items-start gap-3">
@@ -112,9 +112,8 @@ $ct = $siteContent['contacts'] ?? [];
                             Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan
                         </p>
                         <div class="pt-2 border-t border-blue-100/80 space-y-1 text-slate-600 font-medium">
-                            <div>📞 Phone: <a href="tel:+923116428717" class="text-blue-600 font-bold hover:underline">+92 311 6428717</a></div>
-                            <div>💬 WhatsApp: <a href="https://wa.me/923116428717" target="_blank" class="text-emerald-600 font-bold hover:underline">0311 6428717</a></div>
                             <div>✉️ Email: <a href="mailto:info@intellitech.pk" class="text-blue-600 font-bold hover:underline">info@intellitech.pk</a></div>
+                            <div>🕒 Consultation: <span class="text-slate-800 font-bold">24/7 Virtual Consultation Available</span></div>
                         </div>
                     </div>
                 </div>

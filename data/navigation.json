@@ -1,0 +1,92 @@
+[
+    {
+        "id": "nav_home",
+        "title": "Home",
+        "url": "index.php?page=home",
+        "page": "home",
+        "badge": "",
+        "badge_color": "",
+        "order": 1,
+        "active": true
+    },
+    {
+        "id": "nav_zigbee",
+        "title": "Zigbee 3.0 Devices",
+        "url": "index.php?page=zigbee",
+        "page": "zigbee",
+        "badge": "MESH",
+        "badge_color": "emerald",
+        "order": 2,
+        "active": true
+    },
+    {
+        "id": "nav_custom",
+        "title": "Custom Home Solutions",
+        "url": "index.php?page=custom-solutions",
+        "page": "custom-solutions",
+        "badge": "TURNKEY",
+        "badge_color": "amber",
+        "order": 3,
+        "active": true
+    },
+    {
+        "id": "nav_switches",
+        "title": "Switches & Sockets",
+        "url": "index.php?page=zigbee#switches",
+        "page": "zigbee",
+        "badge": "",
+        "badge_color": "",
+        "order": 4,
+        "active": true
+    },
+    {
+        "id": "nav_locks",
+        "title": "Smart Locks & Security",
+        "url": "index.php?page=smart-glass",
+        "page": "smart-glass",
+        "badge": "",
+        "badge_color": "",
+        "order": 5,
+        "active": true
+    },
+    {
+        "id": "nav_showcase",
+        "title": "Showcase & Projects",
+        "url": "index.php?page=case-studies",
+        "page": "case-studies",
+        "badge": "",
+        "badge_color": "",
+        "order": 6,
+        "active": true
+    },
+    {
+        "id": "nav_about",
+        "title": "About Us",
+        "url": "index.php?page=about",
+        "page": "about",
+        "badge": "",
+        "badge_color": "",
+        "order": 7,
+        "active": true
+    },
+    {
+        "id": "nav_contact",
+        "title": "Contact & Showrooms",
+        "url": "index.php?page=contact",
+        "page": "contact",
+        "badge": "",
+        "badge_color": "",
+        "order": 8,
+        "active": true
+    },
+    {
+        "id": "nav_warranty",
+        "title": "1 Year Replacement Warranty",
+        "url": "index.php?page=services#warranty",
+        "page": "services",
+        "badge": "OFFICIAL",
+        "badge_color": "emerald",
+        "order": 9,
+        "active": true
+    }
+]

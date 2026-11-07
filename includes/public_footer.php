@@ -2,9 +2,15 @@
 // Public Website Footer - IntelliTech Solutions
 global $siteContent;
 $contacts = $siteContent['contacts'] ?? [];
-$phone = $contacts['phone'] ?? '+92 311 6428717';
-$phone2 = $contacts['phone_secondary'] ?? '+92 311 6428717';
+$phone = $contacts['phone'] ?? '';
 $email = $contacts['email'] ?? 'info@intellitech.pk';
+
+// Load Dynamic Footer Links
+$footerJsonFile = __DIR__ . '/../data/footer_links.json';
+$footerData = file_exists($footerJsonFile) ? (json_decode(file_get_contents($footerJsonFile), true) ?: []) : [];
+$categoriesLinks = $footerData['categories']['links'] ?? [];
+$solutionsLinks = $footerData['solutions']['links'] ?? [];
+$quickLinks = $footerData['quick_links']['links'] ?? [];
 ?>
 <footer class="bg-[#1e1e1e] text-slate-300 pt-16 pb-10 border-t border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -40,48 +46,48 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
                     </div>
                 </div>
 
-                <!-- Helplines -->
+                <!-- Helplines & Inquiry -->
                 <div class="pt-3 space-y-1.5">
-                    <div class="text-xs font-semibold text-slate-300">Faisalabad HQ Customer Helpline:</div>
-                    <div class="flex flex-wrap items-center gap-4 text-sm font-black text-[#2189ff]">
-                        <a href="tel:+923116428717" class="hover:underline flex items-center gap-1.5">
-                            <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
-                            <span>+92 311 6428717</span>
+                    <div class="text-xs font-semibold text-slate-300">Faisalabad Virtual Office Support:</div>
+                    <div class="flex flex-wrap items-center gap-4 text-xs font-bold text-[#2189ff]">
+                        <a href="mailto:<?= htmlspecialchars($email) ?>" class="hover:underline flex items-center gap-1.5">
+                            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                            <span><?= htmlspecialchars($email) ?></span>
                         </a>
-                        <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="text-emerald-400 hover:underline flex items-center gap-1.5">
-                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                            <span>WhatsApp: 0311 6428717</span>
-                        </a>
+                        <button onclick="OkashaStore.openConsultationModal()" class="text-emerald-400 hover:underline flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>24/7 Virtual Consultation</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Col 2: Zigbee & Switches Collections -->
+            <!-- Col 2: Dynamic Smart Products Links -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Smart Products</h3>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white"><?= htmlspecialchars($footerData['categories']['title'] ?? 'Smart Products') ?></h3>
                 <ul class="space-y-2 text-xs text-slate-400 font-medium">
-                    <li><a href="index.php?page=zigbee" class="hover:text-[#2189ff] transition-colors text-white font-bold flex items-center gap-1"><span>⚡ Zigbee 3.0 Collection</span></a></li>
-                    <li><a href="index.php?page=zigbee#gateways" class="hover:text-[#2189ff] transition-colors">Zigbee LAN & Wireless Hubs</a></li>
-                    <li><a href="index.php?page=zigbee#heavy-duty" class="hover:text-[#2189ff] transition-colors">40A Heavy Duty AC Switches</a></li>
-                    <li><a href="index.php?page=services#crystal" class="hover:text-[#2189ff] transition-colors">Crystal Glass Touch Switches</a></li>
-                    <li><a href="index.php?page=services#flip" class="hover:text-[#2189ff] transition-colors">Flip Series Mechanical Switches</a></li>
-                    <li><a href="index.php?page=smart-glass#locks" class="hover:text-[#2189ff] transition-colors">Biometric 3D Face Door Locks</a></li>
-                    <li><a href="index.php?page=services#lighting" class="hover:text-[#2189ff] transition-colors">Slim RGB Ceiling Downlights</a></li>
-                    <li><a href="index.php?page=services#curtains" class="hover:text-[#2189ff] transition-colors">Motorized Smart Curtain Tracks</a></li>
+                    <?php if (!empty($categoriesLinks)): ?>
+                        <?php foreach ($categoriesLinks as $flink): ?>
+                            <li><a href="<?= htmlspecialchars($flink['url']) ?>" class="hover:text-[#2189ff] transition-colors"><?= htmlspecialchars($flink['title']) ?></a></li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li><a href="index.php?page=zigbee" class="hover:text-[#2189ff] transition-colors">Zigbee 3.0 Hubs</a></li>
+                        <li><a href="index.php?page=smart-glass" class="hover:text-[#2189ff] transition-colors">Smart Door Locks</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
 
-            <!-- Col 3: Custom Solutions -->
+            <!-- Col 3: Dynamic Custom Solutions Links -->
             <div class="space-y-3">
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white">Custom Solutions</h3>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-white"><?= htmlspecialchars($footerData['solutions']['title'] ?? 'Custom Solutions') ?></h3>
                 <ul class="space-y-2 text-xs text-slate-400 font-medium">
-                    <li><a href="index.php?page=custom-solutions" class="hover:text-amber-400 transition-colors text-amber-300 font-bold flex items-center gap-1"><span>🛠️ Turnkey Home Packages</span></a></li>
-                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">1 Kanal Luxury Villa Package</a></li>
-                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">5-10 Marla Essential Package</a></li>
-                    <li><a href="index.php?page=custom-solutions#packages" class="hover:text-[#2189ff] transition-colors">2 Kanal Presidential Estate</a></li>
-                    <li><a href="index.php?page=custom-solutions#survey" class="hover:text-[#2189ff] transition-colors">Book Free On-Site CAD Survey</a></li>
-                    <li><a href="index.php?page=custom-solutions#blueprint" class="hover:text-[#2189ff] transition-colors">Zero-Wall-Chipping Guarantee</a></li>
-                    <li><a href="index.php?page=services#office" class="hover:text-[#2189ff] transition-colors">Corporate Office Automation</a></li>
+                    <?php if (!empty($solutionsLinks)): ?>
+                        <?php foreach ($solutionsLinks as $flink): ?>
+                            <li><a href="<?= htmlspecialchars($flink['url']) ?>" class="hover:text-[#2189ff] transition-colors"><?= htmlspecialchars($flink['title']) ?></a></li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li><a href="index.php?page=custom-solutions" class="hover:text-[#2189ff] transition-colors">Turnkey Packages</a></li>
+                    <?php endif; ?>
                 </ul>
             </div>
 
@@ -96,18 +102,14 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
                         </span>
                         <span class="text-white font-medium block mt-1">Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan</span>
                     </div>
-                    <div class="pt-1 text-[11px] text-slate-300 space-y-1">
-                        <div class="flex items-center gap-1.5">
-                            <i data-lucide="phone-call" class="w-3.5 h-3.5 text-[#2189ff]"></i>
-                            <span>Helpline: <a href="tel:+923116428717" class="text-[#2189ff] font-bold hover:underline">+92 311 6428717</a></span>
-                        </div>
-                        <div class="flex items-center gap-1.5">
-                            <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
-                            <span>WhatsApp: <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="text-emerald-400 font-bold hover:underline">0311 6428717</a></span>
-                        </div>
+                    <div class="pt-1 text-[11px] text-slate-300 space-y-1.5">
                         <div class="flex items-center gap-1.5">
                             <i data-lucide="mail" class="w-3.5 h-3.5 text-blue-400"></i>
-                            <span>Email: <a href="mailto:info@intellitech.pk" class="text-slate-300 font-medium hover:underline">info@intellitech.pk</a></span>
+                            <span>Email: <a href="mailto:<?= htmlspecialchars($email) ?>" class="text-slate-300 font-medium hover:underline"><?= htmlspecialchars($email) ?></a></span>
+                        </div>
+                        <div class="flex items-center gap-1.5">
+                            <i data-lucide="clock" class="w-3.5 h-3.5 text-emerald-400"></i>
+                            <span>Hours: Mon - Sat 09:00 AM - 10:00 PM</span>
                         </div>
                     </div>
                     <div class="pt-2">

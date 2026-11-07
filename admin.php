@@ -14,6 +14,8 @@ $purchasesFile = __DIR__ . '/data/purchases.json';
 $productsFile = __DIR__ . '/data/products.json';
 $messagesFile = __DIR__ . '/data/messages.json';
 $contentFile = __DIR__ . '/data/site_content.json';
+$navFile = __DIR__ . '/data/navigation.json';
+$footerFile = __DIR__ . '/data/footer_links.json';
 
 $message = '';
 $messageType = '';
@@ -246,8 +248,8 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST') {
     // 9. Save Company Settings
     if ($action === 'save_settings') {
         $content = ContentManager::load();
-        $content['contacts']['phone'] = trim($_POST['phone'] ?? '+92 311 6428717');
-        $content['contacts']['phone_secondary'] = trim($_POST['phone_secondary'] ?? '+92 311 6428717');
+        $content['contacts']['phone'] = trim($_POST['phone'] ?? '');
+        $content['contacts']['phone_secondary'] = trim($_POST['phone_secondary'] ?? '');
         $content['contacts']['email'] = trim($_POST['email'] ?? 'info@intellitech.pk');
         $content['contacts']['address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan');
         $content['contacts']['faisalabad_address'] = trim($_POST['address_faisalabad'] ?? 'Plaza 18, Main Susan Road, Kohinoor City, Faisalabad, Punjab, Pakistan');
@@ -277,6 +279,297 @@ if ($isAuthenticated && $_SERVER['REQUEST_METHOD'] === 'POST') {
             $messageType = 'error';
         }
     }
+
+    // 11. Navbar Link Management
+    if ($action === 'add_nav_item') {
+        $title = trim($_POST['title'] ?? '');
+        $url = trim($_POST['url'] ?? '');
+        $page = trim($_POST['page'] ?? '');
+        $badge = trim($_POST['badge'] ?? '');
+        $badgeColor = trim($_POST['badge_color'] ?? 'blue');
+        $order = intval($_POST['order'] ?? 1);
+        $active = isset($_POST['active']) && $_POST['active'] == '1';
+
+        if (!$page && preg_match('/page=([a-z0-9_-]+)/i', $url, $m)) {
+            $page = strtolower($m[1]);
+        }
+
+        if ($title && $url && file_exists($navFile)) {
+            $navItems = json_decode(file_get_contents($navFile), true) ?: [];
+            $newId = 'nav_' . substr(preg_replace('/[^a-z0-9]/', '', strtolower($title)), 0, 15) . '_' . rand(10, 99);
+            $navItems[] = [
+                'id' => $newId,
+                'title' => htmlspecialchars($title),
+                'url' => htmlspecialchars($url),
+                'page' => htmlspecialchars($page),
+                'badge' => htmlspecialchars($badge),
+                'badge_color' => htmlspecialchars($badgeColor),
+                'order' => $order,
+                'active' => $active
+            ];
+            usort($navItems, fn($a, $b) => ($a['order'] ?? 0) <=> ($b['order'] ?? 0));
+            file_put_contents($navFile, json_encode($navItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Navbar link '{$title}' added successfully!";
+            $messageType = 'success';
+        }
+    }
+
+    if ($action === 'update_nav_item') {
+        $navId = trim($_POST['nav_id'] ?? '');
+        $title = trim($_POST['title'] ?? '');
+        $url = trim($_POST['url'] ?? '');
+        $page = trim($_POST['page'] ?? '');
+        $badge = trim($_POST['badge'] ?? '');
+        $badgeColor = trim($_POST['badge_color'] ?? 'blue');
+        $order = intval($_POST['order'] ?? 1);
+        $active = isset($_POST['active']) && $_POST['active'] == '1';
+
+        if (!$page && preg_match('/page=([a-z0-9_-]+)/i', $url, $m)) {
+            $page = strtolower($m[1]);
+        }
+
+        if ($navId && $title && file_exists($navFile)) {
+            $navItems = json_decode(file_get_contents($navFile), true) ?: [];
+            foreach ($navItems as &$item) {
+                if ($item['id'] === $navId) {
+                    $item['title'] = htmlspecialchars($title);
+                    $item['url'] = htmlspecialchars($url);
+                    $item['page'] = htmlspecialchars($page);
+                    $item['badge'] = htmlspecialchars($badge);
+                    $item['badge_color'] = htmlspecialchars($badgeColor);
+                    $item['order'] = $order;
+                    $item['active'] = $active;
+                    break;
+                }
+            }
+            usort($navItems, fn($a, $b) => ($a['order'] ?? 0) <=> ($b['order'] ?? 0));
+            file_put_contents($navFile, json_encode($navItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Navbar link '{$title}' updated successfully!";
+            $messageType = 'success';
+        }
+    }
+
+    if ($action === 'delete_nav_item') {
+        $navId = trim($_POST['nav_id'] ?? '');
+        if ($navId && file_exists($navFile)) {
+            $navItems = json_decode(file_get_contents($navFile), true) ?: [];
+            $navItems = array_values(array_filter($navItems, fn($n) => $n['id'] !== $navId));
+            file_put_contents($navFile, json_encode($navItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Navbar link removed successfully.";
+            $messageType = 'info';
+        }
+    }
+
+    if ($action === 'toggle_nav_item') {
+        $navId = trim($_POST['nav_id'] ?? '');
+        if ($navId && file_exists($navFile)) {
+            $navItems = json_decode(file_get_contents($navFile), true) ?: [];
+            foreach ($navItems as &$item) {
+                if ($item['id'] === $navId) {
+                    $item['active'] = !($item['active'] ?? true);
+                    break;
+                }
+            }
+            file_put_contents($navFile, json_encode($navItems, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Navbar link visibility updated!";
+            $messageType = 'info';
+        }
+    }
+
+    // 12. Footer Link Management
+    if ($action === 'add_footer_link') {
+        $section = trim($_POST['section'] ?? 'quick_links');
+        $title = trim($_POST['title'] ?? '');
+        $url = trim($_POST['url'] ?? '');
+
+        if ($section && $title && $url && file_exists($footerFile)) {
+            $footerData = json_decode(file_get_contents($footerFile), true) ?: [];
+            if (isset($footerData[$section])) {
+                $footerData[$section]['links'][] = [
+                    'id' => 'fl_' . rand(100, 9999),
+                    'title' => htmlspecialchars($title),
+                    'url' => htmlspecialchars($url)
+                ];
+                file_put_contents($footerFile, json_encode($footerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+                $message = "Footer link '{$title}' added to '{$footerData[$section]['title']}'!";
+                $messageType = 'success';
+            }
+        }
+    }
+
+    if ($action === 'delete_footer_link') {
+        $section = trim($_POST['section'] ?? '');
+        $linkId = trim($_POST['link_id'] ?? '');
+
+        if ($section && $linkId && file_exists($footerFile)) {
+            $footerData = json_decode(file_get_contents($footerFile), true) ?: [];
+            if (isset($footerData[$section]['links'])) {
+                $footerData[$section]['links'] = array_values(array_filter($footerData[$section]['links'], fn($l) => $l['id'] !== $linkId));
+                file_put_contents($footerFile, json_encode($footerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+                $message = "Footer link removed successfully.";
+                $messageType = 'info';
+            }
+        }
+    }
+
+    if ($action === 'update_footer_title') {
+        $section = trim($_POST['section'] ?? '');
+        $sectionTitle = trim($_POST['section_title'] ?? '');
+
+        if ($section && $sectionTitle && file_exists($footerFile)) {
+            $footerData = json_decode(file_get_contents($footerFile), true) ?: [];
+            if (isset($footerData[$section])) {
+                $footerData[$section]['title'] = htmlspecialchars($sectionTitle);
+                file_put_contents($footerFile, json_encode($footerData, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+                $message = "Footer column title updated to '{$sectionTitle}'!";
+                $messageType = 'success';
+            }
+        }
+    }
+
+    // 13. Rates & Product Catalog Management
+    if ($action === 'update_product_rate') {
+        $prodId = trim($_POST['product_id'] ?? '');
+        $price = intval($_POST['price'] ?? 0);
+        $origPrice = intval($_POST['original_price'] ?? 0);
+        $stock = intval($_POST['stock'] ?? 0);
+        $costPrice = intval($_POST['cost_price'] ?? 0);
+
+        if ($prodId && file_exists($productsFile)) {
+            $prods = json_decode(file_get_contents($productsFile), true) ?: [];
+            foreach ($prods as &$p) {
+                if ($p['id'] === $prodId) {
+                    if ($price > 0) $p['price'] = $price;
+                    if ($origPrice > 0) $p['original_price'] = $origPrice;
+                    $p['stock'] = max(0, $stock);
+                    if ($costPrice > 0) $p['cost_price'] = $costPrice;
+                    break;
+                }
+            }
+            file_put_contents($productsFile, json_encode($prods, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Rate and stock for '{$prodId}' updated successfully! (Price: Rs. " . number_format($price) . ")";
+            $messageType = 'success';
+        }
+    }
+
+    if ($action === 'add_product') {
+        $name = trim($_POST['name'] ?? '');
+        $category = trim($_POST['category'] ?? 'zigbee');
+        $catLabel = trim($_POST['category_label'] ?? 'Zigbee Devices');
+        $price = intval($_POST['price'] ?? 0);
+        $origPrice = intval($_POST['original_price'] ?? 0);
+        $costPrice = intval($_POST['cost_price'] ?? 0);
+        $stock = intval($_POST['stock'] ?? 10);
+        $badge = trim($_POST['badge'] ?? '');
+        $badgeColor = trim($_POST['badge_color'] ?? 'blue');
+        $img = trim($_POST['image'] ?? 'assets/images/okasha/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp');
+        $shortDesc = trim($_POST['short_desc'] ?? '');
+
+        if ($name && $price > 0 && file_exists($productsFile)) {
+            $prods = json_decode(file_get_contents($productsFile), true) ?: [];
+            $newId = preg_replace('/[^a-z0-9_-]/', '', strtolower(str_replace(' ', '-', $name))) ?: ('prod-' . rand(100, 999));
+            // Ensure unique ID
+            $existingIds = array_column($prods, 'id');
+            if (in_array($newId, $existingIds)) {
+                $newId .= '-' . rand(10, 99);
+            }
+
+            $newProduct = [
+                'id' => $newId,
+                'name' => htmlspecialchars($name),
+                'category' => htmlspecialchars($category),
+                'category_label' => htmlspecialchars($catLabel),
+                'price' => $price,
+                'original_price' => $origPrice > 0 ? $origPrice : intval($price * 1.2),
+                'rating' => 5.0,
+                'reviews_count' => 12,
+                'badge' => htmlspecialchars($badge),
+                'badge_color' => htmlspecialchars($badgeColor),
+                'image' => htmlspecialchars($img),
+                'fallback_image' => '',
+                'short_desc' => htmlspecialchars($desc ?: $name),
+                'specs' => [
+                    'Protocol' => 'Zigbee 3.0 / Tuya IoT',
+                    'Warranty' => '1 Year Official Replacement'
+                ],
+                'features' => [
+                    'Zero Wi-Fi overload',
+                    'Faisalabad Virtual Office Support',
+                    '1 Year Replacement Warranty'
+                ],
+                'stock' => max(0, $stock),
+                'cost_price' => $costPrice > 0 ? $costPrice : intval($price * 0.65)
+            ];
+
+            array_unshift($prods, $newProduct);
+            file_put_contents($productsFile, json_encode($prods, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "New product '{$name}' added to catalog with rate Rs. " . number_format($price) . "!";
+            $messageType = 'success';
+        }
+    }
+
+    if ($action === 'delete_product') {
+        $prodId = trim($_POST['product_id'] ?? '');
+        if ($prodId && file_exists($productsFile)) {
+            $prods = json_decode(file_get_contents($productsFile), true) ?: [];
+            $prods = array_values(array_filter($prods, fn($p) => $p['id'] !== $prodId));
+            file_put_contents($productsFile, json_encode($prods, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE));
+            $message = "Product #{$prodId} removed from catalog.";
+            $messageType = 'info';
+        }
+    }
+
+    // 14. User & Staff Management
+    if ($action === 'add_user') {
+        $uname = trim($_POST['username'] ?? '');
+        $upass = trim($_POST['password'] ?? '');
+        $unameFull = trim($_POST['admin_name'] ?? '');
+        $urole = trim($_POST['role'] ?? 'Operations Manager');
+        $uemail = trim($_POST['email'] ?? '');
+        $ustatus = trim($_POST['status'] ?? 'active');
+
+        $res = AuthManager::addUser($uname, $upass, $unameFull, $urole, $uemail, $ustatus);
+        if ($res['success']) {
+            $message = "Staff user '{$uname}' created successfully!";
+            $messageType = 'success';
+        } else {
+            $message = "User creation failed: " . ($res['error'] ?? 'Unknown error');
+            $messageType = 'error';
+        }
+    }
+
+    if ($action === 'update_user') {
+        $userId = trim($_POST['user_id'] ?? '');
+        $updates = [
+            'admin_name' => trim($_POST['admin_name'] ?? ''),
+            'email' => trim($_POST['email'] ?? ''),
+            'role' => trim($_POST['role'] ?? ''),
+            'status' => trim($_POST['status'] ?? 'active')
+        ];
+        if (!empty($_POST['new_password'])) {
+            $updates['password'] = trim($_POST['new_password']);
+        }
+        $res = AuthManager::updateUser($userId, $updates);
+        if ($res['success']) {
+            $message = "User details updated successfully!";
+            $messageType = 'success';
+        } else {
+            $message = "Update failed: " . ($res['error'] ?? 'Unknown error');
+            $messageType = 'error';
+        }
+    }
+
+    if ($action === 'delete_user') {
+        $userId = trim($_POST['user_id'] ?? '');
+        $res = AuthManager::deleteUser($userId, $_SESSION['admin_user'] ?? '');
+        if ($res['success']) {
+            $message = "User account removed.";
+            $messageType = 'info';
+        } else {
+            $message = "Delete failed: " . ($res['error'] ?? 'Unknown error');
+            $messageType = 'error';
+        }
+    }
 }
 
 // Load Datasets
@@ -285,6 +578,9 @@ $surveys = file_exists($surveysFile) ? (json_decode(file_get_contents($surveysFi
 $purchases = file_exists($purchasesFile) ? (json_decode(file_get_contents($purchasesFile), true) ?: []) : [];
 $products = file_exists($productsFile) ? (json_decode(file_get_contents($productsFile), true) ?: []) : [];
 $messages = file_exists($messagesFile) ? (json_decode(file_get_contents($messagesFile), true) ?: []) : [];
+$navItems = file_exists($navFile) ? (json_decode(file_get_contents($navFile), true) ?: []) : [];
+$footerData = file_exists($footerFile) ? (json_decode(file_get_contents($footerFile), true) ?: []) : [];
+$allUsers = AuthManager::getAllUsers();
 $content = ContentManager::load();
 
 // Compute Analytics KPIs
@@ -460,6 +756,31 @@ $tab = $_GET['tab'] ?? 'dashboard';
                         <?php endif; ?>
                     </a>
 
+                    <a href="admin.php?tab=rates" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'rates' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="tag" class="w-4 h-4"></i>
+                            <span>Rates & Products</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-300 text-[10px] font-black"><?= count($products) ?> Items</span>
+                    </a>
+
+                    <a href="admin.php?tab=navbar" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'navbar' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="menu" class="w-4 h-4"></i>
+                            <span>Navbar Links</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 text-[10px] font-black"><?= count($navItems) ?> Links</span>
+                    </a>
+
+                    <a href="admin.php?tab=footer" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'footer' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="layout" class="w-4 h-4"></i>
+                            <span>Footer Links</span>
+                        </div>
+                        <?php $flCount = array_reduce($footerData, fn($acc, $sec) => $acc + count($sec['links'] ?? []), 0); ?>
+                        <span class="px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 text-[10px] font-black"><?= $flCount ?> Links</span>
+                    </a>
+
                     <a href="admin.php?tab=inventory" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'inventory' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
                         <div class="flex items-center gap-3">
                             <i data-lucide="boxes" class="w-4 h-4"></i>
@@ -468,6 +789,14 @@ $tab = $_GET['tab'] ?? 'dashboard';
                         <?php if ($lowStockCount > 0): ?>
                             <span class="px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-black"><?= $lowStockCount ?> Low</span>
                         <?php endif; ?>
+                    </a>
+
+                    <a href="admin.php?tab=users" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'users' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="users" class="w-4 h-4"></i>
+                            <span>Users & Staff</span>
+                        </div>
+                        <span class="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-300 text-[10px] font-black"><?= count($allUsers) ?> Staff</span>
                     </a>
 
                     <a href="admin.php?tab=messages" class="flex items-center justify-between px-3.5 py-3 rounded-xl transition-all <?= $tab === 'messages' ? 'bg-[#2189ff] text-white shadow-md' : 'hover:bg-slate-900 hover:text-white' ?>">
@@ -847,7 +1176,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
                                                     if (str_starts_with($cleanPhone, '0')) {
                                                         $cleanPhone = '92' . substr($cleanPhone, 1);
                                                     }
-                                                    $waText = "Hello " . $ord['customer_name'] . "! This is IntelliTech Solutions. Your order #" . $ord['id'] . " (Total: Rs. " . number_format($ord['total']) . ") has been confirmed! Our dispatch rider will deliver to " . $ord['address'] . ", " . $ord['city'] . ". For any query feel free to WhatsApp us at +92 311 6428717.";
+                                                    $waText = "Hello " . $ord['customer_name'] . "! This is IntelliTech Solutions. Your order #" . $ord['id'] . " (Total: Rs. " . number_format($ord['total']) . ") has been confirmed! Our dispatch rider will deliver to " . $ord['address'] . ", " . $ord['city'] . ". For any query email us at info@intellitech.pk.";
                                                     ?>
                                                     <div class="flex items-center justify-end gap-1.5 pt-1">
                                                         <a 
@@ -956,7 +1285,7 @@ $tab = $_GET['tab'] ?? 'dashboard';
                                                     if (str_starts_with($cleanPhone, '0')) {
                                                         $cleanPhone = '92' . substr($cleanPhone, 1);
                                                     }
-                                                    $survWaText = "Hello " . $surv['customer_name'] . "! This is IntelliTech Solutions (Faisalabad HQ). We have received your smart home CAD blueprint survey request for your " . $surv['property'] . " in " . $surv['city'] . ". Our certified engineer (" . ($surv['assigned_engineer'] ?? 'Faisalabad Team') . ") would like to confirm your visit schedule. For direct inquiries dial +92 311 6428717.";
+                                                    $survWaText = "Hello " . $surv['customer_name'] . "! This is IntelliTech Solutions (Faisalabad HQ). We have received your smart home CAD blueprint survey request for your " . $surv['property'] . " in " . $surv['city'] . ". Our certified engineer (" . ($surv['assigned_engineer'] ?? 'Faisalabad Team') . ") would like to confirm your visit schedule. For direct inquiries email us at info@intellitech.pk.";
                                                     ?>
                                                     <div class="flex items-center justify-end gap-1.5">
                                                         <a 
@@ -1086,6 +1415,533 @@ $tab = $_GET['tab'] ?? 'dashboard';
                         </div>
                     </div>
 
+                </div>
+
+            <!-- TAB: RATES & PRODUCT CATALOG -->
+            <?php elseif ($tab === 'rates'): ?>
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-black text-white tracking-tight">Rates & Product Catalog Management</h2>
+                            <p class="text-xs text-slate-400 mt-1">Manage live consumer rates, cut-off discount rates, profit margins, and catalog items.</p>
+                        </div>
+                        <button onclick="document.getElementById('modal-add-product').classList.remove('hidden')" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-xs flex items-center gap-2 transition-all shadow-md">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Add New Product to Catalog</span>
+                        </button>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Total Catalog Items</div>
+                            <div class="text-2xl font-black text-white mt-1"><?= count($products) ?></div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">In Stock Devices</div>
+                            <div class="text-2xl font-black text-emerald-400 mt-1"><?= count(array_filter($products, fn($p) => ($p['stock'] ?? 0) > 0)) ?></div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Low / Out of Stock</div>
+                            <div class="text-2xl font-black text-rose-400 mt-1"><?= count(array_filter($products, fn($p) => ($p['stock'] ?? 0) <= 5)) ?></div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Total Catalog Worth</div>
+                            <div class="text-xl font-black text-blue-400 mt-1">Rs. <?= number_format($totalInventoryValue) ?></div>
+                        </div>
+                    </div>
+
+                    <!-- Filter & Search bar -->
+                    <div class="flex items-center gap-3">
+                        <div class="relative flex-1">
+                            <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-3 text-slate-500"></i>
+                            <input 
+                                type="text" 
+                                id="rateSearchInput" 
+                                onkeyup="filterRatesTable()" 
+                                placeholder="Search products by title, category, or ID..." 
+                                class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-xs text-white placeholder-slate-500 outline-none focus:border-blue-500"
+                            >
+                        </div>
+                    </div>
+
+                    <!-- Products Table -->
+                    <div class="bg-slate-800/80 rounded-2xl border border-slate-700/80 overflow-hidden shadow-xl">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs" id="ratesTable">
+                                <thead class="bg-slate-900/80 text-slate-400 uppercase font-black text-[10px] tracking-wider border-b border-slate-700">
+                                    <tr>
+                                        <th class="p-4">Product Details</th>
+                                        <th class="p-4">Category</th>
+                                        <th class="p-4">Current Rate (PKR)</th>
+                                        <th class="p-4">Regular Rate (PKR)</th>
+                                        <th class="p-4">Cost Price (PKR)</th>
+                                        <th class="p-4">Stock</th>
+                                        <th class="p-4 text-center">Quick Update Rates</th>
+                                        <th class="p-4 text-right">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700">
+                                    <?php foreach ($products as $p): ?>
+                                        <tr class="hover:bg-slate-700/30 transition-colors">
+                                            <td class="p-4">
+                                                <div class="flex items-center gap-3">
+                                                    <img src="<?= htmlspecialchars($p['image'] ?? 'assets/images/favicon.svg') ?>" alt="" class="w-11 h-11 rounded-xl bg-slate-900 object-contain p-1 border border-slate-700 shrink-0">
+                                                    <div>
+                                                        <div class="font-bold text-white"><?= htmlspecialchars($p['name']) ?></div>
+                                                        <div class="text-[10px] text-slate-400 font-mono">ID: <?= htmlspecialchars($p['id']) ?></div>
+                                                        <?php if (!empty($p['badge'])): ?>
+                                                            <span class="inline-block mt-0.5 px-1.5 py-0.5 rounded text-[9px] font-black uppercase bg-blue-500/20 text-blue-300"><?= htmlspecialchars($p['badge']) ?></span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4">
+                                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-slate-700 text-slate-300">
+                                                    <?= htmlspecialchars($p['category_label'] ?? ucfirst($p['category'] ?? 'General')) ?>
+                                                </span>
+                                            </td>
+                                            <td class="p-4 font-black text-blue-400 text-sm">
+                                                Rs. <?= number_format($p['price'] ?? 0) ?>
+                                            </td>
+                                            <td class="p-4 text-slate-400 line-through">
+                                                Rs. <?= number_format($p['original_price'] ?? 0) ?>
+                                            </td>
+                                            <td class="p-4 text-slate-300">
+                                                Rs. <?= number_format($p['cost_price'] ?? 0) ?>
+                                            </td>
+                                            <td class="p-4">
+                                                <span class="px-2 py-0.5 rounded-full text-[10px] font-black <?= ($p['stock'] ?? 0) > 5 ? 'bg-emerald-500/20 text-emerald-300' : (($p['stock'] ?? 0) > 0 ? 'bg-amber-500/20 text-amber-300' : 'bg-rose-500/20 text-rose-300') ?>">
+                                                    <?= $p['stock'] ?? 0 ?> in stock
+                                                </span>
+                                            </td>
+                                            <td class="p-4">
+                                                <form method="POST" class="flex items-center gap-2 justify-center">
+                                                    <input type="hidden" name="admin_action" value="update_product_rate">
+                                                    <input type="hidden" name="product_id" value="<?= htmlspecialchars($p['id']) ?>">
+                                                    <div class="flex flex-col gap-1">
+                                                        <div class="flex items-center gap-1">
+                                                            <span class="text-[10px] text-slate-400 w-10">Rate:</span>
+                                                            <input type="number" name="price" value="<?= intval($p['price'] ?? 0) ?>" class="w-24 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white text-right font-bold outline-none focus:border-blue-500" title="Selling Rate (PKR)">
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <span class="text-[10px] text-slate-400 w-10">Regular:</span>
+                                                            <input type="number" name="original_price" value="<?= intval($p['original_price'] ?? 0) ?>" class="w-24 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 text-right outline-none focus:border-blue-500" title="Regular Cut-off Rate (PKR)">
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex flex-col gap-1">
+                                                        <div class="flex items-center gap-1">
+                                                            <span class="text-[10px] text-slate-400 w-10">Stock:</span>
+                                                            <input type="number" name="stock" value="<?= intval($p['stock'] ?? 0) ?>" class="w-16 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white text-right outline-none focus:border-blue-500" title="Stock Available">
+                                                        </div>
+                                                        <div class="flex items-center gap-1">
+                                                            <span class="text-[10px] text-slate-400 w-10">Cost:</span>
+                                                            <input type="number" name="cost_price" value="<?= intval($p['cost_price'] ?? 0) ?>" class="w-16 px-2 py-1 rounded-lg bg-slate-900 border border-slate-700 text-xs text-slate-300 text-right outline-none focus:border-blue-500" title="Cost Price (PKR)">
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="px-3 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-black text-xs transition-colors shadow" title="Save Rates">
+                                                        Save
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td class="p-4 text-right">
+                                                <form method="POST" onsubmit="return confirm('Are you sure you want to delete product \'<?= htmlspecialchars(addslashes($p['name'])) ?>\' from catalog?');" class="inline">
+                                                    <input type="hidden" name="admin_action" value="delete_product">
+                                                    <input type="hidden" name="product_id" value="<?= htmlspecialchars($p['id']) ?>">
+                                                    <button type="submit" class="p-2 rounded-xl bg-slate-700 hover:bg-rose-500 text-slate-300 hover:text-white transition-colors" title="Delete Product">
+                                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Add New Product -->
+                    <div id="modal-add-product" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+                        <div class="w-full max-w-xl bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-4 max-h-[90vh] overflow-y-auto">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <h3 class="font-extrabold text-white text-base">Add New Product & Set Rate</h3>
+                                <button onclick="document.getElementById('modal-add-product').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+                            </div>
+                            <form method="POST" class="space-y-4 text-xs">
+                                <input type="hidden" name="admin_action" value="add_product">
+                                
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Product Name / Title *</label>
+                                    <input type="text" name="name" required placeholder="e.g. Zigbee 3.0 Smart Touch Switch 3-Gang" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Category</label>
+                                        <select name="category" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="zigbee">Zigbee Devices</option>
+                                            <option value="switches">Smart Switches & Sockets</option>
+                                            <option value="locks">Smart Locks & Security</option>
+                                            <option value="curtains">Motorized Curtains</option>
+                                            <option value="sensors">Safety & Climate Sensors</option>
+                                            <option value="lighting">Smart Lighting</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Category Display Label</label>
+                                        <input type="text" name="category_label" value="Zigbee Devices" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Selling Rate (PKR) *</label>
+                                        <input type="number" name="price" required placeholder="5500" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white font-bold outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Regular / Cut-off (PKR)</label>
+                                        <input type="number" name="original_price" placeholder="7000" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Unit Cost Price (PKR)</label>
+                                        <input type="number" name="cost_price" placeholder="3800" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Initial Stock</label>
+                                        <input type="number" name="stock" value="15" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Text (Optional)</label>
+                                        <input type="text" name="badge" placeholder="e.g. ZIGBEE 3.0 / NEW" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Color</label>
+                                        <select name="badge_color" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="blue">Blue</option>
+                                            <option value="emerald">Emerald</option>
+                                            <option value="amber">Amber</option>
+                                            <option value="rose">Rose</option>
+                                            <option value="purple">Purple</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Product Image Path or URL</label>
+                                    <input type="text" name="image" value="assets/images/okasha/Smart_Gateway-3_in_1_4c6b1173-8555-4990-9d59-8b961182d5df.webp" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Short Description</label>
+                                    <textarea name="short_desc" rows="2" placeholder="Brief summary of product features..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500"></textarea>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-extrabold text-xs transition-colors shadow-md">
+                                    Add Product to Store Catalog
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- TAB: NAVBAR LINKS MANAGER -->
+            <?php elseif ($tab === 'navbar'): ?>
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-black text-white tracking-tight">Website Header Navigation Manager</h2>
+                            <p class="text-xs text-slate-400 mt-1">Add, update order, change labels, or remove navigation links across the global site header.</p>
+                        </div>
+                        <button onclick="document.getElementById('modal-add-nav').classList.remove('hidden')" class="px-4 py-2 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-extrabold text-xs flex items-center gap-2 transition-all shadow-md">
+                            <i data-lucide="plus" class="w-4 h-4"></i>
+                            <span>Add Navbar Link</span>
+                        </button>
+                    </div>
+
+                    <!-- Navigation Table -->
+                    <div class="bg-slate-800/80 rounded-2xl border border-slate-700/80 overflow-hidden shadow-xl">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-slate-900/80 text-slate-400 uppercase font-black text-[10px] tracking-wider border-b border-slate-700">
+                                    <tr>
+                                        <th class="p-4 w-16 text-center">Order</th>
+                                        <th class="p-4">Link Title</th>
+                                        <th class="p-4">Target URL</th>
+                                        <th class="p-4">Page Key</th>
+                                        <th class="p-4">Badge</th>
+                                        <th class="p-4">Visibility</th>
+                                        <th class="p-4 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700">
+                                    <?php foreach ($navItems as $nav): ?>
+                                        <tr class="hover:bg-slate-700/30 transition-colors">
+                                            <td class="p-4 text-center font-black text-white">
+                                                <span class="w-7 h-7 rounded-full bg-slate-900 border border-slate-700 inline-flex items-center justify-center font-mono">
+                                                    <?= intval($nav['order'] ?? 0) ?>
+                                                </span>
+                                            </td>
+                                            <td class="p-4">
+                                                <div class="font-extrabold text-white text-sm"><?= htmlspecialchars($nav['title']) ?></div>
+                                                <div class="text-[10px] text-slate-400 font-mono">ID: <?= htmlspecialchars($nav['id']) ?></div>
+                                            </td>
+                                            <td class="p-4">
+                                                <code class="px-2 py-1 rounded-md bg-slate-900 border border-slate-700 text-blue-300 font-mono text-[11px]">
+                                                    <?= htmlspecialchars($nav['url']) ?>
+                                                </code>
+                                            </td>
+                                            <td class="p-4">
+                                                <span class="text-slate-300 font-mono text-xs"><?= htmlspecialchars($nav['page'] ?? '-') ?></span>
+                                            </td>
+                                            <td class="p-4">
+                                                <?php if (!empty($nav['badge'])): ?>
+                                                    <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase <?= ($nav['badge_color'] ?? '') === 'emerald' ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40' : (($nav['badge_color'] ?? '') === 'amber' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-blue-500/20 text-blue-300 border border-blue-500/40') ?>">
+                                                        <?= htmlspecialchars($nav['badge']) ?>
+                                                    </span>
+                                                <?php else: ?>
+                                                    <span class="text-slate-500 text-[11px]">&mdash;</span>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td class="p-4">
+                                                <form method="POST" class="inline">
+                                                    <input type="hidden" name="admin_action" value="toggle_nav_item">
+                                                    <input type="hidden" name="nav_id" value="<?= htmlspecialchars($nav['id']) ?>">
+                                                    <button type="submit" class="px-2.5 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 <?= !empty($nav['active']) ? 'bg-emerald-500/20 text-emerald-300 hover:bg-emerald-500/30' : 'bg-slate-700 text-slate-400 hover:bg-slate-600' ?>" title="Click to toggle visibility">
+                                                        <span class="w-1.5 h-1.5 rounded-full <?= !empty($nav['active']) ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500' ?>"></span>
+                                                        <span><?= !empty($nav['active']) ? 'Active (Visible)' : 'Hidden' ?></span>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td class="p-4 text-right space-x-2">
+                                                <button 
+                                                    type="button" 
+                                                    onclick="openEditNavModal(<?= htmlspecialchars(json_encode($nav)) ?>)" 
+                                                    class="p-2 rounded-xl bg-slate-700 hover:bg-blue-600 text-slate-300 hover:text-white transition-colors" 
+                                                    title="Edit Navigation Link"
+                                                >
+                                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                                </button>
+                                                <form method="POST" onsubmit="return confirm('Delete navbar link \'<?= htmlspecialchars(addslashes($nav['title'])) ?>\'?');" class="inline">
+                                                    <input type="hidden" name="admin_action" value="delete_nav_item">
+                                                    <input type="hidden" name="nav_id" value="<?= htmlspecialchars($nav['id']) ?>">
+                                                    <button type="submit" class="p-2 rounded-xl bg-slate-700 hover:bg-rose-500 text-slate-300 hover:text-white transition-colors" title="Delete Link">
+                                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Add Nav Item -->
+                    <div id="modal-add-nav" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+                        <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <h3 class="font-extrabold text-white text-base">Add New Header Navbar Link</h3>
+                                <button onclick="document.getElementById('modal-add-nav').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+                            </div>
+                            <form method="POST" class="space-y-4 text-xs">
+                                <input type="hidden" name="admin_action" value="add_nav_item">
+                                
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Link Title *</label>
+                                    <input type="text" name="title" required placeholder="e.g. Smart Lighting & Ambience" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Target URL *</label>
+                                    <input type="text" name="url" required placeholder="index.php?page=lighting" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Page Identifier</label>
+                                        <input type="text" name="page" placeholder="e.g. lighting" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Display Order</label>
+                                        <input type="number" name="order" value="<?= count($navItems) + 1 ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Text (Optional)</label>
+                                        <input type="text" name="badge" placeholder="e.g. NEW / HOT" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Color</label>
+                                        <select name="badge_color" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="blue">Blue</option>
+                                            <option value="emerald">Emerald</option>
+                                            <option value="amber">Amber</option>
+                                            <option value="rose">Rose</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2 pt-2">
+                                    <input type="checkbox" name="active" value="1" id="nav-active-check" checked class="w-4 h-4 rounded text-blue-600 bg-slate-800 border-slate-700">
+                                    <label for="nav-active-check" class="text-xs text-slate-300 font-bold">Show link immediately in header</label>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-indigo-500 hover:bg-indigo-600 text-white font-extrabold text-xs transition-colors shadow-md">
+                                    Add Link to Navigation
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Edit Nav Item -->
+                    <div id="modal-edit-nav" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+                        <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <h3 class="font-extrabold text-white text-base">Edit Header Navbar Link</h3>
+                                <button onclick="document.getElementById('modal-edit-nav').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+                            </div>
+                            <form method="POST" class="space-y-4 text-xs">
+                                <input type="hidden" name="admin_action" value="update_nav_item">
+                                <input type="hidden" name="nav_id" id="edit-nav-id">
+                                
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Link Title *</label>
+                                    <input type="text" name="title" id="edit-nav-title" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Target URL *</label>
+                                    <input type="text" name="url" id="edit-nav-url" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Page Identifier</label>
+                                        <input type="text" name="page" id="edit-nav-page" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Display Order</label>
+                                        <input type="number" name="order" id="edit-nav-order" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Text (Optional)</label>
+                                        <input type="text" name="badge" id="edit-nav-badge" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Badge Color</label>
+                                        <select name="badge_color" id="edit-nav-badge-color" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="blue">Blue</option>
+                                            <option value="emerald">Emerald</option>
+                                            <option value="amber">Amber</option>
+                                            <option value="rose">Rose</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-center gap-2 pt-2">
+                                    <input type="checkbox" name="active" value="1" id="edit-nav-active" class="w-4 h-4 rounded text-blue-600 bg-slate-800 border-slate-700">
+                                    <label for="edit-nav-active" class="text-xs text-slate-300 font-bold">Show link in header</label>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs transition-colors shadow-md">
+                                    Save Changes
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- TAB: FOOTER LINKS MANAGER -->
+            <?php elseif ($tab === 'footer'): ?>
+                <div class="space-y-6">
+                    <div>
+                        <h2 class="text-2xl font-black text-white tracking-tight">Website Footer Links Manager</h2>
+                        <p class="text-xs text-slate-400 mt-1">Manage all 3 global footer columns (Product Categories, Smart Solutions, Company & Support) and their respective links.</p>
+                    </div>
+
+                    <!-- 3 Columns Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <?php
+                        $sectionsMeta = [
+                            'categories' => ['label' => 'Product Categories', 'badge' => 'Col 1', 'color' => 'blue'],
+                            'solutions' => ['label' => 'Custom Solutions', 'badge' => 'Col 2', 'color' => 'emerald'],
+                            'quick_links' => ['label' => 'Company & Support', 'badge' => 'Col 3', 'color' => 'amber']
+                        ];
+                        ?>
+                        <?php foreach ($sectionsMeta as $secKey => $meta): ?>
+                            <?php $secData = $footerData[$secKey] ?? ['title' => $meta['label'], 'links' => []]; ?>
+                            <div class="bg-slate-800/80 rounded-2xl border border-slate-700/80 p-5 flex flex-col justify-between shadow-xl space-y-4">
+                                <div>
+                                    <!-- Column Header & Rename Form -->
+                                    <div class="flex items-center justify-between pb-3 border-b border-slate-700/80">
+                                        <div>
+                                            <span class="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded bg-slate-900 border border-slate-700 text-slate-400"><?= $meta['badge'] ?></span>
+                                            <h3 class="font-extrabold text-white text-base mt-1"><?= htmlspecialchars($secData['title'] ?? $meta['label']) ?></h3>
+                                        </div>
+                                        <span class="text-xs font-black text-slate-400 bg-slate-900 px-2.5 py-1 rounded-full border border-slate-700">
+                                            <?= count($secData['links'] ?? []) ?> links
+                                        </span>
+                                    </div>
+
+                                    <!-- Column Rename Inline Form -->
+                                    <form method="POST" class="mt-3 flex gap-2">
+                                        <input type="hidden" name="admin_action" value="update_footer_title">
+                                        <input type="hidden" name="section" value="<?= $secKey ?>">
+                                        <input type="text" name="section_title" value="<?= htmlspecialchars($secData['title'] ?? $meta['label']) ?>" class="flex-1 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-xs text-white outline-none focus:border-blue-500" placeholder="Column Title">
+                                        <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-600 text-white font-bold text-xs transition-colors" title="Rename Column">
+                                            Rename
+                                        </button>
+                                    </form>
+
+                                    <!-- Links List -->
+                                    <div class="mt-4 space-y-2">
+                                        <?php if (empty($secData['links'])): ?>
+                                            <div class="p-4 text-center text-slate-500 text-xs rounded-xl bg-slate-900/40">No links in this column yet.</div>
+                                        <?php else: ?>
+                                            <?php foreach ($secData['links'] as $link): ?>
+                                                <div class="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/60 border border-slate-700/60 hover:border-slate-600 transition-colors">
+                                                    <div class="overflow-hidden pr-2">
+                                                        <div class="font-bold text-white text-xs truncate"><?= htmlspecialchars($link['title']) ?></div>
+                                                        <div class="text-[10px] text-blue-300 font-mono truncate"><?= htmlspecialchars($link['url']) ?></div>
+                                                    </div>
+                                                    <form method="POST" onsubmit="return confirm('Remove link \'<?= htmlspecialchars(addslashes($link['title'])) ?>\'?');" class="shrink-0">
+                                                        <input type="hidden" name="admin_action" value="delete_footer_link">
+                                                        <input type="hidden" name="section" value="<?= $secKey ?>">
+                                                        <input type="hidden" name="link_id" value="<?= htmlspecialchars($link['id']) ?>">
+                                                        <button type="submit" class="p-1.5 rounded-lg bg-slate-800 hover:bg-rose-500 text-slate-400 hover:text-white transition-colors" title="Delete Link">
+                                                            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <!-- Add Link to Column Form -->
+                                <div class="pt-4 border-t border-slate-700/80">
+                                    <form method="POST" class="space-y-2 text-xs">
+                                        <input type="hidden" name="admin_action" value="add_footer_link">
+                                        <input type="hidden" name="section" value="<?= $secKey ?>">
+                                        <div class="text-[11px] font-black uppercase text-slate-400">+ Add Link to <?= htmlspecialchars($secData['title'] ?? $meta['label']) ?></div>
+                                        <input type="text" name="title" required placeholder="Link Label (e.g. Smart Locks)" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                        <input type="text" name="url" required placeholder="Target URL (e.g. index.php?page=smart-glass)" class="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none focus:border-blue-500">
+                                        <button type="submit" class="w-full py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs transition-colors shadow">
+                                            + Add Link
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
 
             <!-- TAB 4: STOCK & PURCHASES ("sale purcase handel") -->
@@ -1256,6 +2112,232 @@ $tab = $_GET['tab'] ?? 'dashboard';
 
                 </div>
 
+            <!-- TAB: USERS & STAFF MANAGEMENT -->
+            <?php elseif ($tab === 'users'): ?>
+                <div class="space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div>
+                            <h2 class="text-2xl font-black text-white tracking-tight">Admin Users & Staff Access Management</h2>
+                            <p class="text-xs text-slate-400 mt-1">Manage administrator logins, staff roles (Super Admin, Sales Manager, Automation Engineer), access permissions and credentials.</p>
+                        </div>
+                        <button onclick="document.getElementById('modal-add-user').classList.remove('hidden')" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs flex items-center gap-2 transition-all shadow-md">
+                            <i data-lucide="user-plus" class="w-4 h-4"></i>
+                            <span>Create New Staff Account</span>
+                        </button>
+                    </div>
+
+                    <!-- Staff Stats -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Total Staff Accounts</div>
+                            <div class="text-2xl font-black text-white mt-1"><?= count($allUsers) ?></div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Active Accounts</div>
+                            <div class="text-2xl font-black text-emerald-400 mt-1"><?= count(array_filter($allUsers, fn($u) => ($u['status'] ?? '') === 'active')) ?></div>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+                            <div class="text-[10px] font-black uppercase tracking-wider text-slate-400">Your Current Session</div>
+                            <div class="text-base font-black text-purple-400 mt-1 flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <?= htmlspecialchars($_SESSION['admin_user'] ?? 'admin') ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div class="bg-slate-800/80 rounded-2xl border border-slate-700/80 overflow-hidden shadow-xl">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-slate-900/80 text-slate-400 uppercase font-black text-[10px] tracking-wider border-b border-slate-700">
+                                    <tr>
+                                        <th class="p-4">Staff Member</th>
+                                        <th class="p-4">Email</th>
+                                        <th class="p-4">Assigned Role</th>
+                                        <th class="p-4">Status</th>
+                                        <th class="p-4">Created / Updated</th>
+                                        <th class="p-4 text-right">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-700">
+                                    <?php foreach ($allUsers as $u): ?>
+                                        <?php 
+                                        $isSelf = strtolower($u['username']) === strtolower($_SESSION['admin_user'] ?? '');
+                                        ?>
+                                        <tr class="hover:bg-slate-700/30 transition-colors">
+                                            <td class="p-4">
+                                                <div class="flex items-center gap-3">
+                                                    <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-purple-600 to-blue-500 flex items-center justify-center text-white font-extrabold text-sm shrink-0">
+                                                        <?= strtoupper(substr($u['admin_name'] ?? $u['username'], 0, 1)) ?>
+                                                    </div>
+                                                    <div>
+                                                        <div class="font-bold text-white text-sm flex items-center gap-2">
+                                                            <span><?= htmlspecialchars($u['admin_name'] ?? $u['username']) ?></span>
+                                                            <?php if ($isSelf): ?>
+                                                                <span class="px-1.5 py-0.5 rounded text-[9px] font-black bg-blue-500/20 text-blue-300 border border-blue-500/40">You</span>
+                                                            <?php endif; ?>
+                                                        </div>
+                                                        <div class="text-[11px] text-slate-400 font-mono">@<?= htmlspecialchars($u['username']) ?></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 text-slate-300">
+                                                <?= htmlspecialchars($u['email'] ?? '-') ?>
+                                            </td>
+                                            <td class="p-4">
+                                                <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold <?= str_contains(strtolower($u['role'] ?? ''), 'super') ? 'bg-purple-500/20 text-purple-300 border border-purple-500/40' : (str_contains(strtolower($u['role'] ?? ''), 'sales') ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40') ?>">
+                                                    <?= htmlspecialchars($u['role'] ?? 'Staff') ?>
+                                                </span>
+                                            </td>
+                                            <td class="p-4">
+                                                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold flex items-center gap-1.5 w-max <?= ($u['status'] ?? 'active') === 'active' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-slate-700 text-slate-400' ?>">
+                                                    <span class="w-1.5 h-1.5 rounded-full <?= ($u['status'] ?? 'active') === 'active' ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500' ?>"></span>
+                                                    <span><?= ucfirst($u['status'] ?? 'active') ?></span>
+                                                </span>
+                                            </td>
+                                            <td class="p-4 text-slate-400 font-mono text-[11px]">
+                                                <?= htmlspecialchars($u['created_at'] ?? ($u['updated_at'] ?? '-')) ?>
+                                            </td>
+                                            <td class="p-4 text-right space-x-2">
+                                                <button 
+                                                    type="button" 
+                                                    onclick="openEditUserModal(<?= htmlspecialchars(json_encode($u)) ?>)" 
+                                                    class="p-2 rounded-xl bg-slate-700 hover:bg-purple-600 text-slate-300 hover:text-white transition-colors" 
+                                                    title="Edit User Role / Status / Password"
+                                                >
+                                                    <i data-lucide="edit-3" class="w-4 h-4"></i>
+                                                </button>
+
+                                                <?php if (!$isSelf && count($allUsers) > 1): ?>
+                                                    <form method="POST" onsubmit="return confirm('Are you sure you want to delete user account \'<?= htmlspecialchars(addslashes($u['username'])) ?>\'?');" class="inline">
+                                                        <input type="hidden" name="admin_action" value="delete_user">
+                                                        <input type="hidden" name="user_id" value="<?= htmlspecialchars($u['id']) ?>">
+                                                        <button type="submit" class="p-2 rounded-xl bg-slate-700 hover:bg-rose-500 text-slate-300 hover:text-white transition-colors" title="Delete User">
+                                                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                        </button>
+                                                    </form>
+                                                <?php else: ?>
+                                                    <button disabled class="p-2 rounded-xl bg-slate-800 text-slate-600 cursor-not-allowed" title="<?= $isSelf ? 'Cannot delete your own account' : 'Cannot delete the only admin' ?>">
+                                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                                                    </button>
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Add User -->
+                    <div id="modal-add-user" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+                        <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <h3 class="font-extrabold text-white text-base">Create New Admin / Staff User</h3>
+                                <button onclick="document.getElementById('modal-add-user').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+                            </div>
+                            <form method="POST" class="space-y-4 text-xs">
+                                <input type="hidden" name="admin_action" value="add_user">
+                                
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Username *</label>
+                                    <input type="text" name="username" required placeholder="e.g. zohaib_eng" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Full Name *</label>
+                                    <input type="text" name="admin_name" required placeholder="e.g. Engr. Zohaib Hassan" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Email Address</label>
+                                    <input type="email" name="email" placeholder="e.g. zohaib@intellitech.pk" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Temporary Password (Min 6 chars) *</label>
+                                    <input type="password" name="password" required placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Assigned Role</label>
+                                        <select name="role" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="Super Administrator">Super Administrator</option>
+                                            <option value="Sales & Orders Manager">Sales & Orders Manager</option>
+                                            <option value="Automation Engineer">Automation Engineer</option>
+                                            <option value="Store Staff">Store Staff</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Account Status</label>
+                                        <select name="status" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs transition-colors shadow-md">
+                                    Create Staff Account
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Modal: Edit User -->
+                    <div id="modal-edit-user" class="hidden fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4">
+                        <div class="w-full max-w-md bg-slate-900 border border-slate-700 rounded-3xl p-6 space-y-4">
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <h3 class="font-extrabold text-white text-base">Edit Staff User</h3>
+                                <button onclick="document.getElementById('modal-edit-user').classList.add('hidden')" class="text-slate-400 hover:text-white">&times;</button>
+                            </div>
+                            <form method="POST" class="space-y-4 text-xs">
+                                <input type="hidden" name="admin_action" value="update_user">
+                                <input type="hidden" name="user_id" id="edit-user-id">
+                                
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Full Name</label>
+                                    <input type="text" name="admin_name" id="edit-user-name" required class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div>
+                                    <label class="block text-slate-400 mb-1 font-bold">Email Address</label>
+                                    <input type="email" name="email" id="edit-user-email" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Assigned Role</label>
+                                        <select name="role" id="edit-user-role" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="Super Administrator">Super Administrator</option>
+                                            <option value="Sales & Orders Manager">Sales & Orders Manager</option>
+                                            <option value="Automation Engineer">Automation Engineer</option>
+                                            <option value="Store Staff">Store Staff</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-slate-400 mb-1 font-bold">Account Status</label>
+                                        <select name="status" id="edit-user-status" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none">
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="pt-2 border-t border-slate-800">
+                                    <label class="block text-slate-400 mb-1 font-bold">Change Password (Leave blank to keep current)</label>
+                                    <input type="password" name="new_password" placeholder="••••••••" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-800 border border-slate-700 text-white outline-none focus:border-purple-500">
+                                </div>
+
+                                <button type="submit" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs transition-colors shadow-md">
+                                    Save User Updates
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
             <!-- TAB 5: INQUIRIES & MESSAGES -->
             <?php elseif ($tab === 'messages'): ?>
                 <div class="space-y-6">
@@ -1345,11 +2427,11 @@ $tab = $_GET['tab'] ?? 'dashboard';
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-slate-400 mb-1 font-bold">Primary Phone Hotline</label>
-                                    <input type="text" name="phone" value="<?= htmlspecialchars($content['contacts']['phone'] ?? '+92 311 6428717') ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none">
+                                    <input type="text" name="phone" placeholder="e.g. +92 300 1234567 (optional)" value="<?= htmlspecialchars($content['contacts']['phone'] ?? '') ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none">
                                 </div>
                                 <div>
                                     <label class="block text-slate-400 mb-1 font-bold">WhatsApp Hotline Number</label>
-                                    <input type="text" name="phone_secondary" value="<?= htmlspecialchars($content['contacts']['phone_secondary'] ?? '+92 311 6428717') ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none">
+                                    <input type="text" name="phone_secondary" placeholder="e.g. +92 300 1234567 (optional)" value="<?= htmlspecialchars($content['contacts']['phone_secondary'] ?? '') ?>" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white outline-none">
                                 </div>
                             </div>
 
@@ -1461,6 +2543,36 @@ $tab = $_GET['tab'] ?? 'dashboard';
             document.getElementById('edit-survey-eng').value = eng;
             document.getElementById('edit-survey-date').value = date;
             document.getElementById('modal-edit-survey').classList.remove('hidden');
+        }
+
+        function openEditNavModal(nav) {
+            document.getElementById('edit-nav-id').value = nav.id;
+            document.getElementById('edit-nav-title').value = nav.title || '';
+            document.getElementById('edit-nav-url').value = nav.url || '';
+            document.getElementById('edit-nav-page').value = nav.page || '';
+            document.getElementById('edit-nav-badge').value = nav.badge || '';
+            document.getElementById('edit-nav-badge-color').value = nav.badge_color || 'blue';
+            document.getElementById('edit-nav-order').value = nav.order || 1;
+            document.getElementById('edit-nav-active').checked = !!nav.active;
+            document.getElementById('modal-edit-nav').classList.remove('hidden');
+        }
+
+        function openEditUserModal(u) {
+            document.getElementById('edit-user-id').value = u.id;
+            document.getElementById('edit-user-name').value = u.admin_name || u.username;
+            document.getElementById('edit-user-email').value = u.email || '';
+            document.getElementById('edit-user-role').value = u.role || 'Super Administrator';
+            document.getElementById('edit-user-status').value = u.status || 'active';
+            document.getElementById('modal-edit-user').classList.remove('hidden');
+        }
+
+        function filterRatesTable() {
+            const query = (document.getElementById('rateSearchInput')?.value || '').toLowerCase();
+            const rows = document.querySelectorAll('#ratesTable tbody tr');
+            rows.forEach(r => {
+                const text = r.textContent.toLowerCase();
+                r.style.display = text.includes(query) ? '' : 'none';
+            });
         }
     </script>
 <?php endif; ?>

@@ -713,8 +713,8 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <i data-lucide="phone-call" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h4 class="text-sm font-extrabold text-slate-900 tracking-tight">24/7 Faisalabad Helpline</h4>
-                    <p class="text-xs text-slate-500 mt-0.5">Call <a href="tel:+923116428717" class="text-[#2189ff] font-bold">+92 311 6428717</a> &bull; WhatsApp: 0311 6428717</p>
+                    <h4 class="text-sm font-extrabold text-slate-900 tracking-tight">Faisalabad Virtual Office</h4>
+                    <p class="text-xs text-slate-500 mt-0.5">Online Support &bull; <a href="mailto:info@intellitech.pk" class="text-[#2189ff] font-bold">info@intellitech.pk</a></p>
                 </div>
             </div>
 
@@ -929,16 +929,14 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                                         <span>Add to Cart</span>
                                     </button>
                                     
-                                    <a 
-                                        href="https://wa.me/923116428717?text=<?= urlencode("Hello IntelliTech Solutions, I would like to order: " . $prod['name'] . " (Rs. " . number_format($prod['price']) . ")") ?>" 
-                                        target="_blank" 
-                                        rel="noopener" 
-                                        class="w-full py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-500 text-emerald-700 hover:text-white font-extrabold text-xs transition-all border border-emerald-200 flex items-center justify-center gap-1.5"
-                                        title="Quick Order on WhatsApp (+92 311 6428717)"
+                                    <button 
+                                        onclick="OkashaStore.quickView('<?= $prod['id'] ?>')" 
+                                        class="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-xs transition-all border border-slate-200 flex items-center justify-center gap-1.5"
+                                        title="View Specs & Details"
                                     >
-                                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                                        <span>WhatsApp</span>
-                                    </a>
+                                        <i data-lucide="eye" class="w-3.5 h-3.5 text-blue-600"></i>
+                                        <span>Details</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1173,10 +1171,10 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-[#2189ff] text-white font-extrabold text-xs transition-colors">
                         Request Free Site Survey
                     </button>
-                    <a href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20am%20interested%20in%20the%2010%20Marla%20Smart%20Home%20Package." target="_blank" rel="noopener" class="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-500 text-emerald-700 hover:text-white font-extrabold text-xs border border-emerald-200 transition-all flex items-center justify-center gap-1.5">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                        <span>WhatsApp Inquiry (0311 6428717)</span>
-                    </a>
+                    <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-xl bg-blue-50 hover:bg-[#2189ff] text-blue-700 hover:text-white font-extrabold text-xs border border-blue-200 transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                        <span>Book Free CAD Survey</span>
+                    </button>
                 </div>
             </div>
 
@@ -1220,10 +1218,10 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2.5 rounded-xl bg-[#2189ff] hover:bg-blue-600 text-white font-extrabold text-xs transition-colors shadow-md shadow-blue-500/20">
                         Book Free Site Survey
                     </button>
-                    <a href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20am%20interested%20in%20the%201%20Kanal%20Luxury%20Villa%20Custom%20Package." target="_blank" rel="noopener" class="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-500 text-emerald-700 hover:text-white font-extrabold text-xs border border-emerald-200 transition-all flex items-center justify-center gap-1.5">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                        <span>WhatsApp Inquiry (0311 6428717)</span>
-                    </a>
+                    <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-xl bg-blue-50 hover:bg-[#2189ff] text-blue-700 hover:text-white font-extrabold text-xs border border-blue-200 transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                        <span>Book Free CAD Survey</span>
+                    </button>
                 </div>
             </div>
 
@@ -1264,10 +1262,10 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                     <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-[#2189ff] text-white font-extrabold text-xs transition-colors">
                         Request Custom Quote
                     </button>
-                    <a href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20am%20interested%20in%20the%202%20Kanal%20Presidential%20Smart%20Estate%20Package." target="_blank" rel="noopener" class="w-full py-2 rounded-xl bg-emerald-50 hover:bg-emerald-500 text-emerald-700 hover:text-white font-extrabold text-xs border border-emerald-200 transition-all flex items-center justify-center gap-1.5">
-                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                        <span>WhatsApp Inquiry (0311 6428717)</span>
-                    </a>
+                    <button onclick="OkashaStore.openConsultationModal()" class="w-full py-2 rounded-xl bg-blue-50 hover:bg-[#2189ff] text-blue-700 hover:text-white font-extrabold text-xs border border-blue-200 transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                        <span>Book Free CAD Survey</span>
+                    </button>
                 </div>
             </div>
 

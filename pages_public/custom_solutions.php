@@ -187,13 +187,9 @@ $customPackages = json_decode($customPkgsJson, true) ?: [];
                 <button onclick="OkashaStore.openConsultationModal()" class="px-6 py-3.5 rounded-full bg-[#2189ff] hover:bg-blue-600 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all">
                     Schedule Free Visit
                 </button>
-                <a href="https://wa.me/923116428717?text=Hello%20IntelliTech%20Solutions!%20I%20would%20like%20to%20request%20a%20custom%20smart%20home%20audit." target="_blank" rel="noopener" class="px-6 py-3.5 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="message-circle" class="w-4 h-4"></i>
-                    <span>WhatsApp: 0311 6428717</span>
-                </a>
-                <a href="tel:+923116428717" class="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
-                    <i data-lucide="phone-call" class="w-4 h-4 text-blue-400"></i>
-                    <span>+92 311 6428717</span>
+                <a href="mailto:info@intellitech.pk" class="px-6 py-3.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 font-extrabold text-xs sm:text-sm transition-all flex items-center justify-center gap-2">
+                    <i data-lucide="mail" class="w-4 h-4 text-blue-400"></i>
+                    <span>Email: info@intellitech.pk</span>
                 </a>
             </div>
         </div>

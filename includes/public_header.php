@@ -6,9 +6,14 @@ if (!$b && isset($siteContent['branding'])) {
 }
 $currentPage = $_GET['page'] ?? 'home';
 $contacts = $siteContent['contacts'] ?? [];
-$phone = $contacts['phone'] ?? '+92 311 6428717';
-$phone2 = $contacts['phone_secondary'] ?? '+92 311 6428717';
+$phone = $contacts['phone'] ?? '';
+$phone2 = $contacts['phone_secondary'] ?? '';
 $email = $contacts['email'] ?? 'info@intellitech.pk';
+$whatsapp = $contacts['whatsapp'] ?? '';
+
+// Load Dynamic Navigation from JSON
+$navJsonFile = __DIR__ . '/../data/navigation.json';
+$navItems = file_exists($navJsonFile) ? (json_decode(file_get_contents($navJsonFile), true) ?: []) : [];
 ?>
 
 <!-- ==========================================
@@ -21,33 +26,36 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
         <div class="flex items-center flex-wrap justify-center md:justify-start gap-3 sm:gap-4 text-slate-300">
             <span class="inline-flex items-center gap-1.5 text-white font-medium">
                 <span class="text-[#2189ff]">📍</span>
-                <span class="font-bold text-white">Faisalabad Virtual Office:</span>
-                <a href="tel:+923116428717" class="text-[#2189ff] font-extrabold hover:underline">+92 311 6428717</a>
+                <span class="font-bold text-white">Faisalabad Virtual Office</span>
             </span>
-            <span class="text-slate-600 hidden sm:inline">&bull;</span>
-            <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
-                <i data-lucide="message-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
-                <span class="text-emerald-400 font-bold">WhatsApp: 0311 6428717</span>
-            </a>
             <span class="text-slate-600 hidden sm:inline">&bull;</span>
             <span class="inline-flex items-center gap-1.5 text-slate-300 font-medium">
                 <span class="text-emerald-400">🚚</span>
                 <span>Free Delivery Across Pakistan</span>
             </span>
-            <span class="text-slate-600 hidden lg:inline">&bull;</span>
-            <a href="mailto:<?= htmlspecialchars($email) ?>" class="hidden lg:inline-flex items-center gap-1.5 hover:text-[#2189ff] transition-colors">
-                <i data-lucide="mail" class="w-3 h-3 text-[#2189ff]"></i>
-                <span><?= htmlspecialchars($email) ?></span>
+            <span class="text-slate-600 hidden sm:inline">&bull;</span>
+            <a href="mailto:<?= htmlspecialchars($email) ?>" class="inline-flex items-center gap-1.5 hover:text-[#2189ff] transition-colors">
+                <i data-lucide="mail" class="w-3.5 h-3.5 text-[#2189ff]"></i>
+                <span class="font-semibold text-white"><?= htmlspecialchars($email) ?></span>
             </a>
+            <span class="text-slate-600 hidden md:inline">&bull;</span>
+            <button onclick="OkashaStore.openConsultationModal()" class="inline-flex items-center gap-1.5 hover:text-emerald-400 transition-colors">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-emerald-400 font-bold">24/7 Virtual Consultation</span>
+            </button>
         </div>
 
         <!-- Right: Social Links, Currency & Account -->
         <div class="flex items-center gap-3 sm:gap-4 text-[11px]">
-            <!-- Social Icons -->
+            <!-- Social / Inquiry Icons -->
             <div class="hidden sm:flex items-center gap-2.5 text-slate-400 border-r border-slate-700 pr-3">
-                <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="hover:text-emerald-400 transition-colors" title="WhatsApp Us">
-                    <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                <a href="mailto:<?= htmlspecialchars($email) ?>" class="hover:text-blue-400 transition-colors" title="Email IntelliTech Support">
+                    <i data-lucide="mail" class="w-3.5 h-3.5"></i>
                 </a>
+                <button onclick="OkashaStore.openConsultationModal()" class="hover:text-emerald-400 transition-colors" title="Book CAD Survey">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
                 <a href="https://facebook.com" target="_blank" rel="noopener" class="hover:text-blue-400 transition-colors" title="Facebook">
                     <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
                 </a>
@@ -141,16 +149,16 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
             <!-- Header Right Icons & Actions -->
             <div class="flex items-center gap-2 sm:gap-3 shrink-0">
                 
-                <!-- Helpline Pill (Desktop & Tablets) -->
-                <div class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-blue-50/80 border border-blue-100 text-[#1e1e1e]">
+                <!-- Support & CAD Survey Pill (Desktop & Tablets) -->
+                <button onclick="OkashaStore.openConsultationModal()" class="hidden md:flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-blue-50/80 border border-blue-100 text-[#1e1e1e] hover:bg-blue-100 transition-colors text-left">
                     <div class="w-7 h-7 rounded-full bg-[#2189ff] flex items-center justify-center text-white shrink-0">
-                        <i data-lucide="phone-call" class="w-3.5 h-3.5"></i>
+                        <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
                     </div>
                     <div class="flex flex-col text-left">
                         <span class="text-[9px] font-bold text-slate-500 uppercase leading-none">Need Help?</span>
-                        <a href="tel:+923116428717" class="text-xs font-black text-[#2189ff] hover:underline leading-tight">+92 311 6428717</a>
+                        <span class="text-xs font-black text-[#2189ff] leading-tight">Virtual Inquiry</span>
                     </div>
-                </div>
+                </button>
 
                 <!-- Free Consultation Modal Trigger -->
                 <button 
@@ -207,49 +215,38 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <nav class="flex items-center justify-between py-2 text-xs font-bold text-slate-700">
                 <div class="flex items-center gap-1 xl:gap-2">
-                    
-                    <a href="index.php" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'home' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        Home
-                    </a>
-
-                    <!-- Zigbee 3.0 Special Highlight Menu -->
-                    <a href="index.php?page=zigbee" class="group px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all flex items-center gap-1.5 <?= $currentPage === 'zigbee' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#2189ff]"></i>
-                        <span>Zigbee 3.0 Devices</span>
-                        <span class="px-1.5 py-0.5 rounded-full bg-emerald-500 text-white text-[9px] font-black tracking-wide uppercase group-hover:scale-105 transition-transform">
-                            MESH
-                        </span>
-                    </a>
-
-                    <!-- Custom Home Solutions Special Menu -->
-                    <a href="index.php?page=custom-solutions" class="group px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all flex items-center gap-1.5 <?= $currentPage === 'custom-solutions' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-500"></i>
-                        <span>Custom Home Solutions</span>
-                        <span class="px-1.5 py-0.5 rounded-full bg-amber-500 text-white text-[9px] font-black tracking-wide uppercase group-hover:scale-105 transition-transform">
-                            TURNKEY
-                        </span>
-                    </a>
-
-                    <a href="index.php?page=services" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'services' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        Switches & Sockets
-                    </a>
-
-                    <a href="index.php?page=smart-glass" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'smart-glass' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        Smart Locks & Security
-                    </a>
-
-                    <a href="index.php?page=case-studies" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'case-studies' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        Showcase & Projects
-                    </a>
-
-                    <a href="index.php?page=about" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'about' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        About Us
-                    </a>
-
-                    <a href="index.php?page=contact" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'contact' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
-                        Contact & Showrooms
-                    </a>
-
+                    <?php
+                    if (!empty($navItems)) {
+                        usort($navItems, fn($a, $b) => ($a['order'] ?? 0) <=> ($b['order'] ?? 0));
+                        foreach ($navItems as $item):
+                            if (isset($item['active']) && !$item['active']) continue;
+                            $isActive = ($currentPage === ($item['page'] ?? ''));
+                            $badge = $item['badge'] ?? '';
+                            $bColor = $item['badge_color'] ?? 'blue';
+                            $bClass = match($bColor) {
+                                'emerald' => 'bg-emerald-500 text-white',
+                                'amber' => 'bg-amber-500 text-slate-950',
+                                'purple' => 'bg-purple-500 text-white',
+                                'rose' => 'bg-rose-500 text-white',
+                                default => 'bg-[#2189ff] text-white',
+                            };
+                    ?>
+                        <a href="<?= htmlspecialchars($item['url']) ?>" class="group px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all flex items-center gap-1.5 <?= $isActive ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">
+                            <span><?= htmlspecialchars($item['title']) ?></span>
+                            <?php if ($badge): ?>
+                                <span class="px-1.5 py-0.5 rounded-full <?= $bClass ?> text-[9px] font-black tracking-wide uppercase group-hover:scale-105 transition-transform">
+                                    <?= htmlspecialchars($badge) ?>
+                                </span>
+                            <?php endif; ?>
+                        </a>
+                    <?php 
+                        endforeach;
+                    } else {
+                    ?>
+                        <a href="index.php" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all <?= $currentPage === 'home' ? 'text-[#2189ff] bg-white shadow-2xs font-extrabold' : '' ?>">Home</a>
+                        <a href="index.php?page=zigbee" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all">Zigbee 3.0</a>
+                        <a href="index.php?page=custom-solutions" class="px-3 py-1.5 rounded-lg hover:bg-white hover:text-[#2189ff] transition-all">Custom Solutions</a>
+                    <?php } ?>
                 </div>
 
                 <!-- Right Menu Tag: 1 Year Warranty -->
@@ -335,18 +332,14 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
             </div>
         </div>
 
-        <!-- Mobile Drawer Footer Hotlines -->
+        <!-- Mobile Drawer Footer Support -->
         <div class="pt-6 border-t border-slate-200 space-y-3">
-            <div class="text-xs text-slate-500">Customer & WhatsApp Helpline:</div>
-            <a href="tel:+923116428717" class="flex items-center gap-2 text-sm font-black text-[#2189ff]">
-                <i data-lucide="phone-call" class="w-4 h-4"></i>
-                <span>+92 311 6428717</span>
+            <div class="text-xs text-slate-500">Customer Helpline & Virtual Office:</div>
+            <a href="mailto:<?= htmlspecialchars($email) ?>" class="flex items-center gap-2 text-sm font-black text-[#2189ff]">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                <span><?= htmlspecialchars($email) ?></span>
             </a>
-            <a href="https://wa.me/923116428717" target="_blank" rel="noopener" class="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs transition-colors shadow-sm">
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Chat on WhatsApp</span>
-            </a>
-            <button onclick="OkashaStore.openConsultationModal(); document.getElementById('public-mobile-menu').classList.add('hidden');" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-[#2189ff] text-white font-bold text-xs shadow-md transition-colors">
+            <button onclick="OkashaStore.openConsultationModal(); document.getElementById('public-mobile-menu').classList.add('hidden');" class="w-full py-2.5 rounded-xl bg-[#2189ff] hover:bg-blue-600 text-white font-bold text-xs shadow-md transition-colors">
                 Book Free Home Survey
             </button>
         </div>
@@ -432,10 +425,10 @@ $email = $contacts['email'] ?? 'info@intellitech.pk';
 
             <button 
                 onclick="OkashaStore.orderCartOnWhatsApp()" 
-                class="w-full py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98"
+                class="w-full py-3 rounded-xl bg-slate-900 hover:bg-[#2189ff] text-white font-extrabold text-xs sm:text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-98"
             >
-                <i data-lucide="message-circle" class="w-4 h-4"></i>
-                <span>Order on WhatsApp (+92 311 6428717)</span>
+                <i data-lucide="calendar" class="w-4 h-4 text-emerald-400"></i>
+                <span>Direct Inquiry & Order</span>
             </button>
         </div>
 
